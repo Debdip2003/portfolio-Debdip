@@ -8,34 +8,36 @@ import {
 } from "react-icons/fa";
 import { db } from "../utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
+import { useForm } from "react-hook-form";
 
 const ContactSection = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [comment, setComment] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
+  // const [comment, setComment] = useState("");
   const [isSubmit, setisSubmit] = useState(false);
+  const { register, handleSubmit } = useForm();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    const isEmailValid =
-      /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
+  //   const isEmailValid =
+  //     /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
 
-    const isPhoneNumberValid = /^\d{10}$/.test(phoneNumber);
+  //   const isPhoneNumberValid = /^\d{10}$/.test(phoneNumber);
 
-    if (!name) return alert("Please Enter your Name");
+  //   if (!name) return alert("Please Enter your Name");
 
-    if (!isPhoneNumberValid) return alert("Please Enter a Proper Phone Number");
+  //   if (!isPhoneNumberValid) return alert("Please Enter a Proper Phone Number");
 
-    if (!isEmailValid) return alert("Please Enter a Proper Email");
+  //   if (!isEmailValid) return alert("Please Enter a Proper Email");
 
-    if (!comment) return alert("Please Enter your message");
+  //   if (!comment) return alert("Please Enter your message");
 
-    console.log("message sent");
+  //   console.log("message sent");
 
-    writeUserData(name, email, phoneNumber, comment);
-  };
+  //   writeUserData(name, email, phoneNumber, comment);
+  // };
 
   async function writeUserData(name, email, phoneNumber, comment) {
     setisSubmit(true);
@@ -49,10 +51,6 @@ const ContactSection = () => {
 
       console.log("Document written with ID: ", docRef.id);
       alert("Message has been sent!");
-      setName("");
-      setEmail("");
-      setPhoneNumber("");
-      setComment("");
       setisSubmit(false);
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -61,45 +59,78 @@ const ContactSection = () => {
     }
   }
 
+  const onSubmit = (data) => {
+    const { name, phoneNumber, email, comment } = data;
+    console.log(data);
+    
+    // const isEmailValid =
+    //   /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
+
+    // const isPhoneNumberValid = /^\d{10}$/.test(phoneNumber);
+
+    // if (!name) return alert("Please Enter your Name");
+
+    // if (!isPhoneNumberValid) return alert("Please Enter a Proper Phone Number");
+
+    // if (!isEmailValid) return alert("Please Enter a Proper Email");
+
+    // if (!comment) return alert("Please Enter your message");
+
+    writeUserData(name, email, phoneNumber, comment);
+  };
+
   return (
     <div className="flex">
-      <div className="flex justify-center items-center flex-col gap-4 p-4 md:w-1/2">
+      <form
+        className="flex justify-center items-center flex-col gap-4 p-4 md:w-1/2"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <h1 className="text-3xl text-white">Let's Talk</h1>
         <input
           type="text"
           placeholder="Enter your Full Name"
           className="rounded-2xl w-2/3 p-3"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          // value={name}
+          // onChange={(e) => setName(e.target.value)}
+          {...register("name", { required: true, maxLength: 20 })}
         />
         <input
           type="number"
           placeholder="Enter your Phone Number"
           className="rounded-2xl w-2/3 p-3"
-          value={phoneNumber}
-          onChange={(e) => setPhoneNumber(e.target.value)}
+          // value={phoneNumber}
+          // onChange={(e) => setPhoneNumber(e.target.value)}
+          {...register("phoneNumber", {
+            required: true,
+            maxLength: 10,
+            minLength: 10,
+          })}
         />
         <input
           type="email"
           placeholder="Enter your Email"
           className="rounded-2xl w-2/3 p-3"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          // value={email}
+          // onChange={(e) => setEmail(e.target.value)}
+          {...register("email", {
+            required: true,
+          })}
         />
         <textarea
           placeholder="Write down some comments"
           className="rounded-2xl w-2/3 p-3"
           rows={10}
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          // value={comment}
+          // onChange={(e) => setComment(e.target.value)}
+          {...register("comment")}
         />
         <button
           className="bg-blue-600 p-2 px-4 hover:cursor-pointer hover:bg-blue-930 duration-200 rounded-2xl text-white"
-          onClick={handleSubmit}
+          // onClick={handleSubmit}
         >
           Submit
         </button>
-      </div>
+      </form>
       <div className="flex justify-center items-center flex-col gap-4 p-4 md:w-1/2">
         <h1 className="text-3xl text-white">Let's Connect on:-</h1>
         <div className="w-[90%] flex flex-wrap justify-between pt-10">

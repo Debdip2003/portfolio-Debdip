@@ -21,7 +21,7 @@ const navList = [
         id:4,
         name:'Projects',
         to:'/Projects',
-        disabled:true
+        disabled:false
     },
     {
         id:5,
