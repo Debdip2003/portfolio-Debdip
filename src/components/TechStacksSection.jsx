@@ -3,17 +3,16 @@ import techStacks from "../data/techStacks";
 import dropdownOptions from "../data/dropDown";
 
 const TechStacksSection = () => {
-
-
   const [value, setValue] = useState("");
-  const [filteredList,setFilteredList]=useState([])
-
+  const [filteredList, setFilteredList] = useState([]);
 
   const handleOption = (e) => {
-    const selectedOption=e.target.value
-    setValue(selectedOption)
-    const filtered=techStacks.filter((stacks)=>stacks.type===selectedOption)
-    setFilteredList(filtered)
+    const selectedOption = e.target.value;
+    setValue(selectedOption);
+    const filtered = techStacks.filter(
+      (stacks) => stacks.type === selectedOption
+    );
+    setFilteredList(filtered);
   };
 
   return (
@@ -24,11 +23,15 @@ const TechStacksSection = () => {
         onChange={handleOption}
       >
         {dropdownOptions.map((item) => {
-          return <option value={item.value} key={item.id}>{item.label}</option>;
+          return (
+            <option value={item.value} key={item.id}>
+              {item.label}
+            </option>
+          );
         })}
       </select>
       <div className="w-full mt-10 flex flex-wrap gap-6">
-      {filteredList.length > 0
+        {filteredList.length > 0
           ? filteredList.map((item) => (
               <img
                 key={item.id}

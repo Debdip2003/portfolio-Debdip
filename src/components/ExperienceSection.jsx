@@ -7,9 +7,9 @@ const ExperienceSection = () => {
       {experience.map((item) => {
         return (
           <div className="w-[28%] h-full text-white border-2 border-white flex flex-col justify-center items-center p-6 gap-2 rounded-2xl">
-            <h1 className="text-4xl">{item.name}</h1>
-            <p className="text-2xl">{item.role}</p>
-            <p className="text-xl">{item.duration}</p>
+            <h1 className="text-2xl">{item.name}</h1>
+            <p className="text-xl">{item.role}</p>
+            <p className="text-md">{item.duration}</p>
             <div className="w-full flex justify-evenly mt-6">
               {item.firstLink ? (
                 <a href={item.firstLink} target="_blank" rel="noreferrer">
