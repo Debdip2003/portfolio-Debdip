@@ -1,43 +1,48 @@
 import React from "react";
-import experience from "..//data/experience";
+import experience from "../data/experience";
 
 const ExperienceSection = () => {
   return (
-    <div className="w-full h-full p-10 flex gap-6">
-      {experience.map((item) => {
-        return (
-          <div className="w-[28%] h-full text-white border-2 border-white flex flex-col justify-center items-center p-6 gap-2 rounded-2xl">
-            <h1 className="text-2xl">{item.name}</h1>
-            <p className="text-xl">{item.role}</p>
-            <p className="text-md">{item.duration}</p>
-            <div className="w-full flex justify-evenly mt-6">
-              {item.firstLink ? (
-                <a href={item.firstLink} target="_blank" rel="noreferrer">
-                  <button className="bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-800 duration-200 ">
+    <div className="w-full min-h-screen p-6 md:p-10 bg-black text-white">
+      <div className="flex flex-wrap gap-6 justify-center">
+        {experience.map((item, index) => (
+          <div
+            key={index}
+            className="w-full sm:w-[90%] md:w-[55%] lg:w-[30%] border border-white rounded-2xl p-6 flex flex-col items-center gap-4 bg-gray-900 hover:shadow-lg transition duration-300"
+          >
+            <h1 className="text-xl font-semibold">{item.name}</h1>
+            <p className="text-md text-gray-300">{item.role}</p>
+            <p className="text-sm text-gray-500">{item.duration}</p>
+
+            <div className="w-full flex justify-center gap-4 mt-4">
+              {item.firstButton &&
+                (item.firstLink ? (
+                  <a href={item.firstLink} target="_blank" rel="noreferrer">
+                    <button className="bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-xl transition duration-200">
+                      {item.firstButton}
+                    </button>
+                  </a>
+                ) : (
+                  <button className="bg-blue-600 px-4 py-2 rounded-xl cursor-default opacity-60">
                     {item.firstButton}
                   </button>
-                </a>
-              ) : (
-                <button className="bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-800 duration-200 ">
-                  {item.firstButton}
-                </button>
-              )}
-
-              {item.secondLink ? (
-                <a href={item.secondLink} target="_blank" rel="noreferrer">
-                  <button className="bg-blue-600 text-white p-3 rounded-2xl  hover:bg-blue-800 duration-200">
+                ))}
+              {item.secondButton &&
+                (item.secondLink ? (
+                  <a href={item.secondLink} target="_blank" rel="noreferrer">
+                    <button className="bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-xl transition duration-200">
+                      {item.secondButton}
+                    </button>
+                  </a>
+                ) : (
+                  <button className="bg-blue-600 px-4 py-2 rounded-xl cursor-default opacity-60">
                     {item.secondButton}
                   </button>
-                </a>
-              ) : (
-                <button className="bg-blue-600 text-white p-3 rounded-2xl  hover:bg-blue-800 duration-200">
-                  {item.secondButton}
-                </button>
-              )}
+                ))}
             </div>
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };

@@ -1,25 +1,25 @@
 import React from "react";
-import IntroSectionImage from "..//assets/IntroSectionImage.jpeg";
+import IntroSectionImage from "../assets/IntroSectionImage.jpeg";
 import { ReactTyped } from "react-typed";
 
 const IntroSection = () => {
   return (
-    <div className="w-full h-full flex justify-evenly items-center p-10 text-white">
-      <div>
+    <div className="w-full min-h-screen bg-black flex flex-col md:flex-row justify-evenly items-center p-6 md:p-10 text-white gap-10 md:gap-0">
+      <div className="w-full md:w-1/2 flex justify-center">
         <img
           src={IntroSectionImage}
           alt="IntroSectionImage"
-          className="rounded-2xl size-[85%]"
+          className="rounded-2xl "
         />
       </div>
-      <div className="md:w-1/2">
-        <h1 className="text-7xl mb-10">
+      <div className="w-full md:w-1/2 text-center md:text-left">
+        <h1 className="text-3xl sm:text-4xl md:text-7xl mb-6 md:mb-10">
           <ReactTyped
             strings={["Hi, I'm a FrontEnd Web Developer"]}
             typeSpeed={70}
-          ></ReactTyped>
+          />
         </h1>
-        <p className="text-xl text-gray-500">
+        <p className="text-base sm:text-lg md:text-xl text-gray-400 px-4 md:px-0">
           Welcome to my portfolio! I am passionate about crafting engaging and
           user-centric experiences on the web. With a keen eye for design and
           proficiency in frontend development, I specialize in turning ideas

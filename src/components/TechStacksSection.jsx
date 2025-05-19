@@ -16,38 +16,30 @@ const TechStacksSection = () => {
   };
 
   return (
-    <div className="w-full h-full p-10">
+    <div className="w-full h-full p-4 sm:p-10">
       <select
-        className="w-1/5 text-black p-2 rounded-xl hover:cursor-pointer"
+        className="w-full sm:w-1/5 text-black p-2 rounded-xl hover:cursor-pointer"
         value={value}
         onChange={handleOption}
       >
-        {dropdownOptions.map((item) => {
-          return (
-            <option value={item.value} key={item.id}>
-              {item.label}
-            </option>
-          );
-        })}
+        <option value="">Select Type</option>
+        {dropdownOptions.map((item) => (
+          <option value={item.value} key={item.id}>
+            {item.label}
+          </option>
+        ))}
       </select>
-      <div className="w-full mt-10 flex flex-wrap gap-6">
-        {filteredList.length > 0
-          ? filteredList.map((item) => (
-              <img
-                key={item.id}
-                src={item.img}
-                alt={item.alt}
-                className="rounded-2xl size-[11%] hover:cursor-pointer"
-              />
-            ))
-          : techStacks.map((item) => (
-              <img
-                key={item.id}
-                src={item.img}
-                alt={item.alt}
-                className="rounded-2xl size-[11%] hover:cursor-pointer"
-              />
-            ))}
+
+      <div className="w-full mt-6 flex flex-wrap gap-4 justify-center sm:justify-start">
+        {(filteredList.length > 0 ? filteredList : techStacks).map((item) => (
+          <img
+            key={item.id}
+            src={item.img}
+            alt={item.alt}
+            className="rounded-2xl hover:cursor-pointer 
+              w-[40vw] max-w-[120px] sm:w-[11%] sm:max-w-none"
+          />
+        ))}
       </div>
     </div>
   );

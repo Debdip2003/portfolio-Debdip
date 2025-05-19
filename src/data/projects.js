@@ -1,6 +1,7 @@
 import forever from "..//assets/forever.jpeg";
 import mma from "..//assets/mma.jpg";
 import spotifyClone from "..//assets/spotifyClone.jpeg";
+import megatronix from "../assets/megatronix.png";
 
 const projects = [
   {
@@ -12,6 +13,16 @@ const projects = [
     secondButton: "Github Link",
     firstLink: "https://e-commerce-pi-teal.vercel.app/",
     secondLink: "https://github.com/Debdip2003/e-commerce",
+    firstButtonDisabled: false,
+    secondButtonDisabled: false,
+  },
+  {
+    id: 4,
+    img: megatronix,
+    name: "Paridhi's Official Website",
+    desc: "Complete and fully functional website for Eastern India's largest tech fest, Paridhi, organized by Meghnad Saha Institute of Technology, built with ReactJS and Tailwind CSS.",
+    firstButton: "Demo",
+    secondButton: "Github Link",
     firstButtonDisabled: false,
     secondButtonDisabled: false,
   },

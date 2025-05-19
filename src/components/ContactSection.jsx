@@ -11,189 +11,144 @@ import { addDoc, collection } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 
 const ContactSection = () => {
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-  // const [comment, setComment] = useState("");
-  const [isSubmit, setisSubmit] = useState(false);
-  const { register, handleSubmit } = useForm();
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   const isEmailValid =
-  //     /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
-
-  //   const isPhoneNumberValid = /^\d{10}$/.test(phoneNumber);
-
-  //   if (!name) return alert("Please Enter your Name");
-
-  //   if (!isPhoneNumberValid) return alert("Please Enter a Proper Phone Number");
-
-  //   if (!isEmailValid) return alert("Please Enter a Proper Email");
-
-  //   if (!comment) return alert("Please Enter your message");
-
-  //   console.log("message sent");
-
-  //   writeUserData(name, email, phoneNumber, comment);
-  // };
+  const [isSubmit, setIsSubmit] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   async function writeUserData(name, email, phoneNumber, comment) {
-    setisSubmit(true);
+    setIsSubmit(true);
     try {
-      const docRef = await addDoc(collection(db, "contacts"), {
-        name: name,
-        email: email,
-        phoneNumber: phoneNumber,
-        comment: comment,
+      await addDoc(collection(db, "contacts"), {
+        name,
+        email,
+        phoneNumber,
+        comment,
       });
 
-      console.log("Document written with ID: ", docRef.id);
       alert("Message has been sent!");
-      setisSubmit(false);
+      setIsSubmit(false);
     } catch (error) {
-      console.error("Error adding document: ", error);
       alert(error.message);
-      setisSubmit(false);
+      setIsSubmit(false);
     }
   }
 
   const onSubmit = (data) => {
-    const { name, phoneNumber, email, comment } = data;
-    console.log(data);
-    
-    // const isEmailValid =
-    //   /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
-
-    // const isPhoneNumberValid = /^\d{10}$/.test(phoneNumber);
-
-    // if (!name) return alert("Please Enter your Name");
-
-    // if (!isPhoneNumberValid) return alert("Please Enter a Proper Phone Number");
-
-    // if (!isEmailValid) return alert("Please Enter a Proper Email");
-
-    // if (!comment) return alert("Please Enter your message");
-
-    writeUserData(name, email, phoneNumber, comment);
+    writeUserData(data.name, data.email, data.phoneNumber, data.comment);
   };
 
   return (
-    <div className="flex">
+    <div className="flex flex-col md:flex-row w-full p-4 md:p-10 gap-10 bg-black">
+      {/* Form Section */}
       <form
-        className="flex justify-center items-center flex-col gap-4 p-4 md:w-1/2"
+        className="flex flex-col gap-4 items-center w-full md:w-1/2"
         onSubmit={handleSubmit(onSubmit)}
       >
-        <h1 className="text-3xl text-white">Let's Talk</h1>
+        <h1 className="text-3xl text-white mb-4 text-center">Let's Talk</h1>
+
         <input
           type="text"
           placeholder="Enter your Full Name"
-          className="rounded-2xl w-2/3 p-3"
-          // value={name}
-          // onChange={(e) => setName(e.target.value)}
-          {...register("name", { required: true, maxLength: 20 })}
+          className="rounded-2xl w-full max-w-md p-3"
+          {...register("name", { required: "Name is required", maxLength: 20 })}
         />
+        {errors.name && (
+          <p className="text-red-500 text-sm">{errors.name.message}</p>
+        )}
+
         <input
-          type="number"
+          type="tel"
           placeholder="Enter your Phone Number"
-          className="rounded-2xl w-2/3 p-3"
-          // value={phoneNumber}
-          // onChange={(e) => setPhoneNumber(e.target.value)}
+          className="rounded-2xl w-full max-w-md p-3"
           {...register("phoneNumber", {
-            required: true,
-            maxLength: 10,
-            minLength: 10,
+            required: "Phone number is required",
+            pattern: {
+              value: /^\d{10}$/,
+              message: "Phone number must be 10 digits",
+            },
           })}
         />
+        {errors.phoneNumber && (
+          <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>
+        )}
+
         <input
           type="email"
           placeholder="Enter your Email"
-          className="rounded-2xl w-2/3 p-3"
-          // value={email}
-          // onChange={(e) => setEmail(e.target.value)}
+          className="rounded-2xl w-full max-w-md p-3"
           {...register("email", {
-            required: true,
+            required: "Email is required",
+            pattern: {
+              value: /^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+              message: "Enter a valid email",
+            },
           })}
         />
+        {errors.email && (
+          <p className="text-red-500 text-sm">{errors.email.message}</p>
+        )}
+
         <textarea
           placeholder="Write down some comments"
-          className="rounded-2xl w-2/3 p-3"
-          rows={10}
-          // value={comment}
-          // onChange={(e) => setComment(e.target.value)}
+          className="rounded-2xl w-full max-w-md p-3"
+          rows={6}
           {...register("comment")}
         />
+
         <button
-          className="bg-blue-600 p-2 px-4 hover:cursor-pointer hover:bg-blue-930 duration-200 rounded-2xl text-white"
-          // onClick={handleSubmit}
+          type="submit"
+          disabled={isSubmit}
+          className="bg-blue-600 p-3 px-6 rounded-2xl text-white hover:bg-blue-700 duration-200 disabled:opacity-50"
         >
-          Submit
+          {isSubmit ? "Submitting..." : "Submit"}
         </button>
       </form>
-      <div className="flex justify-center items-center flex-col gap-4 p-4 md:w-1/2">
-        <h1 className="text-3xl text-white">Let's Connect on:-</h1>
-        <div className="w-[90%] flex flex-wrap justify-between pt-10">
-          <div>
-            <a
-              href="https://github.com/Debdip2003"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaGithub className="bg-white rounded-xl size-20 hover:cursor-pointer" />
-            </a>
-            <p className="text-white mt-4 text-2xl w-full flex justify-center items-center">
-              Github
-            </p>
-          </div>
-          <div>
-            <a
-              href="https://www.linkedin.com/in/debdip-bhattacharya-a1534b24a/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaLinkedin className="bg-white rounded-xl size-20" />
-            </a>
-            <p className="text-white mt-4 text-2xl w-full flex justify-center items-center">
-              LinkedIn
-            </p>
-          </div>
-          <div>
-            <a
-              href="https://www.facebook.com/debdip.bhattacharya.5"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaFacebook className="bg-white rounded-xl size-20" />
-            </a>
-            <p className="text-white mt-4 text-2xl w-full flex justify-center items-center">
-              Facebook
-            </p>
-          </div>
-          <div>
-            <a
-              href="https://www.instagram.com/ft_debdip/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaInstagram className="bg-white rounded-xl size-20" />
-            </a>
-            <p className="text-white mt-4 text-2xl w-full flex justify-center items-center">
-              Instagram
-            </p>
-          </div>
-          <div>
-            <a
-              href="mailto:dbhattacharya1912@gmail.com"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaMailBulk className="bg-white rounded-xl size-20" />
-            </a>
-            <p className="text-white mt-4 text-2xl w-full flex justify-center items-center">
-              Mail
-            </p>
-          </div>
+
+      {/* Social Media Section */}
+      <div className="flex flex-col items-center w-full md:w-1/2 gap-8">
+        <h1 className="text-3xl text-white mb-4 text-center">
+          Let's Connect on:
+        </h1>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 justify-items-center w-full">
+          {[
+            {
+              Icon: FaGithub,
+              url: "https://github.com/Debdip2003",
+              label: "Github",
+            },
+            {
+              Icon: FaLinkedin,
+              url: "https://www.linkedin.com/in/debdip-bhattacharya-a1534b24a/",
+              label: "LinkedIn",
+            },
+            {
+              Icon: FaFacebook,
+              url: "https://www.facebook.com/debdip.bhattacharya.5",
+              label: "Facebook",
+            },
+            {
+              Icon: FaInstagram,
+              url: "https://www.instagram.com/ft_debdip/",
+              label: "Instagram",
+            },
+            {
+              Icon: FaMailBulk,
+              url: "mailto:dbhattacharya1912@gmail.com",
+              label: "Mail",
+            },
+          ].map(({ Icon, url, label }) => (
+            <div key={label} className="flex flex-col items-center text-white">
+              <a href={url} target="_blank" rel="noreferrer" aria-label={label}>
+                <div className="bg-white rounded-xl p-4 w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center hover:cursor-pointer hover:bg-gray-200 transition">
+                  <Icon className="text-black w-8 h-8 sm:w-10 sm:h-10" />
+                </div>
+              </a>
+              <p className="mt-2 text-lg sm:text-xl">{label}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

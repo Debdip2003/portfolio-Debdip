@@ -1,50 +1,60 @@
-import React from 'react'
-import NavBar from './NavBar'
-import projects from "..//data/projects"
+import React from "react";
+import NavBar from "./NavBar";
+import projects from "../data/projects";
 
 const ProjectsSection = () => {
   return (
     <>
-    <NavBar/>
-    <div className="w-full h-full p-10 flex justify-evenly gap-6">
-      {projects.map((item,index) => {
-        return (
-          <div className="w-[28%] h-full text-white border border-white flex flex-col justify-center items-center p-2 pb-4 gap-2 rounded-2xl" key={item.id} >
-            <img src={item.img} alt={item.name} className='w-fit h-full rounded-2xl'/>
-            <h1 className="text-2xl">{item.name}</h1>
-            <p className="text-xl">{item.desc}</p>
-            <p className="text-md">{item.duration}</p>
-            <div className="w-full flex justify-evenly mt-6">
-              {item.firstLink ? (
-                <a href={item.firstLink} target="_blank" rel="noreferrer">
-                  <button className="bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-800 duration-200 ">
-                    {item.firstButton}
-                  </button>
-                </a>
-              ) : (
-                <button className="bg-blue-600 text-white p-3 rounded-2xl hover:bg-blue-800 duration-200 ">
-                  {item.firstButton}
-                </button>
-              )}
-
-              {item.secondLink ? (
-                <a href={item.secondLink} target="_blank" rel="noreferrer">
-                  <button className="bg-blue-600 text-white p-3 rounded-2xl  hover:bg-blue-800 duration-200">
-                    {item.secondButton}
-                  </button>
-                </a>
-              ) : (
-                <button className="bg-blue-600 text-white p-3 rounded-2xl  hover:bg-blue-800 duration-200">
-                  {item.secondButton}
-                </button>
-              )}
+      <NavBar />
+      <div className="w-full min-h-screen p-6 md:p-10 bg-black text-white">
+        <div className="flex flex-wrap justify-center gap-8">
+          {projects.map((item, index) => (
+            <div
+              key={item.id || index}
+              className="w-full sm:w-[80%] md:w-[45%] lg:w-[30%] border border-white rounded-2xl overflow-hidden bg-gray-900 hover:shadow-lg transition duration-300 flex flex-col items-center p-4 gap-4"
+            >
+              <img
+                src={item.img}
+                alt={item.name}
+                className="w-full h-48 object-cover rounded-lg"
+              />
+              <div className="flex flex-col items-center text-center gap-2">
+                <h1 className="text-xl font-semibold">{item.name}</h1>
+                <p className="text-gray-300 text-sm">{item.desc}</p>
+                <p className="text-gray-500 text-xs">{item.duration}</p>
+              </div>
+              <div className="w-full flex justify-center gap-4 mt-4">
+                {item.firstButton &&
+                  (item.firstLink ? (
+                    <a href={item.firstLink} target="_blank" rel="noreferrer">
+                      <button className="bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-xl transition duration-200">
+                        {item.firstButton}
+                      </button>
+                    </a>
+                  ) : (
+                    <button className="bg-blue-600 px-4 py-2 rounded-xl cursor-default opacity-60">
+                      {item.firstButton}
+                    </button>
+                  ))}
+                {item.secondButton &&
+                  (item.secondLink ? (
+                    <a href={item.secondLink} target="_blank" rel="noreferrer">
+                      <button className="bg-blue-600 hover:bg-blue-800 px-4 py-2 rounded-xl transition duration-200">
+                        {item.secondButton}
+                      </button>
+                    </a>
+                  ) : (
+                    <button className="bg-blue-600 px-4 py-2 rounded-xl cursor-default opacity-60">
+                      {item.secondButton}
+                    </button>
+                  ))}
+              </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          ))}
+        </div>
+      </div>
     </>
   );
-}
+};
 
-export default ProjectsSection
+export default ProjectsSection;
