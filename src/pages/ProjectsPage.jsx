@@ -1,12 +1,14 @@
-import React from 'react'
-import ProjectsSection from '../components/ProjectsSection'
+import React from "react";
+import ProjectsSection from "../components/ProjectsSection";
+import NavBar from "../components/NavBar";
 
 const ProjectsPage = () => {
   return (
-    <div>
-      <ProjectsSection/>
+    <div className="pt-[72px]">
+      <NavBar />
+      <ProjectsSection />
     </div>
-  )
-}
+  );
+};
 
-export default ProjectsPage
+export default ProjectsPage;

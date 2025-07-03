@@ -8,6 +8,11 @@ import tailwind from "..//assets/tailwind.png";
 import redux from "..//assets/redux.png";
 import bootstrap from "..//assets/bootstrap.png";
 import materialUI from "..//assets/materialUI.png";
+import shadcn from "../assets/shadcn.png";
+import github from "../assets/github.png";
+import vscode from "../assets/vscode.png";
+import firebase from "../assets/firebase.png";
+import figma from "../assets/figma.png";
 
 const techStacks = [
   {
@@ -70,6 +75,36 @@ const techStacks = [
     img: materialUI,
     alt: "material-ui",
     type: "front-end technologies",
+  },
+  {
+    id: 11,
+    img: shadcn,
+    alt: "shadcn-ui",
+    type: "libraries",
+  },
+  {
+    id: 12,
+    img: github,
+    alt: "github",
+    type: "version control",
+  },
+  {
+    id: 13,
+    img: vscode,
+    alt: "vs-code",
+    type: "tools",
+  },
+  {
+    id: 14,
+    img: firebase,
+    alt: "firebase",
+    type: "database & backend",
+  },
+  {
+    id: 15,
+    img: figma,
+    alt: "figma",
+    type: "ui/ux design",
   },
 ];
 

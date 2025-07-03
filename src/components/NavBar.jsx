@@ -1,119 +1,120 @@
-import React, { useState } from "react";
-import navList from "../data/navList";
-import { Link } from "react-router-dom";
-import resume from "../assets/resume.pdf";
-import { FaBars, FaTimes } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
+import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
+
+const NAVBAR_HEIGHT = 64; // px
+const navLinks = [
+  { name: "Home", to: "/#intro" },
+  { name: "About", to: "/#about" },
+  { name: "Projects", to: "/#projects" },
+  { name: "Hobbies", to: "/#hobbies" },
+  { name: "Contact", to: "/#contact" },
+];
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const stored = localStorage.getItem("darkMode");
+    return stored ? JSON.parse(stored) : true;
+  });
+  const [activeHash, setActiveHash] = useState(() => window.location.hash);
 
-  const handleButtonClick = () => {
-    fetch(resume)
-      .then((response) => response.blob())
-      .then((blob) => {
-        const fileURL = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = fileURL;
-        a.download = "resume.pdf";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-      })
-      .catch((error) => {
-        console.error("Error downloading resume:", error);
-        alert("Failed to download resume");
-      });
-  };
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("darkMode", JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  useEffect(() => {
+    const onHashChange = () => setActiveHash(window.location.hash);
+    window.addEventListener("hashchange", onHashChange);
+    return () => window.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   return (
-    <nav className="bg-transparent py-5 w-full text-white px-4 md:px-10">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl md:text-3xl">Portfolio</h1>
-
+    <nav
+      className="fixed top-0 left-0 w-full z-50 py-2 px-2 md:px-6 transition-colors duration-300"
+      style={{ height: NAVBAR_HEIGHT }}
+    >
+      <div
+        className="max-w-7xl mx-auto flex justify-between items-center bg-black/60 bg-gradient-to-br from-blue-900/30 via-black/60 to-pink-900/20 backdrop-blur-2xl rounded-2xl shadow-2xl border border-white/30 px-4 md:px-10 py-2 transition-all duration-300"
+        style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.25)" }}
+      >
+        {/* Logo/Name */}
+        <p className="text-3xl font-extrabold text-white tracking-tight select-none drop-shadow-sm">
+          Debdip
+        </p>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-6 items-center text-base">
+          {navLinks.map((item) => (
+            <a
+              key={item.name}
+              href={item.to}
+              className={`px-2 py-1 rounded relative transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 group ${
+                activeHash === item.to.replace("/", "")
+                  ? "bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent font-semibold"
+                  : "text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-pink-400 hover:bg-clip-text hover:text-transparent"
+              }`}
+            >
+              {item.name}
+              <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-blue-400 to-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full" />
+            </a>
+          ))}
+          <button
+            onClick={() => setDarkMode((prev) => !prev)}
+            aria-label="Toggle dark mode"
+            className="ml-2 p-2 rounded-full bg-black/60 border border-white/30 text-white hover:bg-blue-900/40 transition-all duration-300"
+          >
+            {darkMode ? (
+              <FaSun className="text-yellow-400" />
+            ) : (
+              <FaMoon className="text-white" />
+            )}
+          </button>
+        </div>
         {/* Mobile Menu Button */}
         <button
           className="md:hidden text-white"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation menu"
         >
           {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
         </button>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex w-1/2 justify-evenly items-center text-xl">
-          {navList.map((item) => (
-            <p
-              key={item.id}
-              className="text-gray-500 hover:scale-110 hover:cursor-pointer hover:text-white duration-200"
-            >
-              <Link
-                to={
-                  item.to === "Home"
-                    ? "/"
-                    : item.disabled === false
-                    ? `${item.to}`
-                    : ""
-                }
-              >
-                {item.name}
-              </Link>
-            </p>
-          ))}
-        </div>
-
-        {/* Desktop Buttons */}
-        <div className="hidden md:flex text-xl items-center gap-4">
-          <Link
-            to="/Contact"
-            className="bg-blue-600 p-2 rounded-xl hover:cursor-pointer hover:bg-blue-800 duration-200"
-          >
-            Contact Me
-          </Link>
-          <button
-            className="bg-blue-600 p-2 rounded-xl hover:cursor-pointer hover:bg-blue-800 duration-200"
-            onClick={handleButtonClick}
-          >
-            Download Resume
-          </button>
-        </div>
       </div>
-
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden mt-4 flex flex-col gap-4">
-          {navList.map((item) => (
-            <Link
-              key={item.id}
-              to={
-                item.to === "Home"
-                  ? "/"
-                  : item.disabled === false
-                  ? `${item.to}`
-                  : ""
-              }
-              className="text-gray-500 hover:text-white duration-200 text-lg"
+        <div
+          className="md:hidden mt-2 flex flex-col gap-2 bg-black/60 bg-gradient-to-br from-blue-900/30 via-black/60 to-pink-900/20 backdrop-blur-2xl rounded-xl p-4 shadow-2xl border border-white/30"
+          style={{ boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.25)" }}
+        >
+          {navLinks.map((item) => (
+            <a
+              key={item.name}
+              href={item.to}
+              className={`text-base px-2 py-1 rounded relative transition-colors duration-200 group ${
+                activeHash === item.to.replace("/", "")
+                  ? "bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent font-semibold"
+                  : "text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-pink-400 hover:bg-clip-text hover:text-transparent"
+              }`}
               onClick={() => setIsOpen(false)}
             >
               {item.name}
-            </Link>
+              <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-blue-400 to-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full" />
+            </a>
           ))}
-          <div className="flex flex-col gap-4 mt-4">
-            <Link
-              to="/Contact"
-              className="bg-blue-600 p-2 rounded-xl text-center hover:bg-blue-800 duration-200"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact Me
-            </Link>
-            <button
-              className="bg-blue-600 p-2 rounded-xl hover:bg-blue-800 duration-200"
-              onClick={() => {
-                handleButtonClick();
-                setIsOpen(false);
-              }}
-            >
-              Download Resume
-            </button>
-          </div>
+          <button
+            onClick={() => setDarkMode((prev) => !prev)}
+            aria-label="Toggle dark mode"
+            className="mt-2 p-2 rounded-full bg-black/60 border border-white/30 text-white hover:bg-blue-900/40 transition-all duration-300"
+          >
+            {darkMode ? (
+              <FaSun className="text-yellow-400" />
+            ) : (
+              <FaMoon className="text-white" />
+            )}
+          </button>
         </div>
       )}
     </nav>

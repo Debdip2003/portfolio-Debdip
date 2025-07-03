@@ -1,46 +1,29 @@
 const experience = [
   {
-    name: "FarmerShop Tech Pvt Ltd",
-    role: "FrontEnd Web Developer",
-    duration: "Mar 2025 - Apr 2025",
-    firstButton: "Offer Letter",
-    secondButton: "Complition Certificate",
+    name: "HYBY CONNECT PVT LTD",
+    role: "Frontend Developer Intern",
+    duration: "Feb 2025 – Mar 2025",
+    description: [
+      "Developed influencer search tool used by 500+ testers; improved search relevance by 40%",
+      "Enhanced admin dashboard with dynamic filters; cut task completion time by 30%",
+      "Integrated efficient data pipelines via API; reduced redundant requests by 25%",
+    ],
+    firstButton: "Offer",
+    secondButton: "Certificate",
     firstButtonDisabled: false,
     secondButtonDisabled: false,
   },
-
   {
-    name: "HYBY CONNECT PVT LTD",
-    role: "FrontEnd Web Developer",
-    duration: "February 4th - March 4th , 2025",
-    firstButton: "Offer Letter",
-    secondButton: "Complition Certificate",
-    firstLink:
-      "https://www.linkedin.com/feed/update/urn:li:activity:7292592609380679682/",
-    firstButtonDisabled: false,
-    secondButtonDisabled: true,
-  },
-  {
-    name: "Oasis Infobyte Pvt Ltd",
-    role: "FrontEnd Web Developer",
-    duration: "June 2024 - July 2024",
-    firstButton: "Offer Letter",
-    secondButton: "Complition Certificate",
-    firstLink:
-      "https://www.linkedin.com/posts/debdip-bhattacharya-a1534b24a_internship-webdevelopment-designing-activity-7215959294754586624-PvzC?utm_source=share&utm_medium=member_desktop",
-    firstButtonDisabled: false,
-    secondButtonDisabled: true,
-  },
-  {
-    name: "Octanet Pvt Ltd",
-    role: "FrontEnd Web Developer",
-    duration: "May 2024 - June 2024",
-    firstButton: "Offer Letter",
-    secondButton: "Complition Certificate",
-    firstLink:
-      "https://www.linkedin.com/in/debdip-bhattacharya-a1534b24a/overlay/1717095196449/single-media-viewer/?type=IMAGE&profileId=ACoAAD2hl_EBkgh871vEigxwwc32htFDoy1HaKU",
-    secondLink:
-      "https://www.linkedin.com/posts/debdip-bhattacharya-a1534b24a_internship-octanet-webdeveloper-activity-7215756106441084928-egTK?utm_source=share&utm_medium=member_desktop",
+    name: "FARMERSHOP TECH INDIA PVT LTD",
+    role: "Frontend Developer Intern",
+    duration: "Mar 2025 – Apr 2025",
+    description: [
+      "Built admin/store panels with role-based routing; supported 200+ daily users",
+      "Integrated Google Maps API with drag-drop markers; improved delivery UI",
+      "Enabled real-time CRUD via APIs; reduced manual input errors by 50%",
+    ],
+    firstButton: "Offer",
+    secondButton: "Certificate",
     firstButtonDisabled: false,
     secondButtonDisabled: false,
   },

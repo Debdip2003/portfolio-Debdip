@@ -1,56 +1,114 @@
 import React from "react";
-import { ReactTyped } from "react-typed";
-import AboutSectionImage from "../assets/AboutSectionImage.png";
+import resume from "../assets/resume.pdf";
+
+const skills = [
+  { icon: "💻", label: "React & JavaScript" },
+  { icon: "🎨", label: "UI/UX Design" },
+  { icon: "⚡", label: "Performance" },
+  { icon: "🔧", label: "Debugging" },
+];
+const socialSkills = [
+  { icon: "🤝", label: "Teamwork" },
+  { icon: "💬", label: "Communication" },
+  { icon: "🎯", label: "Focus" },
+  { icon: "🌱", label: "Learning" },
+];
 
 const AboutSection = () => {
-  return (
-    <div className="w-full min-h-screen bg-black flex flex-col-reverse md:flex-row justify-evenly items-center p-6 md:p-10 text-white gap-10">
-      {/* Text Section */}
-      <div className="w-full md:w-1/2">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl mb-6">
-          <ReactTyped strings={["Learn About Me..."]} typeSpeed={70} />
-        </h1>
-        <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-          Welcome to my corner of the web! I'm Debdip Bhattacharya, a frontend
-          developer specializing in React and JavaScript. With 1 year of
-          dedicated experience, I've honed my skills in crafting immersive and
-          user-friendly interfaces that blend creativity with technical
-          excellence. My journey began with a fascination for how code can
-          transform ideas into tangible digital experiences, and it has evolved
-          into a passion for building scalable web applications that not only
-          meet but exceed client expectations. <br />
-          <br />
-          Throughout my career, I've had the privilege of working on diverse
-          projects, from creating responsive layouts that adapt seamlessly
-          across devices to integrating complex APIs that enhance functionality.
-          My proficiency in React allows me to leverage its powerful ecosystem
-          to develop modular, efficient, and maintainable codebases. <br />
-          <br />
-          I thrive in collaborative environments where I can contribute my
-          expertise while learning from talented peers. Beyond technical
-          proficiency, I'm committed to staying abreast of industry trends and
-          best practices. This dedication ensures that my solutions not only
-          meet current standards but also anticipate future needs, providing
-          clients with sustainable and innovative digital solutions.
-          <br />
-          <br />
-          Let's embark on a journey together to transform your vision into
-          reality. Whether you're looking to enhance user experiences,
-          streamline workflows, or tackle new challenges in frontend
-          development, I'm here to help you achieve your goals. Get in touch,
-          and let's build something extraordinary together!
-        </p>
-      </div>
+  const handleButtonClick = () => {
+    fetch(resume)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const fileURL = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = fileURL;
+        a.download = "resume.pdf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      })
+      .catch(() => {
+        alert("Failed to download resume");
+      });
+  };
 
-      {/* Image Section */}
-      <div className="w-full md:w-1/2 flex justify-center items-center">
-        <img
-          src={AboutSectionImage}
-          alt="AboutSectionImage"
-          className="w-4/5 max-w-[400px] rounded-2xl shadow-lg"
-        />
+  return (
+    <section
+      id="about"
+      className="w-full flex justify-center items-center px-4 py-10 -mt-12 relative overflow-hidden animate-fade-in-up bg-gradient-to-br from-black via-gray-900 to-black dark:from-gray-900 dark:via-black dark:to-gray-800 text-gray-800 dark:text-gray-100"
+    >
+      {/* Animated floating shapes background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-blue-600/30 to-pink-500/20 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-10 right-20 w-32 h-32 bg-gradient-to-tr from-purple-600/30 to-blue-400/20 rounded-full blur-2xl animate-pulse-slow" />
       </div>
-    </div>
+      <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center z-10 px-4 py-10">
+        <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          About Me
+        </h2>
+        <p className="text-gray-200 text-lg mb-6">
+          Frontend Developer with 1+ years of experience building
+          production-level web apps using React.js, Redux, and Firebase. Skilled
+          in responsive UI design, scalable architecture, and cross-functional
+          collaboration. Delivered features for 700+ users and optimized admin
+          tools reducing processing time by up to 50%. Eager to leverage skills
+          in scalable frontend solutions in a dynamic development team.
+        </p>
+        <div className="w-full flex flex-col md:flex-row gap-8 mb-6 justify-center">
+          <div className="flex-1">
+            <h3 className="text-xl font-semibold text-left mb-2 text-white">
+              Achievements
+            </h3>
+            <ul className="list-disc list-inside text-gray-300 text-left">
+              <li>
+                2nd place (30+ teams) in Web Dev Competition at Future Institute
+                of Engineering
+              </li>
+              <li>
+                Core Organizer of Megatronix (recognized by Edungraph, Times of
+                India)
+              </li>
+              <li>Delivered systems supporting 700+ users during tech fests</li>
+            </ul>
+          </div>
+          <div className="flex-1">
+            <h3 className="text-xl font-semibold text-left mb-2 text-white">
+              Education
+            </h3>
+            <ul className="list-disc list-inside text-gray-300 text-left">
+              <li>B.Tech in Computer Science and Engineering (2022–2026)</li>
+              <li>Meghnad Saha Institute of Technology, Kolkata</li>
+            </ul>
+          </div>
+        </div>
+        <div className="flex flex-wrap justify-center gap-4 mb-4">
+          {skills.map((s, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-pink-500/20 text-white px-4 py-2 rounded-xl font-semibold text-base"
+            >
+              <span className="text-xl">{s.icon}</span> {s.label}
+            </span>
+          ))}
+        </div>
+        <div className="flex flex-wrap justify-center gap-4 mb-6">
+          {socialSkills.map((s, i) => (
+            <span
+              key={i}
+              className="flex items-center gap-2 bg-gradient-to-r from-blue-700/10 to-pink-700/10 text-white px-4 py-2 rounded-xl font-medium text-base"
+            >
+              <span className="text-xl">{s.icon}</span> {s.label}
+            </span>
+          ))}
+        </div>
+        <button
+          onClick={handleButtonClick}
+          className="bg-gradient-to-r from-blue-600 to-pink-600 text-white px-6 py-3 rounded-xl font-semibold shadow hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
+        >
+          Download Resume
+        </button>
+      </div>
+    </section>
   );
 };
 

@@ -1,39 +1,53 @@
 import React from "react";
-import IntroSectionImage from "../assets/IntroSectionImage.jpeg";
 import { ReactTyped } from "react-typed";
+
+const avatarUrl =
+  "https://ui-avatars.com/api/?name=Debdip+B&background=111827&color=fff&size=256&rounded=true";
 
 const IntroSection = () => {
   return (
-    <div className="w-full min-h-screen bg-black flex flex-col md:flex-row justify-evenly items-center p-6 md:p-10 text-white gap-10 md:gap-0">
-      <div className="w-full md:w-1/2 flex justify-center">
+    <section
+      id="intro"
+      className="w-full flex justify-center items-center px-4 min-h-screen relative overflow-hidden animate-fade-in-up bg-gradient-to-br from-black via-gray-900 to-black dark:from-gray-900 dark:via-black dark:to-gray-800 text-gray-800 dark:text-gray-100"
+    >
+      {/* Animated floating shapes background */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-blue-600/30 to-pink-500/20 rounded-full blur-3xl animate-pulse-slow" />
+        <div className="absolute bottom-10 right-20 w-32 h-32 bg-gradient-to-tr from-purple-600/30 to-blue-400/20 rounded-full blur-2xl animate-pulse-slow" />
+      </div>
+      <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center z-10 px-4 py-10">
         <img
-          src={IntroSectionImage}
-          alt="IntroSectionImage"
-          className="rounded-2xl "
+          src={avatarUrl}
+          alt="Debdip Bhattacharya avatar"
+          className="w-32 h-32 rounded-full shadow-xl border-4 border-white/10 mb-2 animate-fade-in"
         />
-      </div>
-      <div className="w-full md:w-1/2 text-center md:text-left">
-        <h1 className="text-3xl sm:text-4xl md:text-7xl mb-6 md:mb-10">
-          <ReactTyped
-            strings={["Hi, I'm a FrontEnd Web Developer"]}
-            typeSpeed={70}
-          />
+        <h1 className="text-4xl md:text-6xl font-extrabold text-white text-center drop-shadow-lg mb-2">
+          Hi, I'm Debdip
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-400 px-4 md:px-0">
-          Welcome to my portfolio! I am passionate about crafting engaging and
-          user-centric experiences on the web. With a keen eye for design and
-          proficiency in frontend development, I specialize in turning ideas
-          into beautifully crafted websites. My journey began with a fascination
-          for how technology can transform creativity into functional solutions.
-          Over the years, I've honed my skills in HTML, CSS, JavaScript, and
-          various frontend frameworks to build responsive, intuitive interfaces.
-          Whether it's designing a seamless user journey or optimizing
-          performance, I thrive on solving challenges and creating impactful
-          digital experiences. Let's connect and explore how we can bring your
-          ideas to life on the web.
+        <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in">
+          <ReactTyped
+            strings={[
+              "Front-End Web Developer",
+              "React Enthusiast",
+              "UI/UX Explorer",
+            ]}
+            typeSpeed={60}
+            backSpeed={40}
+            loop
+          />
+        </h2>
+        <p className="text-gray-300 text-lg mb-6 max-w-xl text-center animate-fade-in">
+          I love building playful, interactive, and user-friendly web
+          experiences. Let's create something amazing together!
         </p>
+        <a
+          href="#projects"
+          className="mt-2 px-8 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-pink-600 shadow-lg border-2 border-transparent hover:border-blue-400 hover:from-pink-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 animate-glow"
+        >
+          See My Work
+        </a>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,10 +1,9 @@
-import { RouterProvider } from "react-router-dom";
-import routes from "./routes/routes"
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <div className="w-screen h-screen bg-black">
-      <RouterProvider router={routes}></RouterProvider>
+    <div className="text-gray-800 dark:text-gray-100">
+      <HomePage />
     </div>
   );
 }
