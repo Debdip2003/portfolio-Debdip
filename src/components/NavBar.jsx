@@ -6,8 +6,8 @@ const navLinks = [
   { name: "Home", to: "#intro" },
   { name: "About", to: "#about" },
   { name: "Projects", to: "#projects" },
-  { name: "Tech Stacks", to: "#tech-stacks" },
   { name: "Hobbies", to: "#hobbies" },
+  { name: "Tech Stacks", to: "#tech-stacks" },
   { name: "Contact", to: "#contact" },
 ];
 
