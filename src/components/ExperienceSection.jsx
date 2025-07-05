@@ -3,7 +3,7 @@ import experience from "../data/experience";
 
 const ExperienceSection = () => {
   return (
-    <section className="w-full px-4 py-10 relative overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black dark:from-gray-900 dark:via-black dark:to-gray-800 text-gray-800 dark:text-gray-100 animate-fade-in-up">
+    <section className="w-full px-4 py-10 relative overflow-hidden text-white animate-fade-in-up">
       {/* Animated floating shapes background */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-blue-600/30 to-pink-500/20 rounded-full blur-3xl animate-pulse-slow" />

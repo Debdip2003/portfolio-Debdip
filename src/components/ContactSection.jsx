@@ -76,7 +76,7 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black relative overflow-hidden animate-fade-in-up"
+      className="w-full min-h-screen flex items-center justify-center relative overflow-hidden animate-fade-in-up text-white"
     >
       {/* Animated floating shapes background */}
       <div className="absolute inset-0 pointer-events-none z-0">

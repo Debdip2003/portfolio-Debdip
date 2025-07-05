@@ -3,11 +3,12 @@ import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
 
 const NAVBAR_HEIGHT = 64; // px
 const navLinks = [
-  { name: "Home", to: "/#intro" },
-  { name: "About", to: "/#about" },
-  { name: "Projects", to: "/#projects" },
-  { name: "Hobbies", to: "/#hobbies" },
-  { name: "Contact", to: "/#contact" },
+  { name: "Home", to: "#intro" },
+  { name: "About", to: "#about" },
+  { name: "Projects", to: "#projects" },
+  { name: "Tech Stacks", to: "#tech-stacks" },
+  { name: "Hobbies", to: "#hobbies" },
+  { name: "Contact", to: "#contact" },
 ];
 
 const NavBar = () => {
@@ -16,7 +17,7 @@ const NavBar = () => {
     const stored = localStorage.getItem("darkMode");
     return stored ? JSON.parse(stored) : true;
   });
-  const [activeHash, setActiveHash] = useState(() => window.location.hash);
+  const [activeSection, setActiveSection] = useState("intro");
 
   useEffect(() => {
     if (darkMode) {
@@ -28,10 +29,50 @@ const NavBar = () => {
   }, [darkMode]);
 
   useEffect(() => {
-    const onHashChange = () => setActiveHash(window.location.hash);
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
+    const handleScroll = () => {
+      const sections = [
+        "intro",
+        "about",
+        "projects",
+        "tech-stacks",
+        "hobbies",
+        "contact",
+      ];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+
+          if (
+            scrollPosition >= offsetTop &&
+            scrollPosition < offsetTop + offsetHeight
+          ) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleNavClick = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offsetTop = element.offsetTop - 80; // Account for fixed navbar
+      window.scrollTo({
+        top: offsetTop,
+        behavior: "smooth",
+      });
+    }
+    setIsOpen(false);
+  };
 
   return (
     <nav
@@ -52,8 +93,9 @@ const NavBar = () => {
             <a
               key={item.name}
               href={item.to}
+              onClick={(e) => handleNavClick(e, item.to.replace("#", ""))}
               className={`px-2 py-1 rounded relative transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 group ${
-                activeHash === item.to.replace("/", "")
+                activeSection === item.to.replace("#", "")
                   ? "bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent font-semibold"
                   : "text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-pink-400 hover:bg-clip-text hover:text-transparent"
               }`}
@@ -94,11 +136,11 @@ const NavBar = () => {
               key={item.name}
               href={item.to}
               className={`text-base px-2 py-1 rounded relative transition-colors duration-200 group ${
-                activeHash === item.to.replace("/", "")
+                activeSection === item.to.replace("#", "")
                   ? "bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent font-semibold"
                   : "text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-pink-400 hover:bg-clip-text hover:text-transparent"
               }`}
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => handleNavClick(e, item.to.replace("#", ""))}
             >
               {item.name}
               <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-blue-400 to-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full" />

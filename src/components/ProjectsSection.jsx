@@ -7,7 +7,7 @@ const ProjectsSection = () => {
   return (
     <section
       id="projects"
-      className="w-full flex justify-center items-center px-4 py-10 relative overflow-hidden animate-fade-in-up bg-gradient-to-br from-black via-gray-900 to-black dark:from-gray-900 dark:via-black dark:to-gray-800 text-gray-800 dark:text-gray-100"
+      className="w-full flex justify-center items-center px-4 py-10 relative overflow-hidden animate-fade-in-up text-white"
     >
       {/* Animated floating shapes background */}
       <div className="absolute inset-0 pointer-events-none z-0">
