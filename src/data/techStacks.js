@@ -1,5 +1,3 @@
-import c from "..//assets/c.png";
-import c2 from "..//assets/c2.png";
 import html from "..//assets/html.png";
 import css from "..//assets/css.png";
 import javascript from "..//assets/javascript.png";
@@ -15,18 +13,6 @@ import firebase from "../assets/firebase.png";
 import figma from "../assets/figma.png";
 
 const techStacks = [
-  {
-    id: 1,
-    img: c,
-    alt: "c-programming",
-    type: "compititive programming",
-  },
-  {
-    id: 2,
-    img: c2,
-    alt: "c++-programming",
-    type: "compititive programming",
-  },
   {
     id: 3,
     img: html,

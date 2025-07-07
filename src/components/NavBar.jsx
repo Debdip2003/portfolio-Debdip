@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const NAVBAR_HEIGHT = 64; // px
 const navLinks = [
@@ -13,20 +13,8 @@ const navLinks = [
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [darkMode, setDarkMode] = useState(() => {
-    const stored = localStorage.getItem("darkMode");
-    return stored ? JSON.parse(stored) : true;
-  });
-  const [activeSection, setActiveSection] = useState("intro");
 
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-    localStorage.setItem("darkMode", JSON.stringify(darkMode));
-  }, [darkMode]);
+  const [activeSection, setActiveSection] = useState("intro");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,17 +92,6 @@ const NavBar = () => {
               <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-blue-400 to-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full" />
             </a>
           ))}
-          <button
-            onClick={() => setDarkMode((prev) => !prev)}
-            aria-label="Toggle dark mode"
-            className="ml-2 p-2 rounded-full bg-black/60 border border-white/30 text-white hover:bg-blue-900/40 transition-all duration-300"
-          >
-            {darkMode ? (
-              <FaSun className="text-yellow-400" />
-            ) : (
-              <FaMoon className="text-white" />
-            )}
-          </button>
         </div>
         {/* Mobile Menu Button */}
         <button
@@ -146,17 +123,6 @@ const NavBar = () => {
               <span className="absolute left-0 -bottom-1 w-full h-0.5 bg-gradient-to-r from-blue-400 to-pink-400 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300 rounded-full" />
             </a>
           ))}
-          <button
-            onClick={() => setDarkMode((prev) => !prev)}
-            aria-label="Toggle dark mode"
-            className="mt-2 p-2 rounded-full bg-black/60 border border-white/30 text-white hover:bg-blue-900/40 transition-all duration-300"
-          >
-            {darkMode ? (
-              <FaSun className="text-yellow-400" />
-            ) : (
-              <FaMoon className="text-white" />
-            )}
-          </button>
         </div>
       )}
     </nav>

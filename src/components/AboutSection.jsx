@@ -38,7 +38,7 @@ const AboutSection = () => {
       className="w-full flex justify-center items-center px-4 py-10 -mt-12 relative overflow-hidden animate-fade-in-up text-white"
     >
       {/* Animated floating shapes background */}
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <div className="absolute inset-0 pointer-events-none z-0 ">
         <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-blue-600/30 to-pink-500/20 rounded-full blur-3xl animate-pulse-slow" />
         <div className="absolute bottom-10 right-20 w-32 h-32 bg-gradient-to-tr from-purple-600/30 to-blue-400/20 rounded-full blur-2xl animate-pulse-slow" />
       </div>
@@ -46,7 +46,7 @@ const AboutSection = () => {
         <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
           About Me
         </h2>
-        <p className="text-gray-200 text-lg mb-6">
+        <p className="text-gray-200 text-lg mb-6 text-justify">
           Frontend Developer with 1+ years of experience building
           production-level web apps using React.js, Redux, and Firebase. Skilled
           in responsive UI design, scalable architecture, and cross-functional
@@ -55,11 +55,11 @@ const AboutSection = () => {
           in scalable frontend solutions in a dynamic development team.
         </p>
         <div className="w-full flex flex-col md:flex-row gap-8 mb-6 justify-center">
-          <div className="flex-1">
+          <div className="flex-1 ">
             <h3 className="text-xl font-semibold text-left mb-2 text-white">
               Achievements
             </h3>
-            <ul className="list-disc list-inside text-gray-300 text-left">
+            <ul className="list-disc list-inside text-gray-300 text-justify">
               <li>
                 2nd place (30+ teams) in Web Dev Competition at Future Institute
                 of Engineering
@@ -75,7 +75,7 @@ const AboutSection = () => {
             <h3 className="text-xl font-semibold text-left mb-2 text-white">
               Education
             </h3>
-            <ul className="list-disc list-inside text-gray-300 text-left">
+            <ul className="list-disc list-inside text-gray-300 text-justify">
               <li>B.Tech in Computer Science and Engineering (2022–2026)</li>
               <li>Meghnad Saha Institute of Technology, Kolkata</li>
             </ul>

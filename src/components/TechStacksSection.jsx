@@ -18,7 +18,7 @@ const TechStacksSection = () => {
   return (
     <section
       id="tech-stacks"
-      className="w-full px-4 py-10 relative overflow-hidden text-white transition-colors duration-500 animate-fade-in-up"
+      className="w-full min-h-screen flex flex-col justify-center items-center px-4 py-10 relative overflow-hidden text-white transition-colors duration-500 animate-fade-in-up"
     >
       {/* Animated floating shapes background */}
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -42,7 +42,7 @@ const TechStacksSection = () => {
           ))}
         </select>
       </div>
-      <div className="w-full flex flex-wrap gap-6 justify-center animate-fade-in">
+      <div className="w-[70%] flex flex-wrap gap-6 justify-center items-center animate-fade-in">
         {(filteredList.length > 0 ? filteredList : techStacks).map(
           (item, idx) => (
             <div

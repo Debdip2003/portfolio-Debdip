@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import projects from "../data/projects";
 
 const ProjectsSection = () => {
-  const [modalProject, setModalProject] = useState(null);
-
   return (
     <section
       id="projects"
@@ -27,10 +25,6 @@ const ProjectsSection = () => {
                 index === 0 ? "ring-4 ring-blue-400/30" : ""
               }`}
               style={{ animationDelay: `${index * 100}ms` }}
-              onClick={() => setModalProject(item)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") setModalProject(item);
-              }}
             >
               <div className="overflow-hidden">
                 <img
@@ -56,14 +50,13 @@ const ProjectsSection = () => {
                       </span>
                     ))}
                 </div>
-                <div className="flex gap-3 opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300">
+                <div className="flex gap-3 mt-2">
                   {item.firstButton && item.firstLink && (
                     <a
                       href={item.firstLink}
                       target="_blank"
                       rel="noreferrer"
                       className="bg-gradient-to-r from-blue-500 to-pink-500 text-white px-4 py-2 rounded-xl font-semibold shadow hover:scale-105 hover:from-pink-500 hover:to-blue-500 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                      onClick={(e) => e.stopPropagation()}
                     >
                       {item.firstButton}
                     </a>
@@ -74,87 +67,15 @@ const ProjectsSection = () => {
                       target="_blank"
                       rel="noreferrer"
                       className="bg-gradient-to-r from-pink-500 to-blue-500 text-white px-4 py-2 rounded-xl font-semibold shadow hover:scale-105 hover:from-blue-500 hover:to-pink-500 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400"
-                      onClick={(e) => e.stopPropagation()}
                     >
                       {item.secondButton}
                     </a>
                   )}
                 </div>
               </div>
-              {/* Playful floating icon */}
-              <div className="absolute top-4 right-4 text-2xl opacity-0 group-hover:opacity-80 group-focus:opacity-80 transition-opacity duration-300 pointer-events-none select-none">
-                🎈
-              </div>
-              {index === 0 && (
-                <span className="absolute top-4 left-4 bg-gradient-to-r from-blue-500 to-pink-500 text-white px-3 py-1 rounded-xl text-xs font-bold shadow animate-fade-in">
-                  Featured
-                </span>
-              )}
             </div>
           ))}
         </div>
-        {/* Modal for more info */}
-        {modalProject && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xl animate-fade-in"
-            onClick={() => setModalProject(null)}
-          >
-            <div
-              className="bg-black/90 backdrop-blur-2xl rounded-2xl shadow-2xl p-8 max-w-lg w-full border border-white/20 relative animate-slide-in-up"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                className="absolute top-2 right-2 text-2xl text-gray-400 hover:text-blue-400"
-                onClick={() => setModalProject(null)}
-                aria-label="Close"
-              >
-                &times;
-              </button>
-              <img
-                src={modalProject.img}
-                alt={modalProject.name}
-                className="w-full h-48 object-cover rounded-xl mb-4"
-              />
-              <h2 className="text-2xl font-bold text-white mb-2">
-                {modalProject.name}
-              </h2>
-              <p className="text-gray-200 mb-4">{modalProject.desc}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {modalProject.tags &&
-                  modalProject.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="bg-gradient-to-r from-blue-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-              </div>
-              <div className="flex gap-3">
-                {modalProject.firstButton && modalProject.firstLink && (
-                  <a
-                    href={modalProject.firstLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bg-gradient-to-r from-blue-500 to-pink-500 text-white px-4 py-2 rounded-xl font-semibold shadow hover:scale-105 hover:from-pink-500 hover:to-blue-500 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400"
-                  >
-                    {modalProject.firstButton}
-                  </a>
-                )}
-                {modalProject.secondButton && modalProject.secondLink && (
-                  <a
-                    href={modalProject.secondLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="bg-gradient-to-r from-pink-500 to-blue-500 text-white px-4 py-2 rounded-xl font-semibold shadow hover:scale-105 hover:from-blue-500 hover:to-pink-500 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-pink-400"
-                  >
-                    {modalProject.secondButton}
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
