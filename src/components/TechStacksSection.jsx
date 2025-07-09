@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import techStacks from "../data/techStacks";
 import dropdownOptions from "../data/dropDown";
+import GlareHover from "./GlareHover";
 
 const TechStacksSection = () => {
   const [value, setValue] = useState("");
@@ -45,20 +46,22 @@ const TechStacksSection = () => {
       <div className="w-[70%] flex flex-wrap gap-6 justify-center items-center animate-fade-in">
         {(filteredList.length > 0 ? filteredList : techStacks).map(
           (item, idx) => (
-            <div
-              key={item.id}
-              className="rounded-2xl bg-white/80 dark:bg-black/60 shadow-lg p-4 flex flex-col items-center hover:scale-105 transition-transform duration-200 animate-stagger-fade-in"
-              style={{ animationDelay: `${idx * 80}ms` }}
-            >
-              <img
-                src={item.img}
-                alt={item.alt}
-                className="w-20 h-20 object-contain mb-2 drop-shadow-lg"
-              />
-              <span className="text-sm text-gray-700 dark:text-gray-200 font-semibold capitalize">
-                {item.alt.replace(/-/g, " ")}
-              </span>
-            </div>
+            <GlareHover>
+              <div
+                key={item.id}
+                className="rounded-2xl  dark:bg-black/60 shadow-lg p-4 flex flex-col items-center hover:scale-105 transition-transform duration-200 animate-stagger-fade-in"
+                style={{ animationDelay: `${idx * 80}ms` }}
+              >
+                <img
+                  src={item.img}
+                  alt={item.alt}
+                  className="w-20 h-20 object-contain mb-2 drop-shadow-lg"
+                />
+                <span className="text-sm text-white dark:text-gray-200 font-semibold capitalize">
+                  {item.alt.replace(/-/g, " ")}
+                </span>
+              </div>
+            </GlareHover>
           )
         )}
       </div>

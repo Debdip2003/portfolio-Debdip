@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
+import ShinyText from "./ShinyText";
 
 const NAVBAR_HEIGHT = 64; // px
 const navLinks = [
@@ -73,7 +74,7 @@ const NavBar = () => {
       >
         {/* Logo/Name */}
         <p className="text-3xl font-extrabold text-white tracking-tight select-none drop-shadow-sm">
-          Debdip
+          <ShinyText text={"Debdip"} />
         </p>
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-6 items-center text-base">

@@ -1,4 +1,5 @@
 import React from "react";
+import GlareHover from "./GlareHover";
 
 const hobbies = [
   { icon: "🎵", label: "Music" },
@@ -24,15 +25,19 @@ const HobbiesSection = () => (
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl w-full">
         {hobbies.map((h, i) => (
-          <div
-            key={i}
-            className="bg-black/70 backdrop-blur-xl rounded-2xl shadow-lg border border-white/20 px-6 py-8 flex flex-col items-center text-center animate-fade-in-up"
-          >
-            <span className="text-4xl mb-2 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
-              {h.icon}
-            </span>
-            <span className="text-lg font-semibold text-white">{h.label}</span>
-          </div>
+          <GlareHover width="150px" height="150px">
+            <div
+              key={i}
+              className="  rounded-2xl shadow-lg  px-6 py-8 flex flex-col items-center text-center animate-fade-in-up"
+            >
+              <span className="text-4xl mb-2 bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent">
+                {h.icon}
+              </span>
+              <span className="text-lg font-semibold text-white">
+                {h.label}
+              </span>
+            </div>
+          </GlareHover>
         ))}
       </div>
     </div>

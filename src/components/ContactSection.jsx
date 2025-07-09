@@ -12,6 +12,7 @@ import {
 import { db } from "../utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useForm } from "react-hook-form";
+import GlassIcons from "./GlassIcons";
 
 const socials = [
   {
@@ -114,21 +115,16 @@ const ContactSection = () => {
             </div>
           </div>
           {/* Social Icons Row */}
-          <div className="flex gap-4 mt-8 w-full justify-center">
-            {socials.map(({ Icon, url, label }) => (
-              <a
-                key={label}
-                href={url}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={label}
-              >
-                <div className="bg-white/10 backdrop-blur-md rounded-full p-3 border border-white/20 shadow-lg hover:bg-gradient-to-r hover:from-blue-600 hover:to-pink-600 transition animate-glow">
-                  <Icon className="text-white w-6 h-6" />
-                </div>
-              </a>
-            ))}
-          </div>
+          <GlassIcons
+            items={socials.map((social) => {
+              return {
+                icon: <social.Icon className="text-2xl" />,
+                label: social.label,
+                url: social.url,
+                color: "purple", // You can customize the color for each icon
+              };
+            })}
+          ></GlassIcons>
         </div>
         {/* Form Panel */}
         <div className="w-full md:w-3/5 flex flex-col justify-center items-center p-8 md:p-16 bg-black/40">

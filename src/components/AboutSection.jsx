@@ -54,6 +54,7 @@ const AboutSection = () => {
           tools reducing processing time by up to 50%. Eager to leverage skills
           in scalable frontend solutions in a dynamic development team.
         </p>
+
         <div className="w-full flex flex-col md:flex-row gap-8 mb-6 justify-center">
           <div className="flex-1 ">
             <h3 className="text-xl font-semibold text-left mb-2 text-white">

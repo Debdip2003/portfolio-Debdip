@@ -59,7 +59,7 @@ const techStacks = [
   {
     id: 10,
     img: materialUI,
-    alt: "material-ui",
+    alt: "materialUI",
     type: "front-end technologies",
   },
   {

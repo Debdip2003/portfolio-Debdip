@@ -29,7 +29,6 @@ const IntroSection = () => {
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
           </div>
         </div>
-
         {/* Content - Right Side */}
         <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl">
           <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg mb-2">
