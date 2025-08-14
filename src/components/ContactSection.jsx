@@ -118,13 +118,21 @@ const ContactSection = () => {
           <GlassIcons
             items={socials.map((social) => {
               return {
-                icon: <social.Icon className="text-2xl" />,
+                icon: (
+                  <a
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center z-10"
+                  >
+                    <social.Icon className="text-2xl" />
+                  </a>
+                ),
                 label: social.label,
-                url: social.url,
-                color: "purple", // You can customize the color for each icon
+                color: "blue", // You can customize the color for each icon
               };
             })}
-          ></GlassIcons>
+          />
         </div>
         {/* Form Panel */}
         <div className="w-full md:w-3/5 flex flex-col justify-center items-center p-8 md:p-16 bg-black/40">

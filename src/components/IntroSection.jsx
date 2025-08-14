@@ -63,7 +63,7 @@ const IntroSection = () => {
                 });
               }
             }}
-            className="px-8 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-pink-600 shadow-lg border-2 border-transparent hover:border-blue-400 hover:from-pink-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-300 animate-glow"
+            className="px-8 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-blue-600 to-pink-600 shadow-lg border-2 border-transparent hover:border-blue-400 hover:from-pink-600 hover:to-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all duration-1000 animate-glow"
           >
             See My Work
           </a>
