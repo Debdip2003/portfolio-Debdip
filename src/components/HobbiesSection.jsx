@@ -5,7 +5,9 @@ const hobbies = [
   { icon: "🎵", label: "Music" },
   { icon: "💻", label: "Coding" },
   { icon: "📚", label: "Learning" },
-  { icon: "🏋️", label: "Fitness" },
+  { icon: "🏸", label: "Badminton" },
+  { icon: "🎮", label: "Gaming" },
+  { icon: "♟️", label: "Chess" },
   { icon: "🌍", label: "Travel" },
 ];
 
@@ -20,7 +22,7 @@ const HobbiesSection = () => (
       <div className="absolute bottom-10 right-20 w-32 h-32 bg-gradient-to-tr from-purple-600/30 to-blue-400/20 rounded-full blur-2xl animate-pulse-slow" />
     </div>
     <div className="w-full max-w-3xl mx-auto flex flex-col items-center text-center z-10 px-4 py-10">
-      <h2 className="text-3xl font-bold mb-8 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+      <h2 className="text-3xl sm:text-5xl font-bold mb-8 text-center bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-fade-in-up">
         Hobbies & Interests
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl w-full">

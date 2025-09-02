@@ -34,22 +34,34 @@ const ProjectsSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 group-focus:opacity-100 transition-opacity duration-300 z-10" />
               </div>
-              <div className="p-4 flex flex-col gap-2 z-20 relative">
-                <h2 className="text-xl font-bold text-white mb-1">
+              {/* Accent bar for card */}
+              <div className="h-2 w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-2" />
+              {/* Tech stack bar at the bottom */}
+              {item.tags && item.tags.length > 0 && (
+                <div className="w-full px-6 pb-4 pt-2 flex flex-wrap gap-2 border-t border-white/10 bg-gradient-to-r from-blue-900/40 via-purple-900/30 to-pink-900/40">
+                  {item.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-xs font-semibold text-blue-200 bg-blue-800/40 rounded-full px-3 py-1 shadow-sm border border-blue-400/30"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <div className="p-6 flex flex-col gap-2 z-20 relative items-start text-left">
+                <h2 className="text-2xl font-extrabold text-white mb-1 tracking-wide">
                   {item.name}
                 </h2>
-                <p className="text-gray-300 text-sm mb-2">{item.desc}</p>
-                <div className="flex flex-wrap gap-2 mb-2">
-                  {item.tags &&
-                    item.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="bg-gradient-to-r from-blue-500 to-pink-500 text-white px-2 py-1 rounded-full text-xs font-semibold shadow"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                </div>
+                <p className="text-gray-200 text-base mb-2 leading-relaxed">
+                  {item.desc}
+                </p>
+                {/* Duration */}
+                {item.duration && (
+                  <p className="text-purple-300 text-xs mb-2 italic">
+                    {item.duration}
+                  </p>
+                )}
                 <div className="flex gap-3 mt-2">
                   {item.firstButton && item.firstLink && (
                     <a

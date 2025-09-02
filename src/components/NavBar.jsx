@@ -7,6 +7,7 @@ const navLinks = [
   { name: "Home", to: "#intro" },
   { name: "About", to: "#about" },
   { name: "Projects", to: "#projects" },
+  { name: "Experience", to: "#experience" },
   { name: "Hobbies", to: "#hobbies" },
   { name: "Tech Stacks", to: "#tech-stacks" },
   { name: "Contact", to: "#contact" },
@@ -23,6 +24,7 @@ const NavBar = () => {
         "intro",
         "about",
         "projects",
+        "experience",
         "tech-stacks",
         "hobbies",
         "contact",
@@ -83,7 +85,7 @@ const NavBar = () => {
               key={item.name}
               href={item.to}
               onClick={(e) => handleNavClick(e, item.to.replace("#", ""))}
-              className={`px-2 py-1 rounded relative transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-400 group ${
+              className={`px-2 py-1 rounded relative transition-colors duration-200  group ${
                 activeSection === item.to.replace("#", "")
                   ? "bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent font-semibold"
                   : "text-white hover:bg-gradient-to-r hover:from-blue-400 hover:to-pink-400 hover:bg-clip-text hover:text-transparent"

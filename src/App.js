@@ -1,5 +1,6 @@
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
+import ExperienceSection from "./components/ExperienceSection";
 import HobbiesSection from "./components/HobbiesSection";
 import IntroSection from "./components/IntroSection";
 import NavBar from "./components/NavBar";
@@ -14,6 +15,7 @@ function App() {
       <IntroSection />
       <AboutSection />
       <ProjectsSection />
+      <ExperienceSection />
       <HobbiesSection />
       <TechStacksSection />
       <ContactSection />
