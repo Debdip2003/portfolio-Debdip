@@ -37,7 +37,7 @@ const socials = [
   },
   {
     Icon: FaMailBulk,
-    url: "mailto:dbhattacharya1912@gmail.com",
+    url: "mailto:debdip987@gmail.com",
     label: "Mail",
   },
 ];
