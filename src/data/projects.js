@@ -2,12 +2,14 @@ import forever from "..//assets/forever.jpeg";
 import mma from "..//assets/mma.jpg";
 import spotifyClone from "..//assets/spotifyClone.jpeg";
 import megatronix from "../assets/megatronix.png";
+import mindcare from "../assets//mindcare.jpg";
+import mindcareAdmin from "../assets/mindcareAdmin.jpg";
 
 const projects = [
   {
     id: 1,
     img: forever,
-    name: "E-Commerce Website",
+    name: "E-Commerce Website (Forever)",
     duration: "Sept 2024 – Nov 2024",
     desc: "Built a responsive e-commerce website with product listings, shopping cart, and filtering options. Integrated Firebase for authentication, database (Firestore), and hosting. Delivered a scalable solution for handling user interactions and dynamic product data.",
     firstButton: "Live Demo",
@@ -18,6 +20,33 @@ const projects = [
     secondButtonDisabled: false,
     tags: ["React", "Tailwind CSS", "Context API", "Firebase"],
   },
+  {
+    id: 6,
+    img: mindcare,
+    name: "Mental Health Support Website for College Students (Mindcare)",
+    duration: "Aug 2025 - Sept 2025",
+    desc: "Built a responsive mental-health support website for college students using Next.js and Tailwind CSS. Features include guided meditation, AI-powered chatbot, community support resources, and AI powered self-help tests and tools — all designed to improve student mental wellness.",
+    firstButton: "Live Demo",
+    secondButton: "GitHub",
+    firstLink: "https://v0-mental-health-support-brown.vercel.app/",
+    secondLink: "https://github.com/Debdip2003/v0-mental-health-support.git",
+    firstButtonDisabled: false,
+    secondButtonDisabled: false,
+    tags: ["NextJS", "Tailwind CSS", "SQL", "AI Integration"],
+  },
+
+  {
+    id: 7,
+    img: mindcareAdmin,
+    name: "MindCare Admin Panel",
+    duration: "Aug 2025 - Sept 2025",
+    desc: "Developed an admin dashboard for the MindCare mental-health platform with dedicated portals for Admin, Counselor, and College Representative. Enabled secure user management, report generation, and real-time data tracking to streamline student wellness monitoring.",
+    secondButton: "GitHub",
+    secondButtonDisabled: false,
+    secondLink: "https://github.com/Savi-07/MindCare_Admin.git",
+    tags: ["NextJs", "TailwindCss"],
+  },
+
   {
     id: 2,
     img: forever,
