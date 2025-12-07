@@ -11,6 +11,9 @@ import github from "../assets/github.png";
 import vscode from "../assets/vscode.png";
 import firebase from "../assets/firebase.png";
 import figma from "../assets/figma.png";
+import angular from "../assets/angular.png";
+import ionic from "../assets/ionic.png";
+import capacitor from "../assets/capacitor.png";
 
 const techStacks = [
   {
@@ -37,6 +40,24 @@ const techStacks = [
     img: react,
     alt: "react",
     type: "libraries",
+  },
+  {
+    id: 16,
+    img: angular,
+    alt: "angular",
+    type: "frameworks",
+  },
+  {
+    id: 17,
+    img: ionic,
+    alt: "ionic",
+    type: "frameworks",
+  },
+  {
+    id: 18,
+    img: capacitor,
+    alt: "capacitor",
+    type: "frameworks",
   },
   {
     id: 7,

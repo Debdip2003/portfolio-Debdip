@@ -4,6 +4,7 @@ import spotifyClone from "..//assets/spotifyClone.jpeg";
 import megatronix from "../assets/megatronix.png";
 import mindcare from "../assets//mindcare.jpg";
 import mindcareAdmin from "../assets/mindcareAdmin.jpg";
+import upaayAdminPanle from "../assets/upaayAdminPanel.png";
 
 const projects = [
   {
@@ -19,6 +20,20 @@ const projects = [
     firstButtonDisabled: false,
     secondButtonDisabled: false,
     tags: ["React", "Tailwind CSS", "Context API", "Firebase"],
+  },
+  {
+    id: 8,
+    img: upaayAdminPanle,
+    name: "Upaay Admin Panel",
+    duration: "May 2025 - Oct 2025",
+    desc: "Developed a fully responsive and modern admin dashboard for the Upaay platform, focused on clean UI, seamless navigation, and efficient data management. Built the entire frontend with reusable components, optimized state handling, and smooth user experience to support real-time admin operations and future scalability.",
+    firstButton: "Live Demo",
+    secondButton: "GitHub",
+    firstLink: "https://upaay-six.vercel.app/dashboard",
+    secondLink: "https://github.com/Debdip2003/Upaay.git",
+    firstButtonDisabled: false,
+    secondButtonDisabled: false,
+    tags: ["React", "Tailwind CSS", "Context API", "Chart JS"],
   },
   {
     id: 6,
