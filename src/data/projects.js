@@ -1,12 +1,42 @@
-import forever from "..//assets/forever.jpeg";
-import mma from "..//assets/mma.jpg";
-import spotifyClone from "..//assets/spotifyClone.jpeg";
-import megatronix from "../assets/megatronix.png";
-import mindcare from "../assets//mindcare.jpg";
-import mindcareAdmin from "../assets/mindcareAdmin.jpg";
-import upaayAdminPanel from "../assets/upaayAdminPanel.png";
+import forever from "..//assets/projects/forever.jpeg";
+import mma from "..//assets/projects/mma.jpg";
+import spotifyClone from "..//assets/projects/spotifyClone.jpeg";
+import megatronix from "../assets/projects/megatronix.png";
+import mindcare from "../assets/projects/mindcare.jpg";
+import mindcareAdmin from "../assets/projects/mindcareAdmin.jpg";
+import upaayAdminPanel from "../assets/projects/upaayAdminPanel.png";
+import paridhi from "../assets/projects/paridhi.png"
+import threerdeye from "../assets/projects/threerdeye.png"
 
 const projects = [
+    {
+    id: 9,
+    img: paridhi,
+    name: "Megatronix Website Version 2.0",
+    duration: "Nov 2025",
+    desc: "Built the official web platform for Megatronix 2K25 — a dynamic tech fest portal showcasing events, schedules, and registration info for participants. Implemented responsive layouts, event detail pages, and seamless navigation to help users explore competitions, workshops, and fest highlights with ease.",    firstButton: 'Live Demo',
+    secondButton: 'Github',
+    firstLink: "https://megatronix-web-2k25.vercel.app/",
+    secondLink: "https://github.com/codemencer-Rahul/Megatronix_Web_2k25",
+    firstButtonDisabled: false,
+    secondButtonDisabled: false,
+    tags: ["React", "Firebase", "Context API", "API Integration"],
+    type: "college project",
+  },
+  {
+    id: 10,
+    img: threerdeye,
+    name: "3rd Eye Debt Management Service",
+    duration: "Nov 2025",
+    desc: "Built the official web platform for 3rd Eye Debt Management Service — a debt management website for students and professionals. Implemented responsive layouts, user dashboards, and seamless navigation to help users manage their debts effectively.",    firstButton: 'Live Demo',
+    secondButton: 'Github',
+    firstLink: "https://www.3rdeye-services.in/",
+    secondLink: "https://github.com/Debdip2003/3rdeye",
+    firstButtonDisabled: false,
+    secondButtonDisabled: false,
+    tags: ["React", "Firebase", "Context API", "API Integration"],
+    type: "Freelancing project",
+  },
   {
     id: 1,
     img: forever,
@@ -20,6 +50,7 @@ const projects = [
     firstButtonDisabled: false,
     secondButtonDisabled: false,
     tags: ["React", "Tailwind CSS", "Context API", "Firebase"],
+    type: "personal project",
   },
   {
     id: 8,
@@ -34,6 +65,7 @@ const projects = [
     firstButtonDisabled: false,
     secondButtonDisabled: false,
     tags: ["React", "Tailwind CSS", "Context API", "Chart JS"],
+    type: "freelancing project",
   },
   {
     id: 6,
@@ -48,6 +80,7 @@ const projects = [
     firstButtonDisabled: false,
     secondButtonDisabled: false,
     tags: ["NextJS", "Tailwind CSS", "SQL", "AI Integration"],
+    type: "personal project",
   },
 
   {
@@ -60,6 +93,7 @@ const projects = [
     secondButtonDisabled: false,
     secondLink: "https://github.com/Savi-07/MindCare_Admin.git",
     tags: ["NextJs", "TailwindCss"],
+    type: "personal project",
   },
 
   {
@@ -68,13 +102,14 @@ const projects = [
     name: "Artisan E-Commerce Platform (Sahaj)",
     duration: "Jan 2025 – Apr 2025",
     desc: "Developed a multi-vendor marketplace for artisans. Implemented features like AI chat support, AI caption generator for product listings, Aadhaar OCR-based onboarding for artisan verification, and transparent pricing display for trust and clarity.",
-    firstButton: "GitHub",
-    firstLink: "https://github.com/Debdip2003/sahaj-artisan",
-    firstButtonDisabled: false,
-    secondButton: null,
-    secondLink: null,
-    secondButtonDisabled: true,
+    secondButton: "GitHub",
+    secondLink: "https://github.com/Debdip2003/sahaj-artisan",
+    firstButtonDisabled: true,
+    firstButton: null,
+    firstLink: null,
+    secondButtonDisabled: false,
     tags: ["React", "Firebase", "AI", "Python", "Context API", "Firebase"],
+    type: "personal project",
   },
   {
     id: 3,
@@ -89,11 +124,12 @@ const projects = [
     firstButtonDisabled: false,
     secondButtonDisabled: false,
     tags: ["React", "Tailwind CSS", "Firebase", "CMS"],
+    type: "freelancing project",
   },
   {
     id: 4,
     img: megatronix,
-    name: "Tech Fest Sites (Paridhi/Megatronix)",
+      name: "Paridhi Website Version 1.0 (Megatronix)",
     duration: "Apr 2025",
     desc: "Developed registration platforms for tech fest events, serving 700+ users. Automated ID generation for participants. Built event coordination UIs for smoother management.",
     firstButton: null,
@@ -101,6 +137,7 @@ const projects = [
     firstButtonDisabled: true,
     secondButtonDisabled: true,
     tags: ["React", "Firebase", "Context API", "API Integration"],
+    type: "college project",
   },
   {
     id: 5,
@@ -108,13 +145,14 @@ const projects = [
     name: "Spotify-Clone",
     duration: "2024",
     desc: "Fully functional Spotify clone, expertly crafted with React and Tailwind CSS, utilizing Spotify's own API for a seamless music streaming experience.",
-    firstButton: "Demo",
+    firstButton: "Live Demo",
     secondButton: "Github Link",
     firstLink: "https://spotify-clone-hazel-beta.vercel.app/",
     secondLink: "https://github.com/Debdip2003/spotify-clone",
     firstButtonDisabled: false,
     secondButtonDisabled: false,
     tags: ["React", "Tailwind CSS", "Context API"],
+    type: "personal project",
   },
 ];
 

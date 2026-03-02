@@ -3,11 +3,11 @@ const experience = [
     name: "StockEdge (Kredent Infoedge PVT LTD)",
     role: "Management Trainee Intern - Tech Development (Frontend)",
     duration: "Oct 2025 - Present",
-    // description: [
-    //   "Developed influencer search tool used by 500+ testers; improved search relevance by 40%",
-    //   "Enhanced admin dashboard with dynamic filters; cut task completion time by 30%",
-    //   "Integrated efficient data pipelines via API; reduced redundant requests by 25%",
-    // ],
+    description: [
+      "Implemented automatic time-based theming across web and mobile applications, improving UI consistency and reducing manual configuration",
+      "Led Capacitor migration from v7 to v8, stabilizing Android and iOS builds and enhancing deployment reliability",
+      "Optimized cross-platform frontend architecture, improving build performance and ensuring seamless production releases",
+    ],
     // firstButton: "Offer (Linkedin)",
     // secondButton: "Certificate",
     // firstButtonDisabled: false,

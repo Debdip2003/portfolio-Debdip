@@ -2,10 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "./global.css";
+
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  user-select: none;
 }
 
 body {
@@ -69,10 +72,10 @@ html::-webkit-scrollbar {
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    box-shadow: 0 0 16px rgba(100, 181, 246, 0.3);
   }
   50% {
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.8);
+    box-shadow: 0 0 24px rgba(100, 181, 246, 0.5);
   }
 }
 
@@ -95,6 +98,28 @@ html::-webkit-scrollbar {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes pop-up {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) translateY(0);
+  }
+}
+
+@keyframes pop-up-bottom {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0.5) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1) translateY(0);
   }
 }
 

@@ -1,4 +1,4 @@
-const ShinyText = ({ text, disabled = false, speed = 5, className = "" }) => {
+const ShinyText = ({ text, disabled = false, speed = 10, className = "" }) => {
   const animationDuration = `${speed}s`;
 
   return (

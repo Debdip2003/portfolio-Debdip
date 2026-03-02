@@ -5,14 +5,11 @@ import {
   FaInstagram,
   FaLinkedin,
   FaMailBulk,
-  FaPhoneAlt,
-  FaEnvelope,
-  FaMapMarkerAlt,
 } from "react-icons/fa";
 import { db } from "../utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useForm } from "react-hook-form";
-import GlassIcons from "./GlassIcons";
+import contactUs from "../assets/contactUs.svg";
 
 const socials = [
   {
@@ -77,128 +74,82 @@ const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="w-full min-h-screen flex items-center justify-center relative overflow-hidden animate-fade-in-up text-white"
+      className="w-full flex items-center justify-center py-16 relative overflow-hidden animate-fade-in-up"
     >
-      {/* Animated floating shapes background */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-blue-600/30 to-pink-500/20 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-10 right-20 w-32 h-32 bg-gradient-to-tr from-purple-600/30 to-blue-400/20 rounded-full blur-2xl animate-pulse-slow" />
-      </div>
-      {/* Split Glassmorphic Card */}
-      <div className="relative w-full max-w-5xl mx-auto flex flex-col md:flex-row bg-black/60 backdrop-blur-2xl rounded-3xl shadow-2xl border border-white/10 p-0 md:p-0 z-10 overflow-hidden animate-fade-in-up">
-        {/* Info Panel */}
-        <div className="w-full md:w-2/5 flex flex-col items-center justify-between p-8 md:p-12 bg-black/70 backdrop-blur-2xl border-r border-white/10">
-          <div className="w-full flex flex-col items-center gap-4">
-            <h2 className="text-3xl font-extrabold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-2 tracking-tight">
-              Debdip Bhattacharya
-            </h2>
-            <div className="flex flex-col gap-3 text-white/90 text-base items-start w-full">
-              <a
-                href="tel:+919007154749"
-                className="flex items-center gap-3 group hover:text-blue-400 transition"
-              >
-                <FaPhoneAlt className="text-xl" />
-                +91 9007154749
-              </a>
-              <a
-                href="mailto:debdip987@gmail.com"
-                className="flex items-center gap-3 group hover:text-pink-400 transition"
-              >
-                <FaEnvelope className="text-xl" />
-                debdip987@gmail.com
-              </a>
-
-              <span className="flex items-center gap-3">
-                <FaMapMarkerAlt className="text-xl" />
-                Kolkata, WB
-              </span>
-            </div>
-          </div>
-          {/* Social Icons Row */}
-          <GlassIcons
-            items={socials.map((social) => {
-              return {
-                icon: (
-                  <a
-                    href={social.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center z-10"
-                  >
-                    <social.Icon className="text-2xl" />
-                  </a>
-                ),
-                label: social.label,
-                color: "blue", // You can customize the color for each icon
-              };
-            })}
+      {/* Card */}
+      <div className="card relative w-full mx-8 md:mx-16 flex flex-col md:flex-row rounded-3xl p-0 z-10 overflow-hidden animate-fade-in-up">
+        {/* Left Side - Image */}
+        <div
+          className="w-full md:w-2/5 flex flex-col items-center justify-center p-8 md:p-12"
+          style={{
+            background: "var(--bg-card)",
+            borderRight: "1px solid var(--border)",
+          }}
+        >
+          <img 
+            src={contactUs} 
+            alt="Contact Us" 
+            className="w-full max-w-sm opacity-90 animate-fade-in-up" 
           />
         </div>
-        {/* Form Panel */}
-        <div className="w-full md:w-3/5 flex flex-col justify-center items-center p-8 md:p-16 bg-black/40">
+        
+        {/* Right Side - Form */}
+        <div
+          className="w-full md:w-3/5 flex flex-col justify-center items-center p-8 md:p-12"
+          style={{ background: "var(--bg-card-hover)" }}
+        >
           <form
-            className="flex flex-col gap-6 w-full max-w-md animate-fade-in-up"
+            className="flex flex-col gap-5 w-full max-w-2xl animate-fade-in-up"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <h1 className="text-2xl font-bold mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Let's Talk
-            </h1>
-            {/* Floating label input */}
-            <div className="relative">
-              <input
-                type="text"
-                id="name"
-                placeholder=" "
-                className="peer rounded-xl w-full p-4 border border-white/10 bg-white/10 text-white focus:ring-2 focus:ring-blue-400 transition backdrop-blur-md placeholder-transparent"
-                {...register("name", {
-                  required: "Name is required",
-                  maxLength: 20,
-                })}
-              />
-              <label
-                htmlFor="name"
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base"
-              >
-                Full Name
-              </label>
-              {errors.name && (
-                <p className="text-pink-400 text-sm mt-1">
-                  {errors.name.message}
-                </p>
-              )}
+            <h1 className="section-heading text-3xl mb-4">Get in Touch</h1>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="relative">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Full Name"
+                  className="form-input w-full px-4 py-3 rounded-xl transition-all"
+                  {...register("name", {
+                    required: "Name is required",
+                    maxLength: 20,
+                  })}
+                />
+                {errors.name && (
+                  <p className="text-sm mt-1" style={{ color: "var(--accent)" }}>
+                    {errors.name.message}
+                  </p>
+                )}
+              </div>
+              <div className="relative">
+                <input
+                  type="tel"
+                  id="phoneNumber"
+                  placeholder="Phone Number"
+                  className="form-input w-full px-4 py-3 rounded-xl transition-all"
+                  {...register("phoneNumber", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^\d{10}$/,
+                      message: "Phone number must be 10 digits",
+                    },
+                  })}
+                />
+                {errors.phoneNumber && (
+                  <p className="text-sm mt-1" style={{ color: "var(--accent)" }}>
+                    {errors.phoneNumber.message}
+                  </p>
+                )}
+              </div>
             </div>
-            <div className="relative">
-              <input
-                type="tel"
-                id="phoneNumber"
-                placeholder=" "
-                className="peer rounded-xl w-full p-4 border border-white/10 bg-white/10 text-white focus:ring-2 focus:ring-blue-400 transition backdrop-blur-md placeholder-transparent"
-                {...register("phoneNumber", {
-                  required: "Phone number is required",
-                  pattern: {
-                    value: /^\d{10}$/,
-                    message: "Phone number must be 10 digits",
-                  },
-                })}
-              />
-              <label
-                htmlFor="phoneNumber"
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base"
-              >
-                Phone Number
-              </label>
-              {errors.phoneNumber && (
-                <p className="text-pink-400 text-sm mt-1">
-                  {errors.phoneNumber.message}
-                </p>
-              )}
-            </div>
+            
             <div className="relative">
               <input
                 type="email"
                 id="email"
-                placeholder=" "
-                className="peer rounded-xl w-full p-4 border border-white/10 bg-white/10 text-white focus:ring-2 focus:ring-blue-400 transition backdrop-blur-md placeholder-transparent"
+                placeholder="Email Address"
+                className="form-input w-full px-4 py-3 rounded-xl transition-all"
                 {...register("email", {
                   required: "Email is required",
                   pattern: {
@@ -207,14 +158,8 @@ const ContactSection = () => {
                   },
                 })}
               />
-              <label
-                htmlFor="email"
-                className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-400 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base"
-              >
-                Email
-              </label>
               {errors.email && (
-                <p className="text-pink-400 text-sm mt-1">
+                <p className="text-sm mt-1" style={{ color: "var(--accent)" }}>
                   {errors.email.message}
                 </p>
               )}
@@ -222,31 +167,30 @@ const ContactSection = () => {
             <div className="relative">
               <textarea
                 id="comment"
-                placeholder=" "
-                className="peer rounded-xl w-full p-4 border border-white/10 bg-white/10 text-white focus:ring-2 focus:ring-blue-400 transition backdrop-blur-md placeholder-transparent min-h-[120px]"
+                placeholder="Your Message"
+                className="form-input w-full px-4 py-3 rounded-xl transition-all resize-none"
                 rows={5}
                 {...register("comment")}
               />
-              <label
-                htmlFor="comment"
-                className="absolute left-4 top-6 text-gray-400 pointer-events-none transition-all duration-200 peer-focus:top-2 peer-focus:text-xs peer-focus:text-blue-400 peer-placeholder-shown:top-6 peer-placeholder-shown:text-base"
-              >
-                Your Message
-              </label>
             </div>
-            <button
-              type="submit"
-              disabled={isSubmit}
-              className="bg-gradient-to-r from-blue-600 to-pink-600 p-3 px-8 rounded-xl text-white font-semibold shadow-lg hover:from-pink-600 hover:to-blue-600 duration-200 disabled:opacity-50 mt-2 focus:outline-none focus:ring-2 focus:ring-blue-400 animate-glow relative overflow-hidden"
-            >
-              <span className="relative z-10">
-                {isSubmit ? "Submitting..." : "Submit"}
-              </span>
-              {/* Animated gradient border */}
-              <span className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-30 blur-lg animate-pulse-slow" />
-            </button>
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                disabled={isSubmit}
+                className="btn-accent py-3 px-12 mt-2 rounded-xl font-medium disabled:opacity-50 transition-all hover:scale-105"
+              >
+                {isSubmit ? "Sending..." : "Send Message"}
+              </button>
+            </div>
             {showSuccess && (
-              <div className="fixed top-8 right-8 bg-black/80 border border-green-400 text-green-300 px-6 py-3 rounded-2xl shadow-lg flex items-center gap-3 animate-fade-in z-50">
+              <div
+                className="fixed top-8 right-8 px-6 py-3 rounded-2xl flex items-center gap-3 animate-fade-in z-50"
+                style={{
+                  background: "var(--bg-card)",
+                  border: "1px solid var(--accent-green)",
+                  color: "var(--accent-green)",
+                }}
+              >
                 <svg
                   className="w-6 h-6"
                   fill="none"

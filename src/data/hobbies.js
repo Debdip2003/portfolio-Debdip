@@ -1,0 +1,15 @@
+export const hobbies = [
+  { icon: "🎵", label: "Music" },
+  { icon: "💻", label: "Coding" },
+  { icon: "📚", label: "Learning" },
+  { icon: "🏸", label: "Badminton" },
+  { icon: "🎮", label: "Gaming" },
+  { icon: "♟️", label: "Chess" },
+  { icon: "🌍", label: "Travel" },
+  { icon: "📸", label: "Photography" },
+  { icon: "🎬", label: "Movies" },
+  { icon: "🚴", label: "Cycling" },
+  { icon: "🍳", label: "Cooking" },
+  { icon: "🤖", label: "Robotics" },
+  { icon: "📈", label: "Investing" },
+];

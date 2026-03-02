@@ -2,46 +2,50 @@ import React, { useEffect, useRef } from "react";
 
 const VantaBackground = ({ children }) => {
   const vantaRef = useRef(null);
-  const effectRef = useRef(null);
+  const vantaEffect = useRef(null);
 
   useEffect(() => {
-    if (
-      window.VANTA &&
-      window.VANTA.GLOBE &&
-      vantaRef.current &&
-      !effectRef.current
-    ) {
-      effectRef.current = window.VANTA.GLOBE({
+    if (window.VANTA && vantaRef.current && !vantaEffect.current) {
+      vantaEffect.current = window.VANTA.WAVES({
         el: vantaRef.current,
         mouseControls: true,
         touchControls: true,
         gyroControls: false,
-        minHeight: 200.0,
-        minWidth: 200.0,
-        scale: 1.0,
-        scaleMobile: 1.0,
-        color: 0x3b82f6,
-        color2: 0xec4899,
-        backgroundColor: 0x000000,
+        minHeight: 200,
+        minWidth: 200,
+        scale: 1,
+        scaleMobile: 1,
+        color: 0x050e20,
+        waveHeight: 10,
+        waveSpeed: 1,
+        zoom: 0.65,
       });
     }
     return () => {
-      if (effectRef.current) {
-        effectRef.current.destroy();
-        effectRef.current = null;
+      if (vantaEffect.current) {
+        vantaEffect.current.destroy();
+        vantaEffect.current = null;
       }
     };
   }, []);
 
   return (
-    <div>
+    <>
       <div
         ref={vantaRef}
-        className="fixed inset-0 w-full h-full z-0"
-        style={{ pointerEvents: "none" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          zIndex: 0,
+        }}
       />
-      <div className="relative z-10 text-white">{children}</div>
-    </div>
+      <div style={{ position: "relative", zIndex: 1, width: "100%" }}>
+        {children}
+      </div>
+    </>
   );
 };
 
