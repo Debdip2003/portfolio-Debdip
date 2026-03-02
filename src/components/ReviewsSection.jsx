@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { FaChevronLeft, FaChevronRight, FaStar, FaQuoteLeft } from 'react-icons/fa';
 import { reviews } from '../data/reviews';
 
@@ -28,11 +28,12 @@ const ReviewsSection = () => {
 
   const maxIndex = Math.max(0, reviews.length - cardsPerView);
 
-  const nextReview = () => {
+  const nextReview = useCallback(() => {
     setCurrentIndex((prevIndex) => 
       prevIndex >= maxIndex ? 0 : prevIndex + 1
     );
-  };
+  }, [maxIndex]);
+
 
   const prevReview = () => {
     setCurrentIndex((prevIndex) => 
@@ -45,7 +46,7 @@ const ReviewsSection = () => {
       const interval = setInterval(nextReview, 4000);
       return () => clearInterval(interval);
     }
-  }, [isAutoPlaying, currentIndex, cardsPerView]);
+  }, [isAutoPlaying, currentIndex, cardsPerView, nextReview]);
 
   return (
     <section

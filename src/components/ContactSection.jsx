@@ -1,43 +1,8 @@
 import React, { useState } from "react";
-import {
-  FaFacebook,
-  FaGithub,
-  FaInstagram,
-  FaLinkedin,
-  FaMailBulk,
-} from "react-icons/fa";
 import { db } from "../utils/firebase";
 import { addDoc, collection } from "firebase/firestore";
 import { useForm } from "react-hook-form";
 import contactUs from "../assets/contactUs.svg";
-
-const socials = [
-  {
-    Icon: FaGithub,
-    url: "https://github.com/Debdip2003",
-    label: "Github",
-  },
-  {
-    Icon: FaLinkedin,
-    url: "https://www.linkedin.com/in/debdip-bhattacharya-a1534b24a/",
-    label: "LinkedIn",
-  },
-  {
-    Icon: FaFacebook,
-    url: "https://www.facebook.com/debdip.bhattacharya.5",
-    label: "Facebook",
-  },
-  {
-    Icon: FaInstagram,
-    url: "https://www.instagram.com/ft_debdip/",
-    label: "Instagram",
-  },
-  {
-    Icon: FaMailBulk,
-    url: "mailto:debdip987@gmail.com",
-    label: "Mail",
-  },
-];
 
 const ContactSection = () => {
   const [isSubmit, setIsSubmit] = useState(false);

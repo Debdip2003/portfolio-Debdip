@@ -13,7 +13,6 @@ import {
   FaVolumeDown,
   FaVolumeUp,
 } from "react-icons/fa";
-import { set } from "react-hook-form";
 
 // Songs data with favorite field
 const SONGS = [
