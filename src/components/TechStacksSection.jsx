@@ -53,14 +53,11 @@ const TechStacksSection = () => {
         {(filteredList.length > 0 ? filteredList : techStacks).map(
           (item, idx) => (
             <GlareHover key={item.id}>
-              <div
-                className="card rounded-2xl p-4 flex flex-col items-center hover:scale-105 transition-transform duration-200 animate-stagger-fade-in"
-                style={{ animationDelay: `${idx * 80}ms` }}
-              >
+              <div className="flex flex-col items-center justify-center">
                 <img
                   src={item.img}
                   alt={item.alt}
-                  className="w-20 h-20 object-contain mb-2 drop-shadow-lg"
+                  className="w-20 h-20 object-contain mb-2 drop-shadow-lg rounded-lg"
                 />
                 <span
                   className="text-sm font-semibold capitalize"
