@@ -1,60 +1,76 @@
 import React from "react";
-import experience from "../data/experience";
+import { Briefcase, Calendar, CheckCircle2, Sparkles } from "lucide-react";
+import experienceData from "../data/experience";
 
 const ExperienceSection = () => {
   return (
     <section
       id="experience"
-      className="w-full flex justify-center items-center px-4 py-16 relative overflow-hidden animate-fade-in-up"
+      className="w-full max-w-7xl px-4 md:px-8 py-24 z-10 border-t border-white/5"
     >
-      {/* Floating decorative shapes */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="floating-shape absolute top-10 left-10 w-40 h-40 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="floating-shape absolute bottom-10 right-20 w-32 h-32 rounded-full blur-2xl animate-pulse-slow" />
-      </div>
-      <div className="w-full mx-auto flex flex-col items-center text-center z-10 px-8 md:px-16">
-        <h1 className="section-heading text-3xl sm:text-5xl mb-8 text-center animate-fade-in-up">
-          Experience
-        </h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full animate-fade-in">
-          {experience.map((item, index) => (
-            <div
-              key={item.id || index}
-              tabIndex={0}
-              className="card relative group cursor-pointer rounded-2xl overflow-hidden transition-all duration-300 focus:outline-none"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Accent bar */}
-              <div className="accent-bar h-1 w-full mb-2" />
-              <div className="p-6 flex flex-col gap-2 z-20 relative items-start text-left">
-                <h2
-                  className="text-2xl font-extrabold mb-1 tracking-wide"
-                  style={{ color: "var(--text-primary)" }}
-                >
-                  {item.name}
-                </h2>
-                <p
-                  className="text-base font-semibold mb-1"
-                  style={{ color: "var(--accent)" }}
-                >
-                  {item.role}
-                </p>
-                <p
-                  className="text-sm mb-2 italic"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {item.duration}
-                </p>
-                <p
-                  className="text-base mb-2 leading-relaxed"
-                  style={{ color: "var(--text-secondary)" }}
-                >
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4 text-[#81D8D0]" />
+            <span className="text-xs uppercase tracking-widest text-[#81D8D0] font-mono">
+              Career Timeline
+            </span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-2">
+            Experience & Journey
+          </h2>
+          <p className="text-white/50 text-base md:text-lg font-light tracking-wide max-w-lg">
+            Engineering scalable frontend solutions and interactive systems across high-growth startups and tech teams.
+          </p>
         </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {(experienceData || []).map((item, index) => (
+          <div
+            key={index}
+            className="ios-glass p-8 rounded-[32px] hover:bg-white/5 hover:border-white/15 transition-all duration-300 group flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between gap-2 mb-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-xl bg-white/5 flex items-center justify-center text-[#81D8D0] group-hover:bg-[#81D8D0]/10 transition-colors">
+                    <Briefcase className="w-4 h-4" />
+                  </div>
+                  <span className="text-xs font-mono text-[#81D8D0] uppercase tracking-wider">
+                    {item.role}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-1.5 text-xs text-white/40 font-mono">
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>{item.duration}</span>
+                </div>
+              </div>
+
+              <h3 className="text-xl font-medium text-white tracking-tight mb-4 group-hover:text-[#81D8D0] transition-colors">
+                {item.name}
+              </h3>
+
+              {item.description && (
+                <div className="space-y-2 mt-2">
+                  {Array.isArray(item.description) ? (
+                    item.description.map((desc, idx) => (
+                      <div key={idx} className="flex items-start gap-2 text-white/50 text-xs sm:text-sm leading-relaxed font-light">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#81D8D0]/70 shrink-0 mt-1" />
+                        <span>{desc}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-white/50 text-xs sm:text-sm leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

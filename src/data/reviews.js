@@ -28,7 +28,7 @@ export const reviews = [
   },
   {
     id: 4,
-    name: "Sourav Mukherjee",
+    name: "Sourav Bhattacharya",
     role: "Megatronix Coordinator",
     company: "Megatronix (Official Technical Fest of MSIT)",
     rating: 5,
