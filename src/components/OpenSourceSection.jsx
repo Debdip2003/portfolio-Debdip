@@ -1,6 +1,20 @@
 import React, { useState } from "react";
 import { GitPullRequest, ExternalLink, Sparkles, Cpu, CheckCircle2, ChevronRight, Layers } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.12,
+    },
+  },
+};
 
 const OpenSourceSection = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -53,12 +67,22 @@ const OpenSourceSection = () => {
   };
 
   return (
-    <section
+    <motion.section
       id="open-source"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={sectionVariants}
       className="w-full max-w-7xl px-4 md:px-8 py-24 z-10 border-t border-theme-border"
     >
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+        }}
+        className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
+      >
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-theme-accent" />
@@ -73,21 +97,30 @@ const OpenSourceSection = () => {
             Contributing to high-performance developer tools, client-side AI, and WebAssembly ecosystems.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Contribution Showcase Card */}
-      <div className="ios-glass rounded-[32px] p-6 sm:p-10 border border-theme-border relative overflow-hidden tiffany-glow group">
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, scale: 0.97, y: 25 },
+          visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8 } },
+        }}
+        className="ios-glass rounded-[32px] p-6 sm:p-10 border border-theme-border relative overflow-hidden tiffany-glow group"
+      >
         {/* Subtle Ambient Backlight */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-[var(--accent-primary-subtle)] via-transparent to-transparent rounded-full filter blur-3xl pointer-events-none" />
 
         {/* Top Meta Bar */}
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-theme-border relative z-10">
           <div className="flex items-start sm:items-center gap-4">
-            <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[var(--accent-primary)] to-[var(--accent-blue)] p-[2px] shadow-lg shadow-[var(--accent-glow)] shrink-0">
+            <motion.div
+              whileHover={{ rotate: 12, scale: 1.05 }}
+              className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-[var(--accent-primary)] to-[var(--accent-blue)] p-[2px] shadow-lg shadow-[var(--accent-glow)] shrink-0"
+            >
               <div className="w-full h-full rounded-2xl bg-theme-bg flex items-center justify-center">
                 <GitPullRequest className="w-6 h-6 text-theme-accent" />
               </div>
-            </div>
+            </motion.div>
             <div>
               <div className="flex items-center gap-3 flex-wrap">
                 <h3 className="text-2xl sm:text-3xl font-medium text-theme-text tracking-tight">
@@ -105,16 +138,20 @@ const OpenSourceSection = () => {
 
           {/* Quick Action Links */}
           <div className="flex items-center gap-3">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href={contribution.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-theme-accent text-theme-accent-text px-5 py-2.5 rounded-full font-medium text-xs hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-[var(--accent-glow)]"
+              className="flex items-center gap-2 bg-theme-accent text-theme-accent-text px-5 py-2.5 rounded-full font-medium text-xs hover:brightness-110 transition-all shadow-lg shadow-[var(--accent-glow)]"
             >
               <span>Live Application</span>
               <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-            <a
+            </motion.a>
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href={contribution.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -122,19 +159,20 @@ const OpenSourceSection = () => {
             >
               <FaGithub className="w-3.5 h-3.5" />
               <span>Repository</span>
-            </a>
+            </motion.a>
           </div>
         </div>
 
         {/* Tech Stack Pills */}
         <div className="flex flex-wrap gap-2 py-6 border-b border-theme-border relative z-10">
           {contribution.tech.map((item, idx) => (
-            <span
+            <motion.span
               key={idx}
+              whileHover={{ scale: 1.06 }}
               className="px-3 py-1 rounded-full bg-theme-pill border border-theme-border text-xs font-mono text-theme-muted"
             >
               {item}
-            </span>
+            </motion.span>
           ))}
         </div>
 
@@ -145,61 +183,85 @@ const OpenSourceSection = () => {
             <p className="text-xs uppercase font-mono text-theme-subtle tracking-wider mb-1">
               Key Engineering Accomplishments
             </p>
-            {contribution.highlights.map((item, idx) => (
-              <button
-                key={idx}
-                onClick={() => setActiveFeature(idx)}
-                className={`p-4 rounded-2xl text-left transition-all duration-300 flex items-center justify-between border ${
-                  activeFeature === idx
-                    ? "bg-theme-card-hover border-theme-accent-border text-theme-text shadow-md"
-                    : "bg-theme-pill border-transparent text-theme-muted hover:bg-theme-pill-hover hover:text-theme-text"
-                }`}
-              >
-                <div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs font-mono text-theme-accent">{`0${idx + 1}`}</span>
-                    <span className="text-sm font-medium">{item.title}</span>
-                  </div>
-                  <span className="text-[11px] font-mono text-theme-subtle mt-1 block">
-                    {item.tag}
-                  </span>
-                </div>
-                <ChevronRight
-                  className={`w-4 h-4 transition-transform duration-300 ${
-                    activeFeature === idx ? "text-theme-accent translate-x-1" : "text-theme-subtle"
+            {contribution.highlights.map((item, idx) => {
+              const isActive = activeFeature === idx;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setActiveFeature(idx)}
+                  className={`relative p-4 rounded-2xl text-left transition-all duration-300 flex items-center justify-between border ${
+                    isActive
+                      ? "border-theme-accent-border text-theme-text shadow-md"
+                      : "border-transparent text-theme-muted hover:bg-theme-pill-hover hover:text-theme-text"
                   }`}
-                />
-              </button>
-            ))}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeFeaturePill"
+                      className="absolute inset-0 rounded-2xl bg-theme-card-hover border border-theme-accent-border -z-10"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <div className="z-10">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-mono text-theme-accent">{`0${idx + 1}`}</span>
+                      <span className="text-sm font-medium">{item.title}</span>
+                    </div>
+                    <span className="text-[11px] font-mono text-theme-subtle mt-1 block">
+                      {item.tag}
+                    </span>
+                  </div>
+                  <ChevronRight
+                    className={`w-4 h-4 transition-transform duration-300 z-10 ${
+                      isActive ? "text-theme-accent translate-x-1" : "text-theme-subtle"
+                    }`}
+                  />
+                </button>
+              );
+            })}
           </div>
 
-          {/* Active Feature Detail Showcase Card */}
-          <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-theme-card-inner border border-theme-border flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <Cpu className="w-4 h-4 text-theme-accent" />
-                <span className="text-xs font-mono text-theme-accent uppercase tracking-wider">
-                  {contribution.highlights[activeFeature].tag} Architecture
-                </span>
-              </div>
+          {/* Active Feature Detail Showcase Card with AnimatePresence */}
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-theme-card-inner border border-theme-border flex flex-col justify-between overflow-hidden">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeFeature}
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              >
+                <div className="flex items-center gap-2 mb-3">
+                  <Cpu className="w-4 h-4 text-theme-accent" />
+                  <span className="text-xs font-mono text-theme-accent uppercase tracking-wider">
+                    {contribution.highlights[activeFeature].tag} Architecture
+                  </span>
+                </div>
 
-              <h4 className="text-xl font-medium text-theme-text tracking-tight mb-3">
-                {contribution.highlights[activeFeature].title}
-              </h4>
+                <h4 className="text-xl font-medium text-theme-text tracking-tight mb-3">
+                  {contribution.highlights[activeFeature].title}
+                </h4>
 
-              <p className="text-sm text-theme-secondary-text font-light leading-relaxed mb-6">
-                {contribution.highlights[activeFeature].desc}
-              </p>
+                <p className="text-sm text-theme-secondary-text font-light leading-relaxed mb-6">
+                  {contribution.highlights[activeFeature].desc}
+                </p>
 
-              <div className="space-y-3 pt-4 border-t border-theme-border">
-                {contribution.highlights[activeFeature].details.map((detail, dIdx) => (
-                  <div key={dIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-theme-muted font-light leading-relaxed">
-                    <CheckCircle2 className="w-4 h-4 text-theme-accent shrink-0 mt-0.5" />
-                    <span>{detail}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+                <div className="space-y-3 pt-4 border-t border-theme-border">
+                  {contribution.highlights[activeFeature].details.map((detail, dIdx) => (
+                    <motion.div
+                      key={dIdx}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: dIdx * 0.08, duration: 0.3 }}
+                      className="flex items-start gap-2.5 text-xs sm:text-sm text-theme-muted font-light leading-relaxed"
+                    >
+                      <CheckCircle2 className="w-4 h-4 text-theme-accent shrink-0 mt-0.5" />
+                      <span>{detail}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </AnimatePresence>
 
             <div className="mt-8 pt-4 border-t border-theme-border flex items-center justify-between text-xs text-theme-subtle font-mono">
               <div className="flex items-center gap-1.5">
@@ -210,8 +272,8 @@ const OpenSourceSection = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 

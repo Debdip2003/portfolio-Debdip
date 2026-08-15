@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import { Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 import ProjectCard from "./ProjectCard";
 import ProjectModal from "./ProjectModal";
 import realProjects from "../data/projects";
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.12,
+    },
+  },
+};
 
 const SelectedWorkSection = () => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -29,12 +43,22 @@ const SelectedWorkSection = () => {
     activeTab === "all" ? allProjects : productionProjects;
 
   return (
-    <section
+    <motion.section
       id="work"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={sectionVariants}
       className="w-full max-w-7xl px-4 md:px-8 py-24 z-10 border-t border-theme-border"
     >
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+        }}
+        className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
+      >
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-theme-accent" />
@@ -50,50 +74,70 @@ const SelectedWorkSection = () => {
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex items-center gap-2 bg-theme-pill p-1 rounded-full border border-theme-border self-start md:self-auto">
+        {/* Filter Pills with Sliding layoutId */}
+        <div className="flex items-center gap-1.5 bg-theme-pill p-1 rounded-full border border-theme-border self-start md:self-auto">
           <button
             onClick={() => setActiveTab("all")}
-            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+            className={`relative px-4 py-2 rounded-full text-xs font-medium transition-colors z-10 ${
               activeTab === "all"
-                ? "bg-theme-accent text-theme-accent-text font-semibold shadow-sm"
+                ? "text-theme-accent-text font-semibold"
                 : "text-theme-muted hover:text-theme-text"
             }`}
           >
-            All Work ({allProjects.length})
+            {activeTab === "all" && (
+              <motion.div
+                layoutId="activeWorkTab"
+                className="absolute inset-0 rounded-full bg-theme-accent shadow-sm -z-10"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
+            )}
+            <span>All Work ({allProjects.length})</span>
           </button>
+
           <button
             onClick={() => setActiveTab("production")}
-            className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+            className={`relative px-4 py-2 rounded-full text-xs font-medium transition-colors z-10 ${
               activeTab === "production"
-                ? "bg-theme-accent text-theme-accent-text font-semibold shadow-sm"
+                ? "text-theme-accent-text font-semibold"
                 : "text-theme-muted hover:text-theme-text"
             }`}
           >
-            Production Work ({productionProjects.length})
+            {activeTab === "production" && (
+              <motion.div
+                layoutId="activeWorkTab"
+                className="absolute inset-0 rounded-full bg-theme-accent shadow-sm -z-10"
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+              />
+            )}
+            <span>Production Work ({productionProjects.length})</span>
           </button>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Projects Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {filteredProjects.map((project, idx) => (
-          <ProjectCard
-            key={project.id || idx}
-            project={project}
-            onSelect={setSelectedProject}
-          />
-        ))}
-      </div>
+      {/* Projects Grid with layout animations */}
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <AnimatePresence mode="popLayout">
+          {filteredProjects.map((project, idx) => (
+            <ProjectCard
+              key={project.id || project.name || idx}
+              project={project}
+              onSelect={setSelectedProject}
+              index={idx}
+            />
+          ))}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Project Modal View */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-        />
-      )}
-    </section>
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+          />
+        )}
+      </AnimatePresence>
+    </motion.section>
   );
 };
 

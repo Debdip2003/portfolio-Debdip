@@ -1,20 +1,29 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
 
-const ProjectCard = ({ project, onSelect }) => {
+const ProjectCard = ({ project, onSelect, index = 0 }) => {
   return (
-    <div
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.94, y: 25 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.94, y: 15 }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -6 }}
       onClick={() => onSelect(project)}
-      className="group ios-glass p-1.5 rounded-[32px] hover:border-theme-border-hover transition-all duration-500 cursor-pointer flex flex-col justify-between"
+      className="group ios-glass p-1.5 rounded-[32px] hover:border-theme-border-hover transition-all duration-300 cursor-pointer flex flex-col justify-between"
     >
       <div className="overflow-hidden rounded-[28px] relative aspect-[4/3] bg-theme-secondary">
         {/* Visual Element */}
         {project.img ? (
           <div className="w-full h-full relative overflow-hidden">
-            <img
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               src={project.img}
               alt={project.name || project.title}
-              className="w-full h-full object-cover card-image-hover"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-modal-backdrop)] via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity" />
           </div>
@@ -31,9 +40,12 @@ const ProjectCard = ({ project, onSelect }) => {
         )}
 
         {/* Overlay Button */}
-        <div className="absolute top-4 right-4 bg-theme-card backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 group-hover:bg-theme-accent group-hover:text-theme-accent-text transition-all duration-300 shadow-lg text-theme-text">
+        <motion.div
+          whileHover={{ scale: 1.15, rotate: 45 }}
+          className="absolute top-4 right-4 bg-theme-card backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 group-hover:bg-theme-accent group-hover:text-theme-accent-text transition-all duration-300 shadow-lg text-theme-text"
+        >
           <ArrowUpRight className="w-5 h-5" />
-        </div>
+        </motion.div>
       </div>
 
       {/* Card Info */}
@@ -58,7 +70,7 @@ const ProjectCard = ({ project, onSelect }) => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

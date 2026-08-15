@@ -1,25 +1,36 @@
 import React from "react";
 import { X, MapPin, GraduationCap, Heart } from "lucide-react";
+import { motion } from "framer-motion";
 
 const AboutModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--bg-modal-backdrop)] backdrop-blur-md animate-fade-in"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--bg-modal-backdrop)] backdrop-blur-md"
       onClick={onClose}
     >
-      <div
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 20 }}
+        transition={{ type: "spring", stiffness: 350, damping: 28 }}
         className="relative w-full max-w-xl ios-glass rounded-[32px] p-6 sm:p-8 border border-theme-border-hover shadow-2xl tiffany-glow overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1, rotate: 90 }}
+          whileTap={{ scale: 0.9 }}
           onClick={onClose}
           className="absolute top-6 right-6 p-2 rounded-full bg-theme-pill hover:bg-theme-pill-hover text-theme-muted hover:text-theme-text transition-all"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
-        </button>
+        </motion.button>
 
         <div className="flex items-center gap-4 mb-6">
           <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[var(--accent-primary)] to-[var(--accent-blue)] p-[2px] shadow-lg shadow-[var(--accent-glow)] shrink-0">
@@ -64,8 +75,8 @@ const AboutModal = ({ isOpen, onClose }) => {
             <p className="text-theme-muted font-light">Interactive WebGL, UI Motion, Clean Architecture</p>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 

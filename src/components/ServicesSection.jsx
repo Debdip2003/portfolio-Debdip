@@ -1,6 +1,32 @@
 import React from "react";
 import { PenTool, Layout, BarChart3, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import ServiceCard from "./ServiceCard";
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 const ServicesSection = () => {
   const services = [
@@ -28,11 +54,15 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section
+    <motion.section
       id="services"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={sectionVariants}
       className="w-full max-w-7xl px-4 md:px-8 py-24 z-10 border-t border-theme-border"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <motion.div variants={childVariants} className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-theme-accent" />
@@ -47,7 +77,7 @@ const ServicesSection = () => {
             Specialized engineering and design services tailored to elevate your digital presence.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {services.map((service, idx) => (
@@ -57,10 +87,11 @@ const ServicesSection = () => {
             title={service.title}
             description={service.description}
             tags={service.tags}
+            index={idx}
           />
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

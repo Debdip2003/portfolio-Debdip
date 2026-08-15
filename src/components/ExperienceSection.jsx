@@ -1,14 +1,51 @@
 import React from "react";
 import { Briefcase, Calendar, CheckCircle2, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import experienceData from "../data/experience";
+
+const sectionVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
 
 const ExperienceSection = () => {
   return (
-    <section
+    <motion.section
       id="experience"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={sectionVariants}
       className="w-full max-w-7xl px-4 md:px-8 py-24 z-10 border-t border-theme-border"
     >
-      <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <motion.div
+        variants={{
+          hidden: { opacity: 0, y: 20 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+        }}
+        className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
+      >
         <div>
           <div className="flex items-center gap-2 mb-2">
             <Sparkles className="w-4 h-4 text-theme-accent" />
@@ -23,20 +60,26 @@ const ExperienceSection = () => {
             Engineering scalable frontend solutions and interactive systems across high-growth startups and tech teams.
           </p>
         </div>
-      </div>
+      </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {(experienceData || []).map((item, index) => (
-          <div
+          <motion.div
             key={index}
-            className="ios-glass p-8 rounded-[32px] hover:bg-theme-card-hover hover:border-theme-border-hover transition-all duration-300 group flex flex-col justify-between"
+            variants={cardVariants}
+            whileHover={{ y: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+            className="ios-glass p-8 rounded-[32px] hover:bg-theme-card-hover hover:border-theme-border-hover group flex flex-col justify-between cursor-default"
           >
             <div>
               <div className="flex items-center justify-between gap-2 mb-4">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-9 h-9 rounded-xl bg-theme-pill flex items-center justify-center text-theme-accent group-hover:bg-theme-accent-subtle transition-colors">
+                  <motion.div
+                    whileHover={{ rotate: 15, scale: 1.15 }}
+                    className="w-9 h-9 rounded-xl bg-theme-pill flex items-center justify-center text-theme-accent group-hover:bg-theme-accent-subtransition-colors"
+                  >
                     <Briefcase className="w-4 h-4" />
-                  </div>
+                  </motion.div>
                   <span className="text-xs font-mono text-theme-accent uppercase tracking-wider">
                     {item.role}
                   </span>
@@ -69,10 +112,10 @@ const ExperienceSection = () => {
                 </div>
               )}
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 };
 

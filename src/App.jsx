@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 import BackgroundAmbiance from "./components/BackgroundAmbiance";
 import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
@@ -53,7 +54,7 @@ function App() {
 
   return (
     <div className="bg-theme-bg text-theme-text min-h-screen w-full flex flex-col items-center relative selection:bg-theme-accent selection:text-theme-accent-text font-sans antialiased transition-colors duration-300">
-      {/* Background Ambient Orbs */}
+      {/* Background Ambient Parallax Orbs */}
       <BackgroundAmbiance isDarkMode={isDarkMode} />
 
       {/* Floating Dynamic Island Navigation */}
@@ -84,11 +85,15 @@ function App() {
       {/* Minimal Footer */}
       <Footer />
 
-      {/* About Profile Modal */}
-      <AboutModal
-        isOpen={isAboutOpen}
-        onClose={() => setIsAboutOpen(false)}
-      />
+      {/* About Profile Modal with AnimatePresence */}
+      <AnimatePresence>
+        {isAboutOpen && (
+          <AboutModal
+            isOpen={isAboutOpen}
+            onClose={() => setIsAboutOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

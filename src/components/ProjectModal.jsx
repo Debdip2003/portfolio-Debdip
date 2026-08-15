@@ -1,27 +1,38 @@
 import React from "react";
 import { X, ExternalLink, Sparkles } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { motion } from "framer-motion";
 
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--bg-modal-backdrop)] backdrop-blur-md animate-fade-in"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[var(--bg-modal-backdrop)] backdrop-blur-md"
       onClick={onClose}
     >
-      <div
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.92, y: 20 }}
+        transition={{ type: "spring", stiffness: 350, damping: 28 }}
         className="relative w-full max-w-2xl ios-glass rounded-[32px] p-6 sm:p-8 border border-theme-border-hover shadow-2xl tiffany-glow overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1, rotate: 90 }}
+          whileTap={{ scale: 0.9 }}
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-theme-pill hover:bg-theme-pill-hover text-theme-muted hover:text-theme-text transition-all"
+          className="absolute top-6 right-6 p-2 rounded-full bg-theme-pill hover:bg-theme-pill-hover text-theme-muted hover:text-theme-text transition-colors"
           aria-label="Close modal"
         >
           <X className="w-5 h-5" />
-        </button>
+        </motion.button>
 
         {/* Header */}
         <div className="flex items-center gap-2 mb-2">
@@ -74,19 +85,23 @@ const ProjectModal = ({ project, onClose }) => {
         {/* Actions */}
         <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-theme-border">
           {(project.firstLink || project.liveLink) && !project.firstButtonDisabled && (
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href={project.firstLink || project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-theme-accent text-theme-accent-text px-6 py-2.5 rounded-full font-medium text-xs hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-[var(--accent-glow)]"
+              className="flex items-center gap-2 bg-theme-accent text-theme-accent-text px-6 py-2.5 rounded-full font-medium text-xs hover:brightness-110 transition-all shadow-lg shadow-[var(--accent-glow)]"
             >
               <span>{project.firstButton || "Live Preview"}</span>
               <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+            </motion.a>
           )}
 
           {(project.secondLink || project.githubLink) && !project.secondButtonDisabled && (
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href={project.secondLink || project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -94,7 +109,7 @@ const ProjectModal = ({ project, onClose }) => {
             >
               <FaGithub className="w-3.5 h-3.5" />
               <span>{project.secondButton || "Source Code"}</span>
-            </a>
+            </motion.a>
           )}
 
           <button
@@ -104,8 +119,8 @@ const ProjectModal = ({ project, onClose }) => {
             Dismiss
           </button>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
