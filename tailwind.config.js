@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class",
+  darkMode: ["class", '[data-theme="dark"]'],
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
@@ -10,17 +10,34 @@ module.exports = {
       },
       colors: {
         tiffany: {
-          DEFAULT: "#81D8D0",
-          light: "#a5e6df",
-          dark: "#5ac2b8",
+          DEFAULT: "var(--accent-primary)",
+          light: "var(--accent-primary-hover)",
+          dark: "var(--accent-primary-hover)",
         },
-        surface: {
-          DEFAULT: "#18181B",
-          darker: "#0d0d0e",
-          glass: "rgba(30, 30, 30, 0.4)",
+        accent: "var(--accent-blue)",
+        emeraldAccent: "var(--accent-emerald)",
+        theme: {
+          bg: "var(--bg-primary)",
+          secondary: "var(--bg-secondary)",
+          elevated: "var(--bg-elevated)",
+          card: "var(--bg-card)",
+          "card-hover": "var(--bg-card-hover)",
+          "card-inner": "var(--bg-card-inner)",
+          pill: "var(--bg-pill)",
+          "pill-hover": "var(--bg-pill-hover)",
+          text: "var(--text-primary)",
+          "text-secondary": "var(--text-secondary)",
+          muted: "var(--text-muted)",
+          subtle: "var(--text-subtle)",
+          border: "var(--border-subtle)",
+          "border-hover": "var(--border-hover)",
+          "border-strong": "var(--border-strong)",
+          accent: "var(--accent-primary)",
+          "accent-hover": "var(--accent-primary-hover)",
+          "accent-text": "var(--accent-primary-text)",
+          "accent-subtle": "var(--accent-primary-subtle)",
+          "accent-border": "var(--accent-primary-border)",
         },
-        accent: "#60A5FA",
-        emeraldAccent: "#34D399",
       },
       animation: {
         "fade-in": "fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
@@ -35,8 +52,8 @@ module.exports = {
           "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
         },
         pulseGlow: {
-          "0%, 100%": { opacity: "0.08", transform: "scale(1)" },
-          "50%": { opacity: "0.15", transform: "scale(1.08)" },
+          "0%, 100%": { opacity: "var(--ambient-opacity-1)", transform: "scale(1)" },
+          "50%": { opacity: "calc(var(--ambient-opacity-1) * 1.5)", transform: "scale(1.08)" },
         },
         float: {
           "0%, 100%": { transform: "translateY(0px)" },
@@ -51,4 +68,3 @@ module.exports = {
   },
   plugins: [],
 };
-

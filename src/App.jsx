@@ -11,10 +11,31 @@ import Footer from "./components/Footer";
 import AboutModal from "./components/AboutModal";
 
 function App() {
-  const [isAmbientOn, setIsAmbientOn] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved) return saved === "dark";
+    return true; // Default to dark theme
+  });
+
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
-  // Smooth scroll configuration
+  // Sync theme with HTML document element and localStorage
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.classList.add("dark");
+      root.classList.remove("light");
+      root.setAttribute("data-theme", "dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      root.classList.add("light");
+      root.classList.remove("dark");
+      root.setAttribute("data-theme", "light");
+      localStorage.setItem("theme", "light");
+    }
+  }, [isDarkMode]);
+
+  // Smooth scroll restoration
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
@@ -31,17 +52,17 @@ function App() {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen w-full flex flex-col items-center relative selection:bg-[#81D8D0] selection:text-black font-sans antialiased">
+    <div className="bg-theme-bg text-theme-text min-h-screen w-full flex flex-col items-center relative selection:bg-theme-accent selection:text-theme-accent-text font-sans antialiased transition-colors duration-300">
       {/* Background Ambient Orbs */}
-      <BackgroundAmbiance isAmbientOn={isAmbientOn} />
+      <BackgroundAmbiance isDarkMode={isDarkMode} />
 
       {/* Floating Dynamic Island Navigation */}
-      <NavBar onContactClick={handleContactClick} />
+      <NavBar onContactClick={handleContactClick} isDarkMode={isDarkMode} />
 
       {/* Hero Section with iOS Widgets */}
       <HeroSection
-        isAmbientOn={isAmbientOn}
-        setIsAmbientOn={setIsAmbientOn}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
         onProfileClick={() => setIsAboutOpen(true)}
       />
 
@@ -59,7 +80,6 @@ function App() {
 
       {/* Contact Section */}
       <ContactSection />
-
 
       {/* Minimal Footer */}
       <Footer />

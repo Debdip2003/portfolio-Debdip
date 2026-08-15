@@ -7,12 +7,11 @@ const ReviewsSection = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const carouselRef = useRef(null);
   
-  // Determine how many cards to show based on screen size
   const getCardsPerView = () => {
     if (typeof window === 'undefined') return 1;
-    if (window.innerWidth >= 1024) return 3; // lg screens
-    if (window.innerWidth >= 640) return 2;  // sm screens
-    return 1; // mobile
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 640) return 2;
+    return 1;
   };
 
   const [cardsPerView, setCardsPerView] = useState(getCardsPerView());
@@ -34,7 +33,6 @@ const ReviewsSection = () => {
     );
   }, [maxIndex]);
 
-
   const prevReview = () => {
     setCurrentIndex((prevIndex) => 
       prevIndex === 0 ? maxIndex : prevIndex - 1
@@ -54,12 +52,11 @@ const ReviewsSection = () => {
       className="w-full flex justify-center items-center py-16 relative overflow-hidden animate-fade-in-up"
     >
       <div className="w-full flex flex-col items-center z-10">
-        <h2 className="section-heading text-3xl sm:text-5xl mb-4 text-center animate-fade-in-up px-4">
+        <h2 className="section-heading text-3xl sm:text-5xl mb-4 text-center animate-fade-in-up px-4 text-theme-accent">
           Client Reviews
         </h2>
         <p
-          className="text-lg mb-12 max-w-2xl text-center px-4"
-          style={{ color: "var(--text-secondary)" }}
+          className="text-lg mb-12 max-w-2xl text-center px-4 text-theme-muted"
         >
           Don't just take my word for it - here's what my clients have to say
         </p>
@@ -82,45 +79,33 @@ const ReviewsSection = () => {
                 }}
               >
                 <div
-                  className="card p-6 md:p-8 rounded-2xl h-full flex flex-col relative overflow-hidden hover:cursor-pointer"
-                  style={{
-                    background: "var(--bg-card)",
-                    border: "1px solid var(--border)",
-                  }}
+                  className="card ios-glass p-6 md:p-8 rounded-2xl h-full flex flex-col relative overflow-hidden hover:cursor-pointer border border-theme-border bg-theme-card"
                 >
                   {/* Quote Icon */}
                   <FaQuoteLeft
-                    className="absolute top-4 right-4 text-3xl opacity-10"
-                    style={{ color: "var(--accent)" }}
+                    className="absolute top-4 right-4 text-3xl opacity-10 text-theme-accent"
                   />
 
                   {/* Avatar */}
                   <div className="flex items-center gap-4 mb-4">
                     <div
-                      className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0"
-                      style={{
-                        background: "var(--accent)",
-                        color: "#000000",
-                      }}
+                      className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0 bg-theme-accent text-theme-accent-text"
                     >
                       {review.avatar}
                     </div>
                     <div className="text-left">
                       <h4
-                        className="text-lg font-bold"
-                        style={{ color: "var(--text-primary)" }}
+                        className="text-lg font-bold text-theme-text"
                       >
                         {review.name}
                       </h4>
                       <p
-                        className="text-xs"
-                        style={{ color: "var(--text-secondary)" }}
+                        className="text-xs text-theme-muted"
                       >
                         {review.role}
                       </p>
                       <p
-                        className="text-xs"
-                        style={{ color: "var(--text-muted)" }}
+                        className="text-xs text-theme-subtle"
                       >
                         {review.company}
                       </p>
@@ -132,16 +117,14 @@ const ReviewsSection = () => {
                     {[...Array(review.rating)].map((_, i) => (
                       <FaStar
                         key={i}
-                        className="text-lg"
-                        style={{ color: "var(--accent)" }}
+                        className="text-lg text-theme-accent"
                       />
                     ))}
                   </div>
 
                   {/* Review Text */}
                   <p
-                    className="text-sm md:text-base leading-relaxed flex-grow text-left"
-                    style={{ color: "var(--text-primary)" }}
+                    className="text-sm md:text-base leading-relaxed flex-grow text-left text-theme-secondary-text"
                   >
                     "{review.text}"
                   </p>
@@ -157,12 +140,7 @@ const ReviewsSection = () => {
                 prevReview();
                 setIsAutoPlaying(false);
               }}
-              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110 z-20 shadow-lg"
-              style={{
-                background: "var(--bg-card)",
-                border: "2px solid var(--border)",
-                color: "var(--text-primary)",
-              }}
+              className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110 z-20 shadow-lg bg-theme-card border border-theme-border text-theme-text"
               aria-label="Previous review"
             >
               <FaChevronLeft className="text-xl" />
@@ -174,12 +152,7 @@ const ReviewsSection = () => {
                 nextReview();
                 setIsAutoPlaying(false);
               }}
-              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110 z-20 shadow-lg"
-              style={{
-                background: "var(--bg-card)",
-                border: "2px solid var(--border)",
-                color: "var(--text-primary)",
-              }}
+              className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 p-3 rounded-full transition-all hover:scale-110 z-20 shadow-lg bg-theme-card border border-theme-border text-theme-text"
               aria-label="Next review"
             >
               <FaChevronRight className="text-xl" />
@@ -197,11 +170,8 @@ const ReviewsSection = () => {
                 setIsAutoPlaying(false);
               }}
               className={`transition-all rounded-full ${
-                index === currentIndex ? 'w-8 h-3' : 'w-3 h-3'
+                index === currentIndex ? 'w-8 h-3 bg-theme-accent' : 'w-3 h-3 bg-theme-border'
               }`}
-              style={{
-                background: index === currentIndex ? "var(--accent)" : "var(--border)",
-              }}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

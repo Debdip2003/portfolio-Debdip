@@ -14,7 +14,6 @@ import {
   FaVolumeUp,
 } from "react-icons/fa";
 
-// Songs data with favorite field
 const SONGS = [
   {
     id: 1,
@@ -75,7 +74,6 @@ const SpotifyCard = () => {
       audio.pause();
       audio.src = "";
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSongIndex]);
 
   useEffect(() => {
@@ -139,7 +137,6 @@ const SpotifyCard = () => {
     const newLikedState = !liked;
     setLiked(newLikedState);
     
-    // Download song when liked
     if (newLikedState) {
       const link = document.createElement('a');
       link.href = currentSong.file;
@@ -150,134 +147,102 @@ const SpotifyCard = () => {
     }
   };
 
-
   return (
     <div className="flex-shrink-0 animate-fade-in relative">
       {currentSong.isFavorite && (
         <span
-          className="absolute -top-10 left-1/2 -translate-x-1/2 z-10 text-xs font-extrabold rounded-lg px-4 py-1.5 whitespace-nowrap max-w-[90vw] text-center"
-          style={{
-            background: "var(--accent)",
-            color: "#0f172a",
-            boxShadow: "0 0 16px rgba(100, 181, 246, 0.6)",
-            animation:
-              "pop-up-bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards",
-          }}
+          className="absolute -top-10 left-1/2 -translate-x-1/2 z-10 text-xs font-extrabold rounded-lg px-4 py-1.5 whitespace-nowrap max-w-[90vw] text-center bg-theme-accent text-theme-accent-text shadow-lg shadow-[var(--accent-glow)]"
         >
-          {/* Arrow pointing up toward card */}
           <span
-            className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-3 h-3 rotate-45"
-            style={{ background: "var(--accent)" }}/>
+            className="absolute left-1/2 -translate-x-1/2 -bottom-1.5 w-3 h-3 rotate-45 bg-theme-accent" />
           This is my fav song btw ( If you don't know me :) )
         </span>
       )}
       <div
-        className="w-full max-w-80 sm:max-w-96 rounded-2xl overflow-hidden shadow-2xl border border-white/20"
-        style={{
-          background: "rgba(22, 21, 21, 0.07)",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(50px)",
-          boxShadow:
-            "0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1)",
-        }}
+        className="w-full max-w-80 sm:max-w-96 rounded-2xl overflow-hidden shadow-2xl border border-theme-border bg-theme-card backdrop-blur-xl"
       >
-        <div className={` px-5 pt-5 pb-7 transition-all duration-700`}>
-          <p className="text-center text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 mb-4">
+        <div className="px-5 pt-5 pb-7 transition-all duration-700">
+          <p className="text-center text-[10px] font-bold tracking-[0.2em] uppercase text-theme-muted mb-4">
             Now Playing
           </p>
           <div className="relative">
             <img
               src={dpImage}
               alt="Debdip Bhattacharya"
-              className={`w-full aspect-square object-cover object-bottom rounded-xl`}
+              className="w-full aspect-square object-cover object-bottom rounded-xl"
             />
             {isPlaying && (
               <div
-                className="absolute inset-0 rounded-xl border-2 border-white/20 animate-spin"
+                className="absolute inset-0 rounded-xl border-2 border-theme-accent animate-spin"
                 style={{ animationDuration: "8s" }}
               />
             )}
           </div>
         </div>
 
-        <div
-          className="px-5 pt-4 pb-5"
-          style={{
-            background: "rgba(0,0,0,0.35)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
+        <div className="px-5 pt-4 pb-5 bg-theme-card-inner backdrop-blur-md border-t border-theme-border">
           <div className="flex items-start justify-between mb-1">
             <div className="overflow-hidden pr-2">
-              <p className="text-white font-bold text-base truncate animate-fade-in">
+              <p className="text-theme-text font-bold text-base truncate animate-fade-in">
                 {currentSong.title}
               </p>
-              <p className="text-gray-400 text-sm truncate mt-0.5 mb-3">
+              <p className="text-theme-muted text-sm truncate mt-0.5 mb-3">
                 {currentSong.artist}
               </p>
             </div>
             <button
               onClick={handleLike}
-              className="flex-shrink-0 mt-1 transition-transform hover:scale-110"
-              style={{ color: liked ? "#1DB954" : "#6b7280" }}
+              className={`flex-shrink-0 mt-1 transition-transform hover:scale-110 ${
+                liked ? "text-emerald-500" : "text-theme-subtle"
+              }`}
             >
               <FaHeart size={18} />
             </button>
           </div>
           <div
-            className="w-full h-1 rounded-full cursor-pointer group mb-1.5"
-            style={{ background: "rgba(255,255,255,0.15)" }}
+            className="w-full h-1 rounded-full cursor-pointer group mb-1.5 bg-theme-pill"
             onClick={handleSeek}
           >
             <div
-              className={`h-full bg-gradient-to-r rounded-full relative transition-none`}
+              className="h-full bg-theme-accent rounded-full relative transition-none"
               style={{ width: `${progress}%` }}
             >
-              <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-white rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3 h-3 bg-theme-text rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </div>
-          <div
-            className="flex justify-between text-xs mb-4"
-            style={{ color: "#b3b3b3" }}
-          >
+          <div className="flex justify-between text-xs mb-4 text-theme-muted">
             <span>{fmt(currentTime)}</span>
             <span>{fmt(duration)}</span>
           </div>
 
           <div className="flex items-center justify-between mb-4">
-            <button
-              className="transition-colors hover:text-white"
-              style={{ color: "#b3b3b3" }}
-            >
+            <button className="text-theme-muted hover:text-theme-text transition-colors">
               <FaRandom size={14} />
             </button>
             <button
               onClick={handlePrev}
-              className="text-white transition-transform hover:scale-110 active:scale-95"
+              className="text-theme-text transition-transform hover:scale-110 active:scale-95"
             >
               <FaStepBackward size={20} />
             </button>
             <button
               onClick={() => setIsPlaying((p) => !p)}
-              className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95"
+              className="w-12 h-12 bg-theme-accent text-theme-accent-text rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-105 active:scale-95"
             >
               {isPlaying ? (
-                <FaPause size={18} className="text-black" />
+                <FaPause size={18} />
               ) : (
-                <FaPlay size={18} className="text-black ml-0.5" />
+                <FaPlay size={18} className="ml-0.5" />
               )}
             </button>
             <button
               onClick={handleNext}
-              className="text-white transition-transform hover:scale-110 active:scale-95"
+              className="text-theme-text transition-transform hover:scale-110 active:scale-95"
             >
               <FaStepForward size={20} />
             </button>
             <button
-              className="transition-colors hover:text-white"
-              style={{ color: "#b3b3b3" }}
+              className="text-theme-muted hover:text-theme-text transition-colors"
               onClick={handleReplay}
             >
               <FaRedo size={14} />
@@ -285,20 +250,19 @@ const SpotifyCard = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <FaVolumeDown size={12} style={{ color: "#b3b3b3" }} />
+            <FaVolumeDown size={12} className="text-theme-muted" />
             <div
-              className="flex-1 h-1 rounded-full cursor-pointer group"
-              style={{ background: "rgba(255,255,255,0.15)" }}
+              className="flex-1 h-1 rounded-full cursor-pointer group bg-theme-pill"
               onClick={handleVolumeClick}
             >
               <div
-                className="h-full rounded-full relative transition-all"
-                style={{ width: `${volume}%`, background: "#b3b3b3" }}
+                className="h-full rounded-full relative transition-all bg-theme-muted"
+                style={{ width: `${volume}%` }}
               >
-                <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-white rounded-full shadow opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-theme-text rounded-full shadow opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
             </div>
-            <FaVolumeUp size={12} style={{ color: "#b3b3b3" }} />
+            <FaVolumeUp size={12} className="text-theme-muted" />
           </div>
         </div>
       </div>
