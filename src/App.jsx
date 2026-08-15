@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
-import BackgroundAmbiance from "./components/BackgroundAmbiance";
-import NavBar from "./components/NavBar";
-import HeroSection from "./components/HeroSection";
-import ServicesSection from "./components/ServicesSection";
-import SelectedWorkSection from "./components/SelectedWorkSection";
-import OpenSourceSection from "./components/OpenSourceSection";
-import ExperienceSection from "./components/ExperienceSection";
-import ContactSection from "./components/ContactSection";
-import Footer from "./components/Footer";
-import AboutModal from "./components/AboutModal";
+import BackgroundAmbiance from "./components/Background/BackgroundAmbiance";
+import NavBar from "./components/Layout/NavBar";
+import HeroSection from "./components/Hero Section/HeroSection";
+import ServicesSection from "./components/Service Section/ServicesSection";
+import SelectedWorkSection from "./components/Work Section/SelectedWorkSection";
+import OpenSourceSection from "./components/Open Soruce Section/OpenSourceSection";
+import ExperienceSection from "./components/Experience Section/ExperienceSection";
+import ContactSection from "./components/Contact Section/ContactSection";
+import Footer from "./components/Layout/Footer";
+import AboutModal from "./components/About Section/AboutModal";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(() => {

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Mail, Copy, Check, Send, Sparkles, MessageSquare, Loader2, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import { db } from "../utils/firebase";
+import { db } from "../../utils/firebase";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },

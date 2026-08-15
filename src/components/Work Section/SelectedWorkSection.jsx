@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
-import ProjectCard from "./ProjectCard";
-import ProjectModal from "./ProjectModal";
-import realProjects from "../data/projects";
+import realProjects from "../../data/projects";
+import ProjectCard from "../Project Section/ProjectCard";
+import ProjectModal from "../Project Section/ProjectModal";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },

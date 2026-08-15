@@ -1,7 +1,7 @@
 import React from "react";
 import { Briefcase, Calendar, CheckCircle2, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import experienceData from "../data/experience";
+import experienceData from "../../data/experience";
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
