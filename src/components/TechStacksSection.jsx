@@ -27,23 +27,17 @@ const TechStacksSection = () => {
         <div className="floating-shape absolute bottom-10 right-20 w-32 h-32 rounded-full blur-2xl animate-pulse-slow" />
       </div>
       <div className="w-full mx-auto flex flex-col items-center text-center z-10 px-8 md:px-16">
-        <h1 className="section-heading text-3xl sm:text-5xl mb-4">
+        <h1 className="section-heading text-3xl sm:text-5xl mb-4 text-theme-accent">
           Tech Stacks
         </h1>
         <select
-          className="form-input w-full sm:w-1/4 p-2.5 hover:cursor-pointer mb-8 appearance-none"
+          className="form-input w-full sm:w-1/4 p-2.5 hover:cursor-pointer mb-8 appearance-none bg-theme-card border border-theme-border text-theme-text rounded-xl"
           value={value}
           onChange={handleOption}
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E")`,
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "right 12px center",
-            paddingRight: "36px",
-          }}
         >
-          <option value="" style={{ background: "#0f1923", color: "#e2e8f0" }}>All Types</option>
+          <option value="" className="bg-theme-bg text-theme-text">All Types</option>
           {dropdownOptions.map((item) => (
-            <option value={item.value} key={item.id} style={{ background: "#0f1923", color: "#e2e8f0" }}>
+            <option value={item.value} key={item.id} className="bg-theme-bg text-theme-text">
               {item.label}
             </option>
           ))}
@@ -51,7 +45,7 @@ const TechStacksSection = () => {
       </div>
       <div className="w-full px-8 md:px-16 flex flex-wrap gap-6 justify-center items-center animate-fade-in">
         {(filteredList.length > 0 ? filteredList : techStacks).map(
-          (item, idx) => (
+          (item) => (
             <GlareHover key={item.id}>
               <div className="flex flex-col items-center justify-center">
                 <img
@@ -60,8 +54,7 @@ const TechStacksSection = () => {
                   className="w-20 h-20 object-contain mb-2 drop-shadow-lg rounded-lg"
                 />
                 <span
-                  className="text-sm font-semibold capitalize"
-                  style={{ color: "var(--text-secondary)" }}
+                  className="text-sm font-semibold capitalize text-theme-muted"
                 >
                   {item.alt.replace(/-/g, " ")}
                 </span>

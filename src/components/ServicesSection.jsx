@@ -30,20 +30,20 @@ const ServicesSection = () => {
   return (
     <section
       id="services"
-      className="w-full max-w-7xl px-4 md:px-8 py-24 z-10 border-t border-white/5"
+      className="w-full max-w-7xl px-4 md:px-8 py-24 z-10 border-t border-theme-border"
     >
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <Sparkles className="w-4 h-4 text-[#81D8D0]" />
-            <span className="text-xs uppercase tracking-widest text-[#81D8D0] font-mono">
+            <Sparkles className="w-4 h-4 text-theme-accent" />
+            <span className="text-xs uppercase tracking-widest text-theme-accent font-mono">
               Capabilities
             </span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white mb-2">
+          <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-theme-text mb-2">
             What I Do
           </h2>
-          <p className="text-white/50 text-base md:text-lg font-light tracking-wide max-w-lg">
+          <p className="text-theme-muted text-base md:text-lg font-light tracking-wide max-w-lg">
             Specialized engineering and design services tailored to elevate your digital presence.
           </p>
         </div>

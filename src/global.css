@@ -1,33 +1,26 @@
-
+/* ── Global Shared Variables & Utilities ─────────────────────── */
 :root {
-  /* ── Accent ───────────────────────────────────────────── */
-  --accent:           #64b5f6;   /* calm sky blue             */
-  --accent-rgb:       100, 181, 246;   /* RGB values for alpha usage */
-  --accent-hover:     #90caf9;   /* lighter on hover          */
-  --accent-subtle:    rgba(100, 181, 246, 0.12);
-  --accent-green:     #4ade80;   /* success / liked           */
+  --accent:           var(--accent-primary);
+  --accent-hover:     var(--accent-primary-hover);
+  --accent-subtle:    var(--accent-primary-subtle);
+  --accent-green:     var(--accent-emerald);
 
-  /* ── Text ─────────────────────────────────────────────── */
-  --text-primary:     #e2e8f0;   /* slate-200                 */
-  --text-secondary:   #94a3b8;   /* slate-400                 */
-  --text-muted:       #64748b;   /* slate-500                 */
+  --text-primary:     var(--text-primary);
+  --text-secondary:   var(--text-secondary);
+  --text-muted:       var(--text-muted);
 
-  /* ── Surfaces ─────────────────────────────────────────── */
-  --bg-card:          rgba(255, 255, 255, 0.05);
-  --bg-card-hover:    rgba(255, 255, 255, 0.08);
-  --bg-input:         rgba(255, 255, 255, 0.06);
+  --bg-card:          var(--bg-card);
+  --bg-card-hover:    var(--bg-card-hover);
+  --bg-input:         var(--input-bg);
 
-  /* ── Borders ──────────────────────────────────────────── */
-  --border:           rgba(255, 255, 255, 0.10);
-  --border-hover:     rgba(255, 255, 255, 0.18);
+  --border:           var(--border-subtle);
+  --border-hover:     var(--border-hover);
 
-  /* ── Transitions ──────────────────────────────────────── */
   --transition-fast:  150ms ease;
   --transition-base:  250ms ease;
 }
 
 /* ── Utility ────────────────────────────────────────────── */
-
 .section-heading {
   color: var(--accent);
   font-weight: 700;
@@ -48,7 +41,7 @@
 /* ── Accent button ─────────────────────────────────────── */
 .btn-accent {
   background: var(--accent);
-  color: #0f172a;
+  color: var(--accent-primary-text);
   font-weight: 600;
   border-radius: 0.75rem;
   border: none;
@@ -121,7 +114,7 @@
   padding: 0.25rem 0.75rem;
 }
 
-/* ── Chat Modal Animations ─────────────────────────────── */
+/* ── Keyframe Animations ───────────────────────────────── */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -152,24 +145,13 @@
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.2s ease-out;
+  animation: fadeIn 0.2s ease-out forwards;
 }
 
 .animate-slide-up {
-  animation: slideUp 0.3s ease-out;
+  animation: slideUp 0.3s ease-out forwards;
 }
 
 .animate-bounce-slow {
   animation: bounceSlow 2s ease-in-out infinite;
-}
-
-/* ── Hide Scrollbar (webkit) ───────────────────────────── */
-/* Hide scrollbar for Chrome, Safari and Opera */
-.overflow-y-auto::-webkit-scrollbar {
-  display: none;
-}
-
-/* Hide scrollbar for all elements with overflow-y-auto */
-div[style*="overflow-y"]::-webkit-scrollbar {
-  display: none;
 }

@@ -3,11 +3,157 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
+  /* ══════════════════════════════════════════════════════════════════════
+     DARK THEME (Default: Deep Onyx, Slate, Glowing Tiffany & Cyan Accents)
+     All color hex codes for the entire website are defined strictly here.
+     ══════════════════════════════════════════════════════════════════════ */
+  :root,
+  [data-theme="dark"],
+  .dark {
+    /* Base Backgrounds */
     --bg-primary: #000000;
-    --tiffany: #81D8D0;
-    --surface-glass: rgba(30, 30, 30, 0.4);
-    --border-glass: rgba(255, 255, 255, 0.08);
+    --bg-secondary: #0a0a0c;
+    --bg-elevated: #121215;
+    --bg-modal-backdrop: rgba(0, 0, 0, 0.82);
+
+    /* Surfaces & Glassmorphic Cards */
+    --bg-card: rgba(26, 26, 30, 0.55);
+    --bg-card-hover: rgba(40, 40, 48, 0.65);
+    --bg-card-inner: rgba(10, 10, 12, 0.60);
+    --bg-pill: rgba(255, 255, 255, 0.06);
+    --bg-pill-hover: rgba(255, 255, 255, 0.12);
+    --bg-icon: rgba(255, 255, 255, 0.07);
+
+    /* Typography */
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.72);
+    --text-muted: rgba(255, 255, 255, 0.48);
+    --text-subtle: rgba(255, 255, 255, 0.32);
+
+    /* Borders */
+    --border-subtle: rgba(255, 255, 255, 0.09);
+    --border-hover: rgba(255, 255, 255, 0.20);
+    --border-strong: rgba(255, 255, 255, 0.28);
+
+    /* Primary Accent (Tiffany Blue) */
+    --accent-primary: #81D8D0;
+    --accent-primary-hover: #9ee6df;
+    --accent-primary-text: #000000;
+    --accent-primary-subtle: rgba(129, 216, 208, 0.14);
+    --accent-primary-border: rgba(129, 216, 208, 0.35);
+    --accent-glow: rgba(129, 216, 208, 0.22);
+    --accent-glow-strong: rgba(129, 216, 208, 0.45);
+
+    /* Secondary Accents */
+    --accent-blue: #60A5FA;
+    --accent-emerald: #34D399;
+    --accent-amber: #FBBF24;
+
+    /* Background Ambient Orbs */
+    --ambient-orb-1: #81D8D0;
+    --ambient-orb-2: #1e3a8a;
+    --ambient-orb-3: #059669;
+    --ambient-opacity-1: 0.08;
+    --ambient-opacity-2: 0.12;
+    --ambient-opacity-3: 0.04;
+
+    /* Form Inputs */
+    --input-bg: rgba(255, 255, 255, 0.05);
+    --input-border: rgba(255, 255, 255, 0.12);
+    --input-placeholder: rgba(255, 255, 255, 0.28);
+    --input-focus-border: #81D8D0;
+
+    /* Glass Effects */
+    --glass-bg: rgba(22, 22, 26, 0.50);
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    --nav-scrolled-bg: rgba(0, 0, 0, 0.70);
+
+    /* Text Headings Gradient */
+    --heading-gradient-from: #ffffff;
+    --heading-gradient-via: #ffffff;
+    --heading-gradient-to: rgba(255, 255, 255, 0.50);
+
+    /* Buttons */
+    --btn-primary-bg: #ffffff;
+    --btn-primary-text: #000000;
+    --btn-primary-hover: #f1f5f9;
+  }
+
+  /* ══════════════════════════════════════════════════════════════════════
+     LIGHT THEME (Luminous Apple Glassmorphism, Clean Slate, Vibrant Teal)
+     All color hex codes for the entire website are defined strictly here.
+     ══════════════════════════════════════════════════════════════════════ */
+  [data-theme="light"],
+  .light {
+    /* Base Backgrounds */
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-elevated: #ffffff;
+    --bg-modal-backdrop: rgba(15, 23, 42, 0.55);
+
+    /* Surfaces & Glassmorphic Cards */
+    --bg-card: rgba(255, 255, 255, 0.78);
+    --bg-card-hover: rgba(255, 255, 255, 0.95);
+    --bg-card-inner: rgba(241, 245, 249, 0.85);
+    --bg-pill: rgba(15, 23, 42, 0.05);
+    --bg-pill-hover: rgba(15, 23, 42, 0.10);
+    --bg-icon: rgba(15, 23, 42, 0.06);
+
+    /* Typography */
+    --text-primary: #0f172a;
+    --text-secondary: #334155;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+
+    /* Borders */
+    --border-subtle: rgba(15, 23, 42, 0.08);
+    --border-hover: rgba(15, 23, 42, 0.16);
+    --border-strong: rgba(15, 23, 42, 0.25);
+
+    /* Primary Accent (Vibrant Deep Tiffany Teal for Crisp Readability on Light) */
+    --accent-primary: #0d9488;
+    --accent-primary-hover: #0f766e;
+    --accent-primary-text: #ffffff;
+    --accent-primary-subtle: rgba(13, 148, 136, 0.12);
+    --accent-primary-border: rgba(13, 148, 136, 0.32);
+    --accent-glow: rgba(13, 148, 136, 0.18);
+    --accent-glow-strong: rgba(13, 148, 136, 0.38);
+
+    /* Secondary Accents */
+    --accent-blue: #2563EB;
+    --accent-emerald: #059669;
+    --accent-amber: #D97706;
+
+    /* Background Ambient Orbs */
+    --ambient-orb-1: #99f6e4;
+    --ambient-orb-2: #bfdbfe;
+    --ambient-orb-3: #a7f3d0;
+    --ambient-opacity-1: 0.45;
+    --ambient-opacity-2: 0.35;
+    --ambient-opacity-3: 0.28;
+
+    /* Form Inputs */
+    --input-bg: rgba(255, 255, 255, 0.90);
+    --input-border: rgba(15, 23, 42, 0.14);
+    --input-placeholder: rgba(100, 116, 139, 0.60);
+    --input-focus-border: #0d9488;
+
+    /* Glass Effects */
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --glass-shadow: 0 8px 32px rgba(15, 23, 42, 0.06);
+    --nav-scrolled-bg: rgba(255, 255, 255, 0.85);
+
+    /* Text Headings Gradient */
+    --heading-gradient-from: #0f172a;
+    --heading-gradient-via: #1e293b;
+    --heading-gradient-to: rgba(15, 23, 42, 0.60);
+
+    /* Buttons */
+    --btn-primary-bg: #0f172a;
+    --btn-primary-text: #ffffff;
+    --btn-primary-hover: #1e293b;
   }
 
   * {
@@ -18,11 +164,12 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     overflow-x: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
+    transition: background-color 0.35s ease, color 0.35s ease;
   }
 
   body::-webkit-scrollbar {
@@ -36,6 +183,7 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
+    background-color: var(--bg-primary);
   }
 
   html::-webkit-scrollbar {
@@ -43,6 +191,41 @@
     width: 0px;
     background: transparent;
   }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   iOS Glassmorphism Design System (Fully Adaptive via CSS Variables)
+   ══════════════════════════════════════════════════════════════════════ */
+.ios-glass {
+  background: var(--bg-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--glass-shadow);
+  transition: background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.ios-glass-interactive {
+  background: var(--bg-card);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--glass-shadow);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-glass-interactive:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+}
+
+.tiffany-glow {
+  box-shadow: 0 0 50px -15px var(--accent-glow);
+}
+
+.tiffany-glow-strong {
+  box-shadow: 0 0 40px -8px var(--accent-glow-strong);
 }
 
 /* Custom Animation Stagger Classes */
@@ -55,46 +238,10 @@
 /* Custom iOS Toggle Switch */
 .toggle-checkbox:checked {
   right: 0;
-  border-color: #81D8D0;
+  border-color: var(--accent-primary);
 }
 .toggle-checkbox:checked + .toggle-label {
-  background-color: #81D8D0;
-}
-
-/* iOS Glassmorphism Card System */
-.ios-glass {
-  background: rgba(30, 30, 30, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-.ios-glass-interactive {
-  background: rgba(30, 30, 30, 0.4);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.ios-glass-interactive:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.14);
-  transform: translateY(-2px);
-}
-
-.tiffany-glow {
-  box-shadow: 0 0 60px -20px rgba(129, 216, 208, 0.18);
-}
-
-.tiffany-glow-strong {
-  box-shadow: 0 0 40px -10px rgba(129, 216, 208, 0.45);
-}
-
-.blue-glow {
-  box-shadow: 0 0 60px -20px rgba(96, 165, 250, 0.2);
+  background-color: var(--accent-primary);
 }
 
 /* Card Hover Smooth Scaling */
@@ -109,12 +256,19 @@
 .shimmer-text {
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.7) 0%,
-    rgba(255, 255, 255, 1) 50%,
-    rgba(255, 255, 255, 0.7) 100%
+    var(--text-secondary) 0%,
+    var(--text-primary) 50%,
+    var(--text-secondary) 100%
   );
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Hide Scrollbar */
+.overflow-y-auto::-webkit-scrollbar {
+  display: none;
+}
+div[style*="overflow-y"]::-webkit-scrollbar {
+  display: none;
+}

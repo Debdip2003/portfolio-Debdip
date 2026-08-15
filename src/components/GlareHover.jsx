@@ -1,13 +1,13 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 const GlareHover = ({
   width = "120px",
   height = "140px",
-  background = "#000",
+  background = "var(--bg-card)",
   borderRadius = "10px",
-  borderColor = "#333",
+  borderColor = "var(--border-subtle)",
   children,
-  glareColor = "#ffffff",
+  glareColor = "var(--text-primary)",
   glareOpacity = 0.5,
   glareAngle = -45,
   glareSize = 250,
@@ -16,20 +16,6 @@ const GlareHover = ({
   className = "",
   style = {},
 }) => {
-  const hex = glareColor.replace("#", "");
-  let rgba = glareColor;
-  if (/^[\dA-Fa-f]{6}$/.test(hex)) {
-    const r = parseInt(hex.slice(0, 2), 16);
-    const g = parseInt(hex.slice(2, 4), 16);
-    const b = parseInt(hex.slice(4, 6), 16);
-    rgba = `rgba(${r}, ${g}, ${b}, ${glareOpacity})`;
-  } else if (/^[\dA-Fa-f]{3}$/.test(hex)) {
-    const r = parseInt(hex[0] + hex[0], 16);
-    const g = parseInt(hex[1] + hex[1], 16);
-    const b = parseInt(hex[2] + hex[2], 16);
-    rgba = `rgba(${r}, ${g}, ${b}, ${glareOpacity})`;
-  }
-
   const overlayRef = useRef(null);
 
   const animateIn = () => {
@@ -61,7 +47,7 @@ const GlareHover = ({
     inset: 0,
     background: `linear-gradient(${glareAngle}deg,
         hsla(0,0%,0%,0) 60%,
-        ${rgba} 70%,
+        rgba(255, 255, 255, ${glareOpacity}) 70%,
         hsla(0,0%,0%,0) 100%)`,
     backgroundSize: `${glareSize}% ${glareSize}%, 100% 100%`,
     backgroundRepeat: "no-repeat",
