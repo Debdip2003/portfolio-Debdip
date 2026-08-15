@@ -22,6 +22,14 @@ const ProjectCard = ({ project, onSelect }) => {
           project.visual
         )}
 
+        {/* Live Badge */}
+        {project.hasLiveLink && (
+          <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 bg-black/60 backdrop-blur-md border border-[#81D8D0]/30 px-2.5 py-1 rounded-full text-[10px] font-mono text-[#81D8D0] shadow-sm">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#81D8D0] animate-pulse" />
+            <span>LIVE</span>
+          </div>
+        )}
+
         {/* Overlay Button */}
         <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md p-3 rounded-full opacity-0 group-hover:opacity-100 group-hover:bg-[#81D8D0] group-hover:text-black transition-all duration-300 shadow-lg text-white">
           <ArrowUpRight className="w-5 h-5" />

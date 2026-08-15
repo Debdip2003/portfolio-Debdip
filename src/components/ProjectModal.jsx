@@ -71,19 +71,19 @@ const ProjectModal = ({ project, onClose }) => {
 
         {/* Actions */}
         <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-white/10">
-          {(project.firstLink || project.liveLink) && (
+          {(project.firstLink || project.liveLink) && !project.firstButtonDisabled && (
             <a
               href={project.firstLink || project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 bg-[#81D8D0] text-black px-6 py-2.5 rounded-full font-medium text-xs hover:brightness-110 active:scale-95 transition-all shadow-[0_0_20px_-5px_rgba(129,216,208,0.5)]"
             >
-              <span>Live Preview</span>
+              <span>{project.firstButton || "Live Preview"}</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </a>
           )}
 
-          {(project.secondLink || project.githubLink) && (
+          {(project.secondLink || project.githubLink) && !project.secondButtonDisabled && (
             <a
               href={project.secondLink || project.githubLink}
               target="_blank"
@@ -91,10 +91,9 @@ const ProjectModal = ({ project, onClose }) => {
               className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-full font-medium text-xs border border-white/10 transition-all"
             >
               <FaGithub className="w-3.5 h-3.5" />
-              <span>Source Code</span>
+              <span>{project.secondButton || "Source Code"}</span>
             </a>
           )}
-
 
           <button
             onClick={onClose}
