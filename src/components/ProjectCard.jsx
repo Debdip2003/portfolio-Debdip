@@ -14,16 +14,16 @@ const ProjectCard = ({ project, onSelect, index = 0 }) => {
       onClick={() => onSelect(project)}
       className="group ios-glass p-1.5 rounded-[32px] hover:border-theme-border-hover transition-all duration-300 cursor-pointer flex flex-col justify-between"
     >
-      <div className="overflow-hidden rounded-[28px] relative aspect-[4/3] bg-theme-secondary">
+      <div className="overflow-hidden rounded-[28px] relative bg-theme-secondary">
         {/* Visual Element */}
         {project.img ? (
-          <div className="w-full h-full relative overflow-hidden">
+          <div className="w-full relative overflow-hidden">
             <motion.img
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               src={project.img}
               alt={project.name || project.title}
-              className="w-full h-full object-cover"
+              className="w-full h-auto object-contain"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-modal-backdrop)] via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity" />
           </div>
