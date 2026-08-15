@@ -4,6 +4,7 @@ import NavBar from "./components/NavBar";
 import HeroSection from "./components/HeroSection";
 import ServicesSection from "./components/ServicesSection";
 import SelectedWorkSection from "./components/SelectedWorkSection";
+import OpenSourceSection from "./components/OpenSourceSection";
 import ExperienceSection from "./components/ExperienceSection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
@@ -50,11 +51,15 @@ function App() {
       {/* Selected Work (Featured & Live Projects) */}
       <SelectedWorkSection />
 
+      {/* Open Source Contributions (DoxDock, ONNX Runtime Web, WASM) */}
+      <OpenSourceSection />
+
       {/* Experience & Career Journey */}
       <ExperienceSection />
 
       {/* Contact Section */}
       <ContactSection />
+
 
       {/* Minimal Footer */}
       <Footer />

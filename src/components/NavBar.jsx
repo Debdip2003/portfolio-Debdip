@@ -8,7 +8,7 @@ const NavBar = ({ onContactClick }) => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ["hero", "services", "work", "experience", "contact"];
+      const sections = ["hero", "services", "work", "open-source", "experience", "contact"];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -46,7 +46,7 @@ const NavBar = ({ onContactClick }) => {
       >
         <button
           onClick={() => scrollTo("work")}
-          className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
+          className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
             activeSection === "work"
               ? "text-white bg-white/15"
               : "text-white/70 hover:text-white hover:bg-white/10"
@@ -56,8 +56,19 @@ const NavBar = ({ onContactClick }) => {
         </button>
 
         <button
+          onClick={() => scrollTo("open-source")}
+          className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
+            activeSection === "open-source"
+              ? "text-white bg-white/15"
+              : "text-white/70 hover:text-white hover:bg-white/10"
+          }`}
+        >
+          Open Source
+        </button>
+
+        <button
           onClick={() => scrollTo("services")}
-          className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
+          className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
             activeSection === "services"
               ? "text-white bg-white/15"
               : "text-white/70 hover:text-white hover:bg-white/10"
@@ -68,7 +79,7 @@ const NavBar = ({ onContactClick }) => {
 
         <button
           onClick={() => scrollTo("experience")}
-          className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
+          className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full text-xs font-medium transition-all duration-300 ${
             activeSection === "experience"
               ? "text-white bg-white/15"
               : "text-white/70 hover:text-white hover:bg-white/10"
@@ -82,12 +93,13 @@ const NavBar = ({ onContactClick }) => {
             if (onContactClick) onContactClick();
             else scrollTo("contact");
           }}
-          className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#81D8D0] text-black text-xs font-medium hover:brightness-110 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_-5px_rgba(129,216,208,0.5)]"
+          className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-[#81D8D0] text-black text-xs font-medium hover:brightness-110 hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_20px_-5px_rgba(129,216,208,0.5)]"
         >
           Contact
         </button>
       </div>
     </nav>
+
   );
 };
 
