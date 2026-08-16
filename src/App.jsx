@@ -6,6 +6,7 @@ import HeroSection from "./components/Hero Section/HeroSection";
 import ServicesSection from "./components/Service Section/ServicesSection";
 import SelectedWorkSection from "./components/Work Section/SelectedWorkSection";
 import OpenSourceSection from "./components/Open Soruce Section/OpenSourceSection";
+import GithubDashboardSection from "./components/Github Section/GithubDashboardSection";
 import ExperienceSection from "./components/Experience Section/ExperienceSection";
 import ContactSection from "./components/Contact Section/ContactSection";
 import Footer from "./components/Layout/Footer";
@@ -75,6 +76,9 @@ function App() {
 
       {/* Open Source Contributions (DoxDock, ONNX Runtime Web, WASM) */}
       <OpenSourceSection />
+
+      {/* Integrated GitHub Dashboard */}
+      <GithubDashboardSection isDarkMode={isDarkMode} />
 
       {/* Experience & Career Journey */}
       <ExperienceSection />
