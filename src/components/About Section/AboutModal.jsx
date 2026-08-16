@@ -35,7 +35,9 @@ const AboutModal = ({ isOpen, onClose }) => {
         <div className="flex items-center gap-4 mb-6">
           <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[var(--accent-primary)] to-[var(--accent-blue)] p-[2px] shadow-lg shadow-[var(--accent-glow)] shrink-0">
             <div className="w-full h-full rounded-full bg-theme-bg flex items-center justify-center">
-              <span className="text-xl font-bold text-theme-text tracking-wider">DB</span>
+              <span className="text-xl font-bold text-theme-text tracking-wider">
+                DB
+              </span>
             </div>
           </div>
           <div>
@@ -51,10 +53,15 @@ const AboutModal = ({ isOpen, onClose }) => {
 
         <div className="space-y-4 text-sm text-theme-secondary-text font-light leading-relaxed mb-6">
           <p>
-            I am a Frontend Developer and UI/UX Designer driven by craft, aesthetics, and high-performance web architecture. I specialize in turning complex design challenges into intuitive, responsive, and delightful user experiences.
+            I am a Frontend Developer and UI/UX Designer driven by craft,
+            aesthetics, and high-performance web architecture. I specialize in
+            turning complex design challenges into intuitive, responsive, and
+            delightful user experiences.
           </p>
           <p>
-            With extensive experience across React, Next.js, Tailwind CSS, TypeScript, and modern animation libraries, I bridge the gap between creative visual design and robust software engineering.
+            With extensive experience across React, Next.js, Tailwind CSS,
+            TypeScript, and modern animation libraries, I bridge the gap between
+            creative visual design and robust software engineering.
           </p>
         </div>
 
@@ -64,7 +71,9 @@ const AboutModal = ({ isOpen, onClose }) => {
               <GraduationCap className="w-4 h-4" />
               <span>Education</span>
             </div>
-            <p className="text-theme-muted font-light">B.Tech in Computer Science & Engineering</p>
+            <p className="text-theme-muted font-light">
+              B.Tech in Computer Science & Engineering
+            </p>
           </div>
 
           <div className="p-3.5 rounded-2xl bg-theme-pill border border-theme-border">
@@ -72,7 +81,9 @@ const AboutModal = ({ isOpen, onClose }) => {
               <Heart className="w-4 h-4" />
               <span>Passions</span>
             </div>
-            <p className="text-theme-muted font-light">Interactive WebGL, UI Motion, Clean Architecture</p>
+            <p className="text-theme-muted font-light">
+              Interactive WebGL, UI Motion, Clean Architecture
+            </p>
           </div>
         </div>
       </motion.div>
