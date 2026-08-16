@@ -87,15 +87,15 @@ export default function InsightModal({ article, onClose }) {
             <ul className="space-y-2 text-xs md:text-sm text-stone-300">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                <strong>Zero Server Costs:</strong> All neural tensors execute on the client machine via WebAssembly.
+                <strong>Real-Time Monitoring:</strong> Continuously analyzes worker facial, behavioral and physical cues to identify potential signs of fatigue.
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                <strong>100% Client Privacy:</strong> Images are processed in sandboxed memory and never transmitted over the network.
+                <strong>Early Fatigue Detection:</strong> Identifies patterns such as prolonged eye closure and changes in alertness to detect fatigue at an early stage.
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                <strong>Sub-Second Execution:</strong> Hardware acceleration via WebGL / WebGPU shader compilation.
+                <strong>Safety Alerts:</strong> Provides timely warnings when sustained fatigue indicators are detected, supporting safer industrial working environments.
               </li>
             </ul>
           </div>

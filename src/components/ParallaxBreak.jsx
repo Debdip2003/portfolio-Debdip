@@ -20,7 +20,6 @@ export default function ParallaxBreak() {
     >
       {/* Parallax Background Image */}
       <motion.div
-        style={{ y: bgY }}
         className="absolute -top-[20%] -bottom-[20%] left-0 right-0 bg-cover bg-center bg-no-repeat filter brightness-70 scale-110"
         style={{
           y: bgY,

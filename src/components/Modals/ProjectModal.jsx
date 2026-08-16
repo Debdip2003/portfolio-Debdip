@@ -91,7 +91,7 @@ export default function ProjectModal({ project, onClose, onEnquire }) {
               <span className="text-stone-500 block mb-1 flex items-center gap-1.5 font-mono">
                 <Layers className="w-3.5 h-3.5 text-orange-500" /> Role
               </span>
-              <p className="text-stone-200 font-medium">{project.role || "Lead Frontend Developer"}</p>
+              <p className="text-stone-200 font-medium">{project.role || "Frontend Developer"}</p>
             </div>
             <div>
               <span className="text-stone-500 block mb-1 flex items-center gap-1.5 font-mono">

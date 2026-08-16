@@ -152,10 +152,12 @@ export default function Footer({ onOpenEnquiry }) {
           {/* Engineering Standards */}
           <div className="flex flex-col gap-3">
             <span className="text-xs text-stone-500 uppercase tracking-widest font-mono">Engineering</span>
-            <span className="text-xs text-stone-400 font-mono">WCAG 2.1 AA Compliant</span>
-            <span className="text-xs text-stone-400 font-mono">Sub-100ms Perceived Latency</span>
-            <span className="text-xs text-stone-400 font-mono">Zero-Leak Memory Mgmt</span>
-            <span className="text-xs text-stone-400 font-mono">Type-Safe Clean Code</span>
+            <span className="text-xs text-stone-400 font-mono">WCAG 2.1 AA Accessibility</span>
+            <span className="text-xs text-stone-400 font-mono">Responsive-First UI Architecture</span>
+            <span className="text-xs text-stone-400 font-mono">Component-Driven Development</span>
+            <span className="text-xs text-stone-400 font-mono">Optimized Web Performance</span>
+            <span className="text-xs text-stone-400 font-mono">Type-Safe Clean Architecture</span>
+            <span className="text-xs text-stone-400 font-mono">Production-Ready Code Quality</span>
           </div>
 
           {/* Copyright & Entity */}

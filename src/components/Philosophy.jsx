@@ -21,7 +21,7 @@ export default function Philosophy() {
             The Philosophy
           </span>
           <h3 className="text-3xl sm:text-4xl md:text-5xl font-display text-white leading-[1.15]">
-            We believe in the <br />
+            I believe in the <br />
             <span className="italic font-serif text-stone-100">"Spatial & Cognitive Integrity"</span> of user interfaces.
           </h3>
           <div className="w-16 h-[1px] bg-orange-500/60 hidden lg:block" />
