@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { fadeInUp } from "../utils/motionVariants";
-import backgroundImage from "../assets/backgroundimage.jpg"
+import backgroundImage from "../assets/backgroundImage.jpg"
 
 export default function ParallaxBreak() {
   const containerRef = useRef(null);
