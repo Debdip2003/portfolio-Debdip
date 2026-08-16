@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
-import { X, BookOpen, Download, Share2, Clock, Calendar, User } from "lucide-react";
+import { X, Download, Clock, Calendar, User } from "lucide-react";
+import { motion } from "framer-motion";
+import { modalVariants, backdropVariants } from "../../utils/motionVariants";
 
 export default function InsightModal({ article, onClose }) {
   useEffect(() => {
@@ -17,8 +19,16 @@ export default function InsightModal({ article, onClose }) {
   if (!article) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={backdropVariants}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <motion.div
+        variants={modalVariants}
         className="relative w-full max-w-3xl max-h-[90vh] bg-[#0a0a0a] border border-white/10 overflow-y-auto hide-scrollbar shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
@@ -31,18 +41,22 @@ export default function InsightModal({ article, onClose }) {
               <Clock className="w-3 h-3 text-stone-500" /> {article.readTime}
             </span>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
             onClick={onClose}
             aria-label="Close insight modal"
-            className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-stone-400 hover:text-white hover:border-white transition-colors"
+            className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-stone-400 hover:text-white hover:border-white transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Article Header */}
         <div className="p-6 md:p-10 border-b border-white/10 bg-stone-950">
-          <span className="text-xs text-orange-500 uppercase tracking-widest font-semibold block mb-3">Global Research Memo</span>
+          <span className="text-xs text-orange-500 uppercase tracking-widest font-semibold block mb-3 font-mono">
+            Engineering Whitepaper
+          </span>
           <h1 className="text-2xl md:text-4xl font-display text-white mb-4 leading-tight">{article.title}</h1>
           <p className="text-stone-400 text-sm md:text-base font-light leading-relaxed mb-6 italic border-l-2 border-orange-500 pl-4">
             {article.summary}
@@ -73,15 +87,15 @@ export default function InsightModal({ article, onClose }) {
             <ul className="space-y-2 text-xs md:text-sm text-stone-300">
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                <strong>+180 bps Premium:</strong> Documented in rental rates for LEED Platinum biophilic assets.
+                <strong>Zero Server Costs:</strong> All neural tensors execute on the client machine via WebAssembly.
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                <strong>99.4% Tenant Retention:</strong> Substantially lower turnover costs over 10-year holding periods.
+                <strong>100% Client Privacy:</strong> Images are processed in sandboxed memory and never transmitted over the network.
               </li>
               <li className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-orange-500 rounded-full" />
-                <strong>Capital Value Appreciation:</strong> Accelerated by 1.4x versus traditional Grade-A commercial stock.
+                <strong>Sub-Second Execution:</strong> Hardware acceleration via WebGL / WebGPU shader compilation.
               </li>
             </ul>
           </div>
@@ -89,26 +103,19 @@ export default function InsightModal({ article, onClose }) {
 
         {/* Footer */}
         <div className="p-6 bg-stone-950 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <span className="text-xs text-stone-500">© Ramond Holdings Strategic Intelligence Unit.</span>
+          <span className="text-xs text-stone-500">© Debdip Bhattacharya • Technical Engineering Archive.</span>
           <div className="flex gap-3">
-            <button
-              onClick={() => {
-                alert("Research whitepaper PDF downloaded.");
-              }}
-              className="px-4 py-2 bg-stone-900 hover:bg-stone-800 border border-white/15 text-stone-200 text-xs font-mono flex items-center gap-2 transition-colors"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download PDF</span>
-            </button>
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               onClick={onClose}
-              className="px-5 py-2 bg-stone-100 hover:bg-white text-black text-xs uppercase tracking-widest font-semibold transition-colors"
+              className="px-5 py-2 bg-stone-100 hover:bg-white text-black text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
             >
               Close
-            </button>
+            </motion.button>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

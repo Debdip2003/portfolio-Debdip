@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { X, ArrowUpRight, Check, ExternalLink, Calendar, Code2, Sparkles, Layers } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { motion } from "framer-motion";
+import { modalVariants, backdropVariants } from "../../utils/motionVariants";
 
 export default function ProjectModal({ project, onClose, onEnquire }) {
   useEffect(() => {
@@ -18,8 +20,16 @@ export default function ProjectModal({ project, onClose, onEnquire }) {
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-md animate-fade-in">
-      <div
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={backdropVariants}
+      className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 bg-black/85 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <motion.div
+        variants={modalVariants}
         className="relative w-full max-w-4xl max-h-[90vh] bg-[#0a0a0a] border border-white/10 overflow-y-auto hide-scrollbar shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
@@ -30,13 +40,15 @@ export default function ProjectModal({ project, onClose, onEnquire }) {
             <span className="text-stone-600">•</span>
             <span className="text-xs text-stone-400 font-medium uppercase tracking-wider">{project.type}</span>
           </div>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, rotate: 90 }}
+            whileTap={{ scale: 0.9 }}
             onClick={onClose}
             aria-label="Close modal"
             className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-stone-400 hover:text-white hover:border-white transition-colors cursor-pointer"
           >
             <X className="w-4 h-4" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Hero Media */}
@@ -127,7 +139,9 @@ export default function ProjectModal({ project, onClose, onEnquire }) {
           <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-3 w-full sm:w-auto">
               {project.liveLink && (
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   href={project.liveLink}
                   target="_blank"
                   rel="noreferrer"
@@ -135,10 +149,12 @@ export default function ProjectModal({ project, onClose, onEnquire }) {
                 >
                   <span>Launch Live Demo</span>
                   <ExternalLink className="w-4 h-4" />
-                </a>
+                </motion.a>
               )}
               {project.githubLink && (
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   href={project.githubLink}
                   target="_blank"
                   rel="noreferrer"
@@ -146,7 +162,7 @@ export default function ProjectModal({ project, onClose, onEnquire }) {
                 >
                   <FaGithub className="w-4 h-4" />
                   <span>GitHub Repository</span>
-                </a>
+                </motion.a>
               )}
             </div>
 
@@ -161,7 +177,7 @@ export default function ProjectModal({ project, onClose, onEnquire }) {
             </button>
           </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

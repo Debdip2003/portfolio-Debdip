@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { X, ArrowUpRight, Clock, Mail } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "../../data/portfolioData";
+import { backdropVariants } from "../../utils/motionVariants";
 
 export default function MenuDrawer({ isOpen, onClose, onOpenEnquiry }) {
   const [times, setTimes] = useState({
@@ -57,13 +59,21 @@ export default function MenuDrawer({ isOpen, onClose, onOpenEnquiry }) {
     const el = document.querySelector(href);
     if (el) {
       setTimeout(() => {
-        el.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+        const yOffset = -40;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }, 150);
     }
   };
 
   return (
-    <div className="fixed inset-0 z-[110] bg-[#050505]/98 backdrop-blur-xl flex flex-col justify-between p-6 md:p-16 animate-fade-in text-stone-200">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed inset-0 z-[110] bg-[#050505]/98 backdrop-blur-2xl flex flex-col justify-between p-6 md:p-16 text-stone-200"
+    >
       {/* Top Bar */}
       <div className="flex justify-between items-center border-b border-white/10 pb-8">
         <div className="flex items-center gap-4">
@@ -73,14 +83,16 @@ export default function MenuDrawer({ isOpen, onClose, onOpenEnquiry }) {
           </span>
         </div>
 
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           onClick={onClose}
           aria-label="Close navigation menu"
           className="flex items-center gap-3 px-4 py-2 border border-white/20 hover:border-white text-stone-300 hover:text-white transition-all text-xs uppercase tracking-widest group cursor-pointer"
         >
           <span>Close</span>
           <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-        </button>
+        </motion.button>
       </div>
 
       {/* Main Content Grid */}
@@ -88,8 +100,11 @@ export default function MenuDrawer({ isOpen, onClose, onOpenEnquiry }) {
         {/* Navigation Links */}
         <div className="lg:col-span-7 flex flex-col justify-center space-y-4 md:space-y-6">
           {navLinks.map((link, idx) => (
-            <a
+            <motion.a
               key={idx}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: idx * 0.08, duration: 0.4 }}
               href={link.href}
               onClick={(e) => {
                 e.preventDefault();
@@ -108,12 +123,17 @@ export default function MenuDrawer({ isOpen, onClose, onOpenEnquiry }) {
               <span className="text-xs font-mono text-stone-600 group-hover:text-stone-300 transition-colors hidden sm:inline-block">
                 {link.count}
               </span>
-            </a>
+            </motion.a>
           ))}
         </div>
 
         {/* Global Clocks & Quick Connect */}
-        <div className="lg:col-span-5 flex flex-col justify-between space-y-8 lg:border-l lg:border-white/10 lg:pl-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.5 }}
+          className="lg:col-span-5 flex flex-col justify-between space-y-8 lg:border-l lg:border-white/10 lg:pl-12"
+        >
           {/* Time Clocks */}
           <div>
             <span className="text-xs uppercase font-mono text-orange-500 tracking-widest block mb-4 flex items-center gap-2">
@@ -167,19 +187,21 @@ export default function MenuDrawer({ isOpen, onClose, onOpenEnquiry }) {
               >
                 <FaLinkedinIn className="w-4 h-4" />
               </a>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => {
                   onClose();
                   onOpenEnquiry("Direct Collaboration");
                 }}
-                className="flex-1 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="flex-1 py-2.5 bg-orange-500 hover:bg-orange-600 text-white text-xs uppercase tracking-widest font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-[0_0_15px_rgba(249,115,22,0.3)]"
               >
                 <span>Initiate Contact</span>
                 <ArrowUpRight className="w-3.5 h-3.5" />
-              </button>
+              </motion.button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Bottom Bar */}
@@ -187,6 +209,6 @@ export default function MenuDrawer({ isOpen, onClose, onOpenEnquiry }) {
         <div>{profile.name} • Frontend Engineer • {profile.location}</div>
         <div>All rights reserved © {new Date().getFullYear()}</div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -1,6 +1,8 @@
 import React from "react";
-import { Briefcase, Calendar, CheckCircle2, MapPin } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
 import { portfolioData } from "../data/portfolioData";
+import { fadeInUp, sectionContainerVariants } from "../utils/motionVariants";
 
 export default function ExperienceSection() {
   const experiences = portfolioData.experiences;
@@ -9,7 +11,13 @@ export default function ExperienceSection() {
     <section id="experience" className="py-24 md:py-32 bg-[#050505] border-b border-white/5 relative">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+        >
           <div>
             <span className="text-xs text-orange-500 uppercase tracking-widest font-mono block mb-2">
               Career Provenance
@@ -20,19 +28,30 @@ export default function ExperienceSection() {
             Engineering robust production frontend architectures, cross-platform mobile ecosystems, and high-velocity UI
             systems across startups and tech organizations.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Experience Timeline Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Experience Timeline Grid with Stagger */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={sectionContainerVariants}
+          className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        >
           {experiences.map((exp, idx) => (
-            <div
+            <motion.div
               key={exp.id}
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 350, damping: 25 }}
               className="bg-stone-900/30 border border-white/5 p-8 flex flex-col justify-between group hover:border-white/20 hover:bg-stone-900/50 transition-all duration-300 luxury-border-glow"
             >
               <div>
                 {/* Meta Top */}
                 <div className="flex justify-between items-start gap-2 mb-6">
-                  <span className="text-xs font-mono text-orange-500 tracking-wider uppercase">0{idx + 1} • {exp.type}</span>
+                  <span className="text-xs font-mono text-orange-500 tracking-wider uppercase">
+                    0{idx + 1} • {exp.type}
+                  </span>
                   <div className="flex items-center gap-1.5 text-xs text-stone-500 font-mono">
                     <Calendar className="w-3 h-3 text-orange-500" />
                     <span>{exp.duration}</span>
@@ -51,7 +70,10 @@ export default function ExperienceSection() {
                 {/* Description Bullets */}
                 <div className="space-y-3 pt-4 border-t border-white/5">
                   {exp.description.map((item, dIdx) => (
-                    <div key={dIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-400 font-light leading-relaxed">
+                    <div
+                      key={dIdx}
+                      className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-400 font-light leading-relaxed"
+                    >
                       <span className="w-1.5 h-1.5 rounded-full bg-orange-500/80 mt-2 shrink-0" />
                       <span>{item}</span>
                     </div>
@@ -70,9 +92,9 @@ export default function ExperienceSection() {
                   </span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

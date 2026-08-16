@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { AnimatePresence } from "framer-motion";
 import Navigation from "./components/Navigation";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
@@ -10,6 +11,7 @@ import GithubDashboard from "./components/GithubDashboard";
 import Philosophy from "./components/Philosophy";
 import Capabilities from "./components/Capabilities";
 import BentoStats from "./components/BentoStats";
+import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 
 // Modals
@@ -41,13 +43,13 @@ export default function App() {
 
   return (
     <div className="bg-[#050505] text-stone-300 min-h-screen w-full flex flex-col relative selection:bg-orange-900/40 selection:text-orange-100 font-sans antialiased">
-      {/* Fixed Navigation with mix-blend-difference */}
+      {/* Fixed Navigation with Reading Progress Indicator */}
       <Navigation
         onOpenMenu={() => setIsMenuOpen(true)}
         onOpenEnquiry={handleOpenEnquiry}
       />
 
-      {/* Monumental Hero Section */}
+      {/* Monumental Hero Section with Scroll Parallax */}
       <Hero onOpenEnquiry={handleOpenEnquiry} />
 
       {/* Infinite Skills Marquee Ticker */}
@@ -80,40 +82,50 @@ export default function App() {
         onOpenAbout={() => handleOpenEnquiry("About & Background")}
       />
 
+      {/* Direct Contact & Mandate Submission (Firebase + Email) */}
+      <ContactSection />
+
       {/* Monumental Footer */}
       <Footer onOpenEnquiry={handleOpenEnquiry} />
 
-      {/* Fullscreen Navigation Drawer */}
-      <MenuDrawer
-        isOpen={isMenuOpen}
-        onClose={() => setIsMenuOpen(false)}
-        onOpenEnquiry={handleOpenEnquiry}
-      />
+      {/* Animated Modal & Drawer Layers */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <MenuDrawer
+            isOpen={isMenuOpen}
+            onClose={() => setIsMenuOpen(false)}
+            onOpenEnquiry={handleOpenEnquiry}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* Architectural Project Dossier Modal */}
-      {selectedProject && (
-        <ProjectModal
-          project={selectedProject}
-          onClose={() => setSelectedProject(null)}
-          onEnquire={(subject) => handleOpenEnquiry(subject)}
-        />
-      )}
+      <AnimatePresence>
+        {selectedProject && (
+          <ProjectModal
+            project={selectedProject}
+            onClose={() => setSelectedProject(null)}
+            onEnquire={(subject) => handleOpenEnquiry(subject)}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* Technical Paper / Insight Modal */}
-      {isInsightOpen && (
-        <InsightModal
-          article={portfolioData.insightArticle}
-          onClose={() => setIsInsightOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {isInsightOpen && (
+          <InsightModal
+            article={portfolioData.insightArticle}
+            onClose={() => setIsInsightOpen(false)}
+          />
+        )}
+      </AnimatePresence>
 
-      {/* Formal Collaboration / Contact Modal */}
-      {isEnquiryOpen && (
-        <EnquiryModal
-          initialSubject={enquirySubject}
-          onClose={() => setIsEnquiryOpen(false)}
-        />
-      )}
+      <AnimatePresence>
+        {isEnquiryOpen && (
+          <EnquiryModal
+            initialSubject={enquirySubject}
+            onClose={() => setIsEnquiryOpen(false)}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

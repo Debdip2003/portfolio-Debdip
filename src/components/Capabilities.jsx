@@ -9,7 +9,9 @@ import {
   BarChart3,
   HeartHandshake,
 } from "lucide-react";
+import { motion } from "framer-motion";
 import { portfolioData } from "../data/portfolioData";
+import { fadeInUp, sectionContainerVariants } from "../utils/motionVariants";
 
 export default function Capabilities({ onSelectCapability }) {
   const scrollRef = useRef(null);
@@ -48,7 +50,13 @@ export default function Capabilities({ onSelectCapability }) {
   return (
     <section id="capabilities" className="py-24 border-b border-white/5 bg-[#050505] overflow-hidden relative">
       {/* Section Header */}
-      <div className="px-6 md:px-12 mb-12 flex justify-between items-end">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-80px" }}
+        variants={fadeInUp}
+        className="px-6 md:px-12 mb-12 flex justify-between items-end"
+      >
         <div>
           <span className="text-xs text-orange-500 uppercase tracking-widest mb-2 block font-mono">
             Core Competencies
@@ -57,31 +65,42 @@ export default function Capabilities({ onSelectCapability }) {
         </div>
 
         <div className="flex items-center gap-2">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => scroll("left")}
             aria-label="Scroll capabilities left"
             className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white/5 hover:border-white/30 transition-all text-stone-400 hover:text-white cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => scroll("right")}
             aria-label="Scroll capabilities right"
             className="w-12 h-12 border border-white/10 flex items-center justify-center hover:bg-white/5 hover:border-white/30 transition-all text-stone-400 hover:text-white cursor-pointer"
           >
             <ArrowRight className="w-5 h-5" />
-          </button>
+          </motion.button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Snap Scroll Container */}
-      <div
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-60px" }}
+        variants={sectionContainerVariants}
         ref={scrollRef}
         className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-12 pb-12 hide-scrollbar cursor-grab active:cursor-grabbing"
       >
         {capabilities.map((cap) => (
-          <div
+          <motion.div
             key={cap.id}
+            variants={fadeInUp}
+            whileHover={{ y: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
             onClick={() => onSelectCapability && onSelectCapability(cap)}
             className="min-w-[85vw] sm:min-w-[380px] md:min-w-[420px] snap-center bg-stone-900/30 border border-white/5 p-8 flex flex-col justify-between group hover:border-white/20 hover:bg-stone-900/50 transition-all duration-300 cursor-pointer shrink-0 luxury-border-glow"
           >
@@ -117,9 +136,9 @@ export default function Capabilities({ onSelectCapability }) {
                 {cap.subtext} ⤨
               </span>
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }

@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { GitPullRequest, ExternalLink, Activity, CheckCircle2, CircleDashed } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 import { GitHubCalendar } from "react-github-calendar";
+import { motion } from "framer-motion";
 import { portfolioData } from "../data/portfolioData";
+import { fadeInUp, scaleUp } from "../utils/motionVariants";
 
 export default function GithubDashboard() {
   const [prs, setPrs] = useState([]);
@@ -36,7 +38,13 @@ export default function GithubDashboard() {
     <section id="github-activity" className="py-24 md:py-32 bg-[#050505] border-b border-white/5 relative">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+        >
           <div>
             <span className="text-xs text-orange-500 uppercase tracking-widest font-mono block mb-2">
               Contribution Dashboard
@@ -46,12 +54,18 @@ export default function GithubDashboard() {
           <p className="text-stone-400 text-sm md:text-base font-light max-w-md leading-relaxed">
             Real-time telemetry combining historical commit consistency with continuous pull request deployments.
           </p>
-        </div>
+        </motion.div>
 
         {/* Dual-View Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* Left Column: Calendar Box */}
-          <div className="lg:col-span-7 flex flex-col w-full min-h-[380px]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={scaleUp}
+            className="lg:col-span-7 flex flex-col w-full min-h-[380px]"
+          >
             <div className="bg-stone-900/30 border border-white/10 p-6 md:p-8 relative overflow-hidden flex flex-col justify-between h-full luxury-border-glow">
               <div className="absolute top-0 right-0 w-80 h-80 bg-orange-500/5 rounded-full filter blur-[90px] pointer-events-none" />
 
@@ -89,17 +103,24 @@ export default function GithubDashboard() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Live PR Ticker */}
-          <div className="lg:col-span-5 h-[420px] min-h-0 bg-stone-900/30 border border-white/10 relative overflow-hidden flex flex-col luxury-border-glow">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={scaleUp}
+            className="lg:col-span-5 h-[420px] min-h-0 bg-stone-900/30 border border-white/10 relative overflow-hidden flex flex-col luxury-border-glow"
+          >
             {/* Header */}
             <div className="p-4 md:p-5 border-b border-white/10 relative z-20 bg-stone-950/80 backdrop-blur-md flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Activity className="w-4 h-4 text-orange-500 animate-pulse" />
                 <h3 className="text-sm font-mono uppercase tracking-widest text-white">Live PR Stream</h3>
               </div>
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -107,7 +128,7 @@ export default function GithubDashboard() {
               >
                 <span>View GitHub</span>
                 <ExternalLink className="w-3 h-3" />
-              </a>
+              </motion.a>
             </div>
 
             {/* Scrolling PR stream */}
@@ -143,8 +164,10 @@ export default function GithubDashboard() {
                     }
 
                     return (
-                      <a
+                      <motion.a
                         key={`${pr.id}-${idx}`}
+                        whileHover={{ x: 4 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 25 }}
                         href={pr.html_url}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -175,13 +198,13 @@ export default function GithubDashboard() {
                           </span>
                           <ExternalLink className="w-3 h-3 text-stone-600 group-hover/card:text-orange-400" />
                         </div>
-                      </a>
+                      </motion.a>
                     );
                   })}
                 </div>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

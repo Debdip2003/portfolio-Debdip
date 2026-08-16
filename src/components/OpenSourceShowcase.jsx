@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { GitPullRequest, ExternalLink, Cpu, CheckCircle2, ChevronRight, Layers } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "../data/portfolioData";
+import { fadeInUp, scaleUp } from "../utils/motionVariants";
 
 export default function OpenSourceShowcase() {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -11,7 +13,13 @@ export default function OpenSourceShowcase() {
     <section id="open-source" className="py-24 md:py-32 bg-[#050505] border-b border-white/5 relative">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={fadeInUp}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
+        >
           <div>
             <span className="text-xs text-orange-500 uppercase tracking-widest font-mono block mb-2">
               Open Source Contributions
@@ -22,19 +30,28 @@ export default function OpenSourceShowcase() {
             Contributing to high-performance developer utilities, local in-browser neural networks, and WebAssembly
             image processing pipelines.
           </p>
-        </div>
+        </motion.div>
 
         {/* Main Contribution Showcase Box */}
-        <div className="bg-stone-900/30 border border-white/10 p-6 md:p-12 relative overflow-hidden luxury-border-glow">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={scaleUp}
+          className="bg-stone-900/30 border border-white/10 p-6 md:p-12 relative overflow-hidden luxury-border-glow"
+        >
           {/* Subtle Ambient Backlight */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500/5 rounded-full filter blur-[100px] pointer-events-none" />
 
           {/* Top Meta Bar */}
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-8 border-b border-white/10 relative z-10">
             <div className="flex items-start sm:items-center gap-4">
-              <div className="w-14 h-14 bg-orange-950/40 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0">
+              <motion.div
+                whileHover={{ rotate: 12, scale: 1.08 }}
+                className="w-14 h-14 bg-orange-950/40 border border-orange-500/30 flex items-center justify-center text-orange-500 shrink-0"
+              >
                 <GitPullRequest className="w-6 h-6" />
-              </div>
+              </motion.div>
               <div>
                 <div className="flex items-center gap-3 flex-wrap">
                   <h3 className="text-2xl sm:text-3xl font-display text-white">{openSource.title}</h3>
@@ -50,7 +67,9 @@ export default function OpenSourceShowcase() {
 
             {/* Quick Action Links */}
             <div className="flex items-center gap-3">
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href={openSource.live}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -58,8 +77,10 @@ export default function OpenSourceShowcase() {
               >
                 <span>Live App</span>
                 <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-              <a
+              </motion.a>
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href={openSource.github}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -67,7 +88,7 @@ export default function OpenSourceShowcase() {
               >
                 <FaGithub className="w-4 h-4" />
                 <span>Repository</span>
-              </a>
+              </motion.a>
             </div>
           </div>
 
@@ -96,13 +117,20 @@ export default function OpenSourceShowcase() {
                   <button
                     key={idx}
                     onClick={() => setActiveFeature(idx)}
-                    className={`p-4 text-left transition-all duration-300 flex items-center justify-between border cursor-pointer ${
+                    className={`relative p-4 text-left transition-all duration-300 flex items-center justify-between border cursor-pointer ${
                       isActive
-                        ? "border-orange-500/50 bg-orange-500/10 text-white"
+                        ? "border-orange-500/50 text-white"
                         : "border-white/5 bg-stone-950/40 text-stone-400 hover:bg-stone-900/60 hover:text-stone-200"
                     }`}
                   >
-                    <div>
+                    {isActive && (
+                      <motion.div
+                        layoutId="activeOpenSourceTab"
+                        className="absolute inset-0 bg-orange-500/10 border border-orange-500/40 -z-10"
+                        transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                      />
+                    )}
+                    <div className="z-10">
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-mono text-orange-500">{`0${idx + 1}`}</span>
                         <span className="text-sm font-medium">{item.title}</span>
@@ -110,7 +138,7 @@ export default function OpenSourceShowcase() {
                       <span className="text-[11px] font-mono text-stone-500 mt-1 block">{item.tag}</span>
                     </div>
                     <ChevronRight
-                      className={`w-4 h-4 transition-transform duration-300 ${
+                      className={`w-4 h-4 transition-transform duration-300 z-10 ${
                         isActive ? "text-orange-500 translate-x-1" : "text-stone-600"
                       }`}
                     />
@@ -119,36 +147,47 @@ export default function OpenSourceShowcase() {
               })}
             </div>
 
-            {/* Active Feature Detail Showcase Card */}
-            <div className="lg:col-span-7 p-6 sm:p-8 bg-[#0a0a0a] border border-white/10 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <Cpu className="w-4 h-4 text-orange-500" />
-                  <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">
-                    {openSource.highlights[activeFeature].tag} System
-                  </span>
-                </div>
+            {/* Active Feature Detail Showcase Card with AnimatePresence */}
+            <div className="lg:col-span-7 p-6 sm:p-8 bg-[#0a0a0a] border border-white/10 flex flex-col justify-between overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeFeature}
+                  initial={{ opacity: 0, x: 15 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -15 }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <Cpu className="w-4 h-4 text-orange-500" />
+                    <span className="text-xs font-mono text-orange-500 uppercase tracking-wider">
+                      {openSource.highlights[activeFeature].tag} System
+                    </span>
+                  </div>
 
-                <h4 className="text-xl font-display text-white mb-3">
-                  {openSource.highlights[activeFeature].title}
-                </h4>
+                  <h4 className="text-xl font-display text-white mb-3">
+                    {openSource.highlights[activeFeature].title}
+                  </h4>
 
-                <p className="text-sm text-stone-300 font-light leading-relaxed mb-6">
-                  {openSource.highlights[activeFeature].desc}
-                </p>
+                  <p className="text-sm text-stone-300 font-light leading-relaxed mb-6">
+                    {openSource.highlights[activeFeature].desc}
+                  </p>
 
-                <div className="space-y-3 pt-4 border-t border-white/10">
-                  {openSource.highlights[activeFeature].details.map((detail, dIdx) => (
-                    <div
-                      key={dIdx}
-                      className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-400 font-light leading-relaxed"
-                    >
-                      <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
-                      <span>{detail}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+                  <div className="space-y-3 pt-4 border-t border-white/10">
+                    {openSource.highlights[activeFeature].details.map((detail, dIdx) => (
+                      <motion.div
+                        key={dIdx}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: dIdx * 0.08, duration: 0.3 }}
+                        className="flex items-start gap-2.5 text-xs sm:text-sm text-stone-400 font-light leading-relaxed"
+                      >
+                        <CheckCircle2 className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
+                        <span>{detail}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
 
               <div className="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs text-stone-500 font-mono">
                 <div className="flex items-center gap-1.5">
@@ -159,7 +198,7 @@ export default function OpenSourceShowcase() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

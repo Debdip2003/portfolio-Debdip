@@ -1,18 +1,36 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa6";
+import { motion } from "framer-motion";
 import { portfolioData } from "../data/portfolioData";
+import { fadeInUp, sectionContainerVariants } from "../utils/motionVariants";
 
 export default function Footer({ onOpenEnquiry }) {
   const currentYear = new Date().getFullYear();
   const { profile } = portfolioData;
 
+  const handleSmoothScroll = (e, href) => {
+    e.preventDefault();
+    const el = document.querySelector(href);
+    if (el) {
+      const yOffset = -40;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  };
+
   return (
-    <footer className="bg-stone-950 pt-28 md:pt-36 pb-12 border-t border-white/10 relative">
+    <footer className="bg-stone-950 pt-28 md:pt-36 pb-12 border-t border-white/10 relative overflow-hidden">
       <div className="px-6 md:px-12 max-w-screen-2xl mx-auto">
         {/* Top Split CTA */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20 md:mb-28">
-          <div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={sectionContainerVariants}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 mb-20 md:mb-28"
+        >
+          <motion.div variants={fadeInUp}>
             <span className="text-xs uppercase font-mono tracking-widest text-orange-500 block mb-4">
               Open For Opportunities
             </span>
@@ -20,16 +38,18 @@ export default function Footer({ onOpenEnquiry }) {
               Build <br />
               <span className="text-stone-700">Remarkable.</span>
             </h2>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col justify-end items-start lg:items-end space-y-4">
-            <button
+          <motion.div variants={fadeInUp} className="flex flex-col justify-end items-start lg:items-end space-y-4">
+            <motion.button
+              whileHover={{ x: 6 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => onOpenEnquiry("Project / Role Inquiry")}
               className="group inline-flex items-center gap-4 text-2xl sm:text-3xl md:text-4xl text-white font-light hover:text-orange-400 transition-colors text-left cursor-pointer"
             >
               <span>Start a Conversation</span>
               <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
-            </button>
+            </motion.button>
             <a
               href={`mailto:${profile.email}`}
               className="text-stone-400 hover:text-stone-200 text-sm md:text-base font-mono transition-colors"
@@ -39,30 +59,63 @@ export default function Footer({ onOpenEnquiry }) {
             <p className="text-xs text-stone-600 font-mono">
               Kolkata, India • Open for Global Remote & Relocation
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Links Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-12 text-sm">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={fadeInUp}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-white/10 pt-12 text-sm"
+        >
           {/* Sitemap */}
           <div className="flex flex-col gap-3">
             <span className="text-xs text-stone-500 uppercase tracking-widest font-mono">Navigation</span>
-            <a href="#" className="text-stone-400 hover:text-white transition-colors">
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="text-stone-400 hover:text-white transition-colors"
+            >
               Home
             </a>
-            <a href="#portfolio" className="text-stone-400 hover:text-white transition-colors">
+            <a
+              href="#portfolio"
+              onClick={(e) => handleSmoothScroll(e, "#portfolio")}
+              className="text-stone-400 hover:text-white transition-colors"
+            >
               Projects
             </a>
-            <a href="#experience" className="text-stone-400 hover:text-white transition-colors">
+            <a
+              href="#experience"
+              onClick={(e) => handleSmoothScroll(e, "#experience")}
+              className="text-stone-400 hover:text-white transition-colors"
+            >
               Experience
             </a>
-            <a href="#open-source" className="text-stone-400 hover:text-white transition-colors">
+            <a
+              href="#open-source"
+              onClick={(e) => handleSmoothScroll(e, "#open-source")}
+              className="text-stone-400 hover:text-white transition-colors"
+            >
               Open Source
             </a>
-            <a href="#github-activity" className="text-stone-400 hover:text-white transition-colors">
+            <a
+              href="#github-activity"
+              onClick={(e) => handleSmoothScroll(e, "#github-activity")}
+              className="text-stone-400 hover:text-white transition-colors"
+            >
               GitHub Live
             </a>
-            <a href="#capabilities" className="text-stone-400 hover:text-white transition-colors">
+            <a
+              href="#capabilities"
+              onClick={(e) => handleSmoothScroll(e, "#capabilities")}
+              className="text-stone-400 hover:text-white transition-colors"
+            >
               Capabilities
             </a>
           </div>
@@ -123,7 +176,7 @@ export default function Footer({ onOpenEnquiry }) {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
