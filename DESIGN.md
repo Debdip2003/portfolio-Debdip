@@ -1,76 +1,119 @@
 ---
-version: "neuform-top-creators-featured"
-name: "Nova - Next Gen Intelligence"
-description: "Nova Next Feature Section is designed for highlighting product capabilities and value points. Key features include reusable structure, responsive behavior, and production-ready presentation. It is suitable for component libraries and responsive product interfaces."
+version: "1.0.0"
+name: "Ramond Holdings System"
+description: "A visual language designed for trust, longevity, and high-capital asset management."
 colors:
-  primary: "#34D399"
-  secondary: "#60A5FA"
-  accent: "#60A5FA"
-  background: "#030303"
-  surface: "#18181B"
-  text-primary: "#FFFFFF"
-  text-secondary: "#A1A1AA"
-  border: "#27272A"
+  background: "#050505"
+  surface: "#080808"
+  surface-alt: "#0a0a0a"
+  surface-card: "#1c1917"
+  primary: "#f97316"
+  text-primary: "#f5f5f4"
+  text-secondary: "#a8a29e"
+  text-muted: "#57534e"
+  border: "rgba(255, 255, 255, 0.05)"
+  accent-orange: "#ea580c"
 typography:
-  display-lg:
-    fontFamily: "Geist"
-    fontSize: "64px"
-    fontWeight: 500
-    lineHeight: "1.04"
-    letterSpacing: "0"
-  body-md:
-    fontFamily: "Geist"
-    fontSize: "16px"
+  display-2xl:
+    fontFamily: "Cinzel"
+    fontSize: "128px"
     fontWeight: 400
+    lineHeight: "0.9"
+  display-xl:
+    fontFamily: "Cinzel"
+    fontSize: "72px"
+    fontWeight: 400
+    lineHeight: "0.9"
+  heading-lg:
+    fontFamily: "Cinzel"
+    fontSize: "48px"
+    fontWeight: 500
+    lineHeight: "1.1"
+  body-base:
+    fontFamily: "Inter"
+    fontSize: "16px"
+    fontWeight: 300
     lineHeight: "1.6"
-  label-md:
-    fontFamily: "JetBrains Mono"
+  label-mono:
+    fontFamily: "monospace"
     fontSize: "12px"
-    fontWeight: 600
-    lineHeight: "1.2"
+    fontWeight: 400
+    lineHeight: "1"
 spacing:
-  base: "8px"
-  gap: "16px"
-  card-padding: "24px"
-  section-padding: "80px"
+  xs: "4px"
+  sm: "16px"
+  md: "24px"
+  lg: "48px"
+  xl: "96px"
+  section: "128px"
 rounded:
-  card: "8px"
-  control: "8px"
-  pill: "9999px"
+  none: "0px"
+  sm: "2px"
+  md: "4px"
+  lg: "8px"
+  full: "999px"
 components:
-  card:
-    background: "Use the surface token with subtle borders and HTML-matched shadow depth"
-    radius: "Match the declared card radius token"
-  button:
-    background: "Use primary or accent colors for the main action"
-    radius: "Use the control or pill radius based on the source HTML"
+  navigation:
+    style: "minimal-overlay"
+    blendMode: "difference"
+  cards:
+    variant: "investment-venture"
+    border: "1px solid rgba(255, 255, 255, 0.05)"
+    padding: "32px"
+  buttons:
+    variant: "icon-circle"
+    size: "40px"
+    hover: "bg-white text-black"
+motion:
+  duration: "500ms"
+  curve: "cubic-bezier(0.4, 0, 0.2, 1)"
 ---
-# Nova - Next Gen Intelligence
-Source: Neuform Featured templates from top creators. Author: Sourasith Phomhome (@madebysourasith). Views: 333; favorites: 18; remixes: 6.
-Tags: feature, section, animated, cta.
+
 ## Overview
-Nova Next Feature Section is designed for highlighting product capabilities and value points. Key features include reusable structure, responsive behavior, and production-ready presentation. It is suitable for component libraries and responsive product interfaces.
+The Ramond Holdings design system focuses on 'Spatial Integrity'. It utilizes deep blacks, stone-derived grays, and high-energy orange accents to communicate a blend of heritage and modern velocity.
 
-Nova Solutions Company Capabilities Help Get Started Next-gen systems. Engineered for tomorrow Wisdom That Drives Us Onward. We engineer intelligent systems and interactive environments that resolve complex challenges a…
-## Composition
-Use the attached HTML reference as the source of truth. Preserve the visible hierarchy, first-screen composition, section rhythm, density, and interaction tone before adapting copy or content.
-Key visible headings include: Wisdom That Drives Us Onward..
 ## Colors
-Anchor the palette in primary #34D399, secondary #60A5FA, accent #60A5FA, background #030303, surface #18181B, text-primary #FFFFFF. Keep background, surface, text, and border roles distinct so generated layouts retain the same contrast pattern as the source.
+- **Deep Core**: The system is built on `#050505` to simulate physical gallery spaces.
+- **Asset Accents**: Orange (`#f97316`) is used sparingly for status indicators and high-priority labeling.
+- **Muted Tones**: Grayscale values are pulled from the 'Stone' palette to ensure a warm, natural feel rather than cold digital gray.
+
 ## Typography
-Use Geist for display moments and Geist for body copy unless the HTML clearly demands a compatible fallback. Labels and technical metadata should use JetBrains Mono or an equivalent mono face.
+- **Cinzel**: Used for branding and all display headings to evoke classical architectural inscriptions.
+- **Inter**: Used for all functional data, body prose, and UI controls to ensure maximum readability.
+- **Monospace**: Reserved for technical specs (valuations, dates, coordinates).
+
+## Spacing
+- Utilizes a generous 8px grid system with heavy emphasis on 'Section Spacing' (128px+) to create an elite, unhurried user experience.
+
 ## Layout
-Keep spacing deliberate and stable. Favor the same grid direction, max-width behavior, card density, and responsive stacking seen in the HTML. Do not replace distinctive source structures with generic SaaS sections.
+- **Sticky Split-Scroll**: High-density content (Portfolio) uses a sticky sidebar (1/3) paired with a vertical scrolling feed (2/3).
+- **Snap Horizontal**: Galleries and venture cards use overflow-x snap-scrolling to prioritize mobile-first touch exploration.
+
+## Elevation & Depth
+- Depth is created through atmospheric blurs (blur-150px) rather than drop shadows.
+- Gradients are used from black to transparent to anchor text over imagery.
+
+## Shapes
+- Predominantly sharp corners (0px) to reflect structural geometry.
+- Subtle rounding (8px) is permitted only on 'Bento' style container cards.
+
 ## Components
-Authentication and CTA controls should preserve the source button hierarchy, input density, and focused conversion path.
+- **Marquee**: A non-stop ticker for global market presence.
+- **Investment Cards**: Borders expand on hover with inner-padding transitions.
+- **Reveal Overlays**: Content is hidden beneath a grayscale filter, revealing on hover with a Y-axis translation.
+- **Stat Bento**: A 4-column grid for quantitative performance metrics.
+
 ## Motion
-Preserve existing motion cues such as masked reveals, staggered entrance, hover lift, scroll-triggered transitions, and ambient movement. Keep easing smooth and restrained.
-## WebGL & Effects
+- **Scale Hover**: Images should scale from 110% to 100% on hover for an 'entry' feel.
+- **Difference Navigation**: Nav bars use `mix-blend-difference` to remain legible across varied background image brightness.
 
-If the source includes canvas, WebGL, Three.js, gradients, particles, or atmospheric effects, rebuild them as supporting layers behind the content. Keep effects performant, responsive, and secondary to the interface.
+## Do's and Don'ts
+- **Do**: Use high-contrast serif/sans-serif pairings.
+- **Do**: Use grayscale filters as a default state for property photography.
+- **Don't**: Use vibrant colors outside of the orange accent.
+- **Don't**: Overcrowd the layout; white space (black space) is a luxury signal.
 
-## Guardrails
-- Do not flatten the source into a generic card grid.
-- Do not swap the color mode unless the source clearly supports it.
-- Preserve the first viewport signal, focal object, and visual density.
-- Keep buttons, cards, and badges aligned to the same radius and border language.
+## Accessibility
+- Maintain a minimum of 4.5:1 contrast for all functional text.
+- Ensure navigation difference-blending works across all asset categories.
+- Use ARIA labels for icon-only circular buttons.

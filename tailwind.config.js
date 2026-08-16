@@ -1,67 +1,47 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  darkMode: ["class", '[data-theme="dark"]'],
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+export default {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       fontFamily: {
+        display: ["Cinzel", "serif"],
+        serif: ["Cinzel", "serif"],
         sans: ["Inter", "sans-serif"],
         mono: ["'JetBrains Mono'", "monospace"],
       },
       colors: {
-        tiffany: {
-          DEFAULT: "var(--accent-primary)",
-          light: "var(--accent-primary-hover)",
-          dark: "var(--accent-primary-hover)",
-        },
-        accent: "var(--accent-blue)",
-        emeraldAccent: "var(--accent-emerald)",
-        theme: {
-          bg: "var(--bg-primary)",
-          secondary: "var(--bg-secondary)",
-          elevated: "var(--bg-elevated)",
-          card: "var(--bg-card)",
-          "card-hover": "var(--bg-card-hover)",
-          "card-inner": "var(--bg-card-inner)",
-          pill: "var(--bg-pill)",
-          "pill-hover": "var(--bg-pill-hover)",
-          text: "var(--text-primary)",
-          "text-secondary": "var(--text-secondary)",
-          muted: "var(--text-muted)",
-          subtle: "var(--text-subtle)",
-          border: "var(--border-subtle)",
-          "border-hover": "var(--border-hover)",
-          "border-strong": "var(--border-strong)",
-          accent: "var(--accent-primary)",
-          "accent-hover": "var(--accent-primary-hover)",
-          "accent-text": "var(--accent-primary-text)",
-          "accent-subtle": "var(--accent-primary-subtle)",
-          "accent-border": "var(--accent-primary-border)",
+        brand: {
+          bg: "#050505",
+          surface: "#080808",
+          surfaceAlt: "#0a0a0a",
+          card: "#1c1917",
+          primary: "#f97316",
+          primaryHover: "#ea580c",
+          accent: "#ea580c",
+          textPrimary: "#f5f5f4",
+          textSecondary: "#a8a29e",
+          textMuted: "#57534e",
         },
       },
       animation: {
-        "fade-in": "fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards",
-        "spin-slow": "spin 12s linear infinite",
-        "pulse-glow": "pulseGlow 4s ease-in-out infinite",
-        float: "float 6s ease-in-out infinite",
-        shine: "shine 5s linear infinite",
+        marquee: "marquee 40s linear infinite",
+        "marquee-fast": "marquee 25s linear infinite",
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "fade-in": "fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "scale-up": "scaleUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards",
       },
       keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(20px) scale(0.98)" },
-          "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
-        pulseGlow: {
-          "0%, 100%": { opacity: "var(--ambient-opacity-1)", transform: "scale(1)" },
-          "50%": { opacity: "calc(var(--ambient-opacity-1) * 1.5)", transform: "scale(1.08)" },
+        fadeIn: {
+          "0%": { opacity: "0", transform: "translateY(12px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
-        float: {
-          "0%, 100%": { transform: "translateY(0px)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        shine: {
-          "0%": { "background-position": "100%" },
-          "100%": { "background-position": "-100%" },
+        scaleUp: {
+          "0%": { transform: "scale(0.95)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "1" },
         },
       },
     },

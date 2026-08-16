@@ -1,105 +1,119 @@
 import React, { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
-import BackgroundAmbiance from "./components/Background/BackgroundAmbiance";
-import NavBar from "./components/Layout/NavBar";
-import HeroSection from "./components/Hero Section/HeroSection";
-import ServicesSection from "./components/Service Section/ServicesSection";
-import SelectedWorkSection from "./components/Work Section/SelectedWorkSection";
-import OpenSourceSection from "./components/Open Soruce Section/OpenSourceSection";
-import GithubDashboardSection from "./components/Github Section/GithubDashboardSection";
-import ExperienceSection from "./components/Experience Section/ExperienceSection";
-import ContactSection from "./components/Contact Section/ContactSection";
-import Footer from "./components/Layout/Footer";
-import AboutModal from "./components/About Section/AboutModal";
+import Navigation from "./components/Navigation";
+import Hero from "./components/Hero";
+import Marquee from "./components/Marquee";
+import Portfolio from "./components/Portfolio";
+import ParallaxBreak from "./components/ParallaxBreak";
+import ExperienceSection from "./components/ExperienceSection";
+import OpenSourceShowcase from "./components/OpenSourceShowcase";
+import GithubDashboard from "./components/GithubDashboard";
+import Philosophy from "./components/Philosophy";
+import Capabilities from "./components/Capabilities";
+import BentoStats from "./components/BentoStats";
+import Footer from "./components/Footer";
 
-function App() {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) return saved === "dark";
-    return true; // Default to dark theme
-  });
+// Modals
+import ProjectModal from "./components/Modals/ProjectModal";
+import InsightModal from "./components/Modals/InsightModal";
+import EnquiryModal from "./components/Modals/EnquiryModal";
+import MenuDrawer from "./components/Modals/MenuDrawer";
 
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
+import { portfolioData } from "./data/portfolioData";
 
-  // Sync theme with HTML document element and localStorage
-  useEffect(() => {
-    const root = document.documentElement;
-    if (isDarkMode) {
-      root.classList.add("dark");
-      root.classList.remove("light");
-      root.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      root.classList.add("light");
-      root.classList.remove("dark");
-      root.setAttribute("data-theme", "light");
-      localStorage.setItem("theme", "light");
-    }
-  }, [isDarkMode]);
+export default function App() {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isInsightOpen, setIsInsightOpen] = useState(false);
+  const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
+  const [enquirySubject, setEnquirySubject] = useState("");
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Smooth scroll restoration
+  // Restore scroll position
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
   }, []);
 
-  const handleContactClick = () => {
-    const el = document.getElementById("contact");
-    if (el) {
-      const yOffset = -70;
-      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
-    }
+  const handleOpenEnquiry = (subject = "General Collaboration Inquiry") => {
+    setEnquirySubject(subject);
+    setIsEnquiryOpen(true);
   };
 
   return (
-    <div className="bg-theme-bg text-theme-text min-h-screen w-full flex flex-col items-center relative selection:bg-theme-accent selection:text-theme-accent-text font-sans antialiased transition-colors duration-300">
-      {/* Background Ambient Parallax Orbs */}
-      <BackgroundAmbiance isDarkMode={isDarkMode} />
-
-      {/* Floating Dynamic Island Navigation */}
-      <NavBar onContactClick={handleContactClick} isDarkMode={isDarkMode} />
-
-      {/* Hero Section with iOS Widgets */}
-      <HeroSection
-        isDarkMode={isDarkMode}
-        setIsDarkMode={setIsDarkMode}
-        onProfileClick={() => setIsAboutOpen(true)}
+    <div className="bg-[#050505] text-stone-300 min-h-screen w-full flex flex-col relative selection:bg-orange-900/40 selection:text-orange-100 font-sans antialiased">
+      {/* Fixed Navigation with mix-blend-difference */}
+      <Navigation
+        onOpenMenu={() => setIsMenuOpen(true)}
+        onOpenEnquiry={handleOpenEnquiry}
       />
 
-      {/* What I Do (Services) */}
-      <ServicesSection />
+      {/* Monumental Hero Section */}
+      <Hero onOpenEnquiry={handleOpenEnquiry} />
 
-      {/* Selected Work (Featured & Live Projects) */}
-      <SelectedWorkSection />
+      {/* Infinite Skills Marquee Ticker */}
+      <Marquee />
 
-      {/* Open Source Contributions (DoxDock, ONNX Runtime Web, WASM) */}
-      <OpenSourceSection />
+      {/* Sticky Vertical Split-Scroll: Selected Projects */}
+      <Portfolio onSelectProject={(project) => setSelectedProject(project)} />
 
-      {/* Integrated GitHub Dashboard */}
-      <GithubDashboardSection isDarkMode={isDarkMode} />
+      {/* Parallax Image Break: Engineering as High Craft */}
+      <ParallaxBreak />
 
-      {/* Experience & Career Journey */}
+      {/* Career Experience Timeline */}
       <ExperienceSection />
 
-      {/* Contact Section */}
-      <ContactSection />
+      {/* Open Source Contributions: DoxDock & WASM */}
+      <OpenSourceShowcase />
 
-      {/* Minimal Footer */}
-      <Footer />
+      {/* Real-time GitHub Dashboard & Live PR Ticker */}
+      <GithubDashboard />
 
-      {/* About Profile Modal with AnimatePresence */}
-      <AnimatePresence>
-        {isAboutOpen && (
-          <AboutModal
-            isOpen={isAboutOpen}
-            onClose={() => setIsAboutOpen(false)}
-          />
-        )}
-      </AnimatePresence>
+      {/* Engineering Philosophy: Spatial & Cognitive Integrity */}
+      <Philosophy />
+
+      {/* Core Engineering Capabilities Slider */}
+      <Capabilities onSelectCapability={(cap) => handleOpenEnquiry(`Discuss ${cap.title}`)} />
+
+      {/* Bento Grid Stats & The Engineer Profile */}
+      <BentoStats
+        onOpenInsight={() => setIsInsightOpen(true)}
+        onOpenAbout={() => handleOpenEnquiry("About & Background")}
+      />
+
+      {/* Monumental Footer */}
+      <Footer onOpenEnquiry={handleOpenEnquiry} />
+
+      {/* Fullscreen Navigation Drawer */}
+      <MenuDrawer
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onOpenEnquiry={handleOpenEnquiry}
+      />
+
+      {/* Architectural Project Dossier Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+          onEnquire={(subject) => handleOpenEnquiry(subject)}
+        />
+      )}
+
+      {/* Technical Paper / Insight Modal */}
+      {isInsightOpen && (
+        <InsightModal
+          article={portfolioData.insightArticle}
+          onClose={() => setIsInsightOpen(false)}
+        />
+      )}
+
+      {/* Formal Collaboration / Contact Modal */}
+      {isEnquiryOpen && (
+        <EnquiryModal
+          initialSubject={enquirySubject}
+          onClose={() => setIsEnquiryOpen(false)}
+        />
+      )}
     </div>
   );
 }
-
-export default App;
