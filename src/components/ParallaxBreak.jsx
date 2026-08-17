@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { fadeInUp } from "../utils/motionVariants";
-import backgroundImage from "../assets/backgroundImage.jpg"
+import backgroundImage from "../assets/backgroundImage.png";
 
 export default function ParallaxBreak() {
   const containerRef = useRef(null);
@@ -43,13 +43,13 @@ export default function ParallaxBreak() {
         variants={fadeInUp}
         className="relative z-20 text-center px-6 max-w-4xl mx-auto space-y-4"
       >
-       <span className="text-xs uppercase font-mono tracking-[0.3em] text-orange-400 block">
-            Frontend Engineering
-          </span>
-          <h2 className="text-4xl sm:text-6xl md:text-7xl font-display text-white tracking-tight leading-[1.05]">
-            Interfaces built <br />
-            <span className="italic font-serif text-stone-200">with Intent.</span>
-          </h2>
+        <span className="text-xs uppercase font-mono tracking-[0.3em] text-orange-400 block">
+          Frontend Engineering
+        </span>
+        <h2 className="text-4xl sm:text-6xl md:text-7xl font-display text-white tracking-tight leading-[1.05]">
+          Interfaces built <br />
+          <span className="italic font-serif text-stone-200">with Intent.</span>
+        </h2>
         <motion.div
           initial={{ width: 0 }}
           whileInView={{ width: 48 }}
